@@ -55,4 +55,20 @@ This is just a guideline to make our code more beautiful, but you can use your s
 3. if there is no args in function, u can use `_` or just `()`, it is up to you
 4. don't worry if you have a mistake, Muamar will check the code to make it more readable.
 
+## How to push?
+
+Make sure you make new branch, Format branch is
+
+`GitUsername/ActionName/Feature`
+
+ActionName: {
+  Making,
+  BugFix,
+  HotFix
+}
+
+And makesure everything is pascal case
+
+Example `Ralfarios/Making/HomePage`
+
 ## Any Question? Tell me!
