@@ -3,7 +3,7 @@ const path = {
   home: '/',
   login: '/login',
   register: '/register',
-  artistPortfolio: '/stall/:stallId'
+  artistPortfolio: '/stall/:stallId',
 };
 
 export default path;
