@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { Home, Login, Register, Detail  } from './pages/index.js';
+import { Home, Login, Register, Detail, ArtistPortfolio  } from './pages/index.js';
 import { Switch, Route } from 'react-router-dom';
 import path from './routers/index.js';
 import { NavBar } from './helpers/layout/index.js';
@@ -10,6 +9,9 @@ const App = _ => {
     <div className="App">
 
       <Switch>
+        <Route path={path.artistPortfolio}>
+          <ArtistPortfolio />
+        </Route>
         <Route path={path.login}>
           <Login />
         </Route>

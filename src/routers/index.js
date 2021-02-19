@@ -2,7 +2,8 @@
 const path = {
   home: '/',
   login: '/login',
-  register: '/register'
+  register: '/register',
+  artistPortfolio: '/stall/:stallId'
 };
 
 export default path;
