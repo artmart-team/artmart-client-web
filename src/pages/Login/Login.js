@@ -28,7 +28,9 @@ const Login = _ => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(user)
+    if (!user.email) return console.log('MASUKAN EMAIL');
+    if (!user.password) return console.log('MASUKAN PASSWORD');
+    return console.log(user)
   };
 
   return (
