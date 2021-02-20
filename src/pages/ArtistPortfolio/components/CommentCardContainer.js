@@ -15,8 +15,6 @@ const CommentCardContainer = _ => {
         </div>
         <button class="btn btn-primary w-100 mt-3" style={{ borderRadius: 8 }}>Send</button>
       </div>
-
-
     </div>
   );
 };
