@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { BsStarFill, BsStar } from 'react-icons/bs'
-
 const ReviewField = _ => {
   return (
     <div id="ReviewField" style={{ height: 'auto', borderRadius: 8, marginTop: 32, marginBottom: 32, }}>
