@@ -1,5 +1,6 @@
 import React from 'react';
 
+import DetailProduct from './components/DetailProduct.js';
 import ListBuy from './components/ListBuy.js';
 
 const OrderDescribe = _ => {
@@ -8,6 +9,7 @@ const OrderDescribe = _ => {
       <div className="container-fluid">
         <div className="row">
           <div className="col-6">
+            <DetailProduct />
           </div>
           <div className="col-6">
             <ListBuy />
