@@ -4,6 +4,7 @@ const path = {
   login: '/login',
   register: '/register',
   artistPortfolio: '/stall/:stallId',
+  paymentGateway: '/payment-gateway'
 };
 
 export default path;
