@@ -7,7 +7,8 @@ const path = {
   orderDescribe: '/order/describe/:orderId',
   orderCheckout: '/order/checkout/:orderId',
   orderProcess: '/order/process/:orderId',
-  orderFinish: '/order/finish/:orderId'
+  orderFinish: '/order/finish/:orderId',
+  paymentGateway: '/payment-gateway'
 };
 
 export default path;
