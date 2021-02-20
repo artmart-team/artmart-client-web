@@ -5,7 +5,7 @@ import image from '../../../assets/images/placeholder/pla_Card.png'
 
 const DetailProduct = _ => {
   return (
-    <div id="DetailProduct" style={{ height: 'auto', borderRadius: 8, marginTop: 32, marginBottom: 32, padding: 32, }}>
+    <div id="DetailProduct" style={{ height: 'auto', borderRadius: 8, marginTop: 32, padding: 32, }}>
 
       <h3>Describe your order.</h3>
 

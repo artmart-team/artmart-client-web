@@ -1,5 +1,6 @@
 import React from 'react';
 
+import DescribeField from './components/DescribeField.js';
 import DetailProduct from './components/DetailProduct.js';
 import ListBuy from './components/ListBuy.js';
 
@@ -10,6 +11,7 @@ const OrderDescribe = _ => {
         <div className="row">
           <div className="col-6">
             <DetailProduct />
+            <DescribeField />
           </div>
           <div className="col-6">
             <ListBuy />
