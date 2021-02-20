@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Login, Register, ArtistPortfolio } from './pages/index.js';
+import { Home, Login, Register, ArtistPortfolio, PaymentGateway } from './pages/index.js';
 import { Switch, Route } from 'react-router-dom';
 
 import path from './routers/index.js';
@@ -19,6 +19,9 @@ const App = _ => {
         </Route>
         <Route path={path.register}>
           <Register />
+        </Route>
+        <Route path={path.paymentGateway}>
+          <PaymentGateway />
         </Route>
         <Route path={path.home}>
           <Home />
