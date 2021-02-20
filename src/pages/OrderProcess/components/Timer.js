@@ -12,10 +12,34 @@ const Timer = ({ expiryTimestamp }) => {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <div style={{ fontSize: '100px' }}>
+      <div className="d-flex justify-content-center">
         <div>
-
-          <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
+          <p style={{ fontSize: 36, marginBottom: 0 }}>D</p>
+          <p style={{ fontSize: 86 }}>{days}</p>
+        </div>
+        <span>
+          <p style={{ fontSize: 36, marginBottom: 0 }}>:</p>
+          <p style={{ fontSize: 86 }}>:</p>
+        </span>
+        <div>
+          <p style={{ fontSize: 36, marginBottom: 0 }}>H</p>
+          <p style={{ fontSize: 86 }}>{hours}</p>
+        </div>
+        <span>
+          <p style={{ fontSize: 36, marginBottom: 0 }}>:</p>
+          <p style={{ fontSize: 86 }}>:</p>
+        </span>
+        <div>
+          <p style={{ fontSize: 36, marginBottom: 0 }}>M</p>
+          <p style={{ fontSize: 86 }}>{minutes}</p>
+        </div>
+        <span>
+          <p style={{ fontSize: 36, marginBottom: 0 }}>:</p>
+          <p style={{ fontSize: 86 }}>:</p>
+        </span>
+        <div>
+          <p style={{ fontSize: 36, marginBottom: 0 }}>S</p>
+          <p style={{ fontSize: 86 }}>{seconds}</p>
         </div>
       </div>
     </div>

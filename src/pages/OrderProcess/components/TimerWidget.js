@@ -12,6 +12,16 @@ const TimerWidget = ({ rawTime }) => {
       <h3>Deadline Time</h3>
 
       <Timer expiryTimestamp={time} />
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-6">
+            <button className="btn btn-primary w-100">Back to Homepage</button>
+          </div>
+          <div className="col-6">
+            <button className="btn btn-danger w-100">Cancel</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
