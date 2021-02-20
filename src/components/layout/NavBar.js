@@ -1,30 +1,31 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 
-import path from '../../routers/index.js'
-import logo from '../../assets/images/bootstrap-logo.svg'
+import path from '../../routers/index.js';
+import logo from '../../assets/images/img_logoC.svg';
 
 const NavBar = () => {
   const { pathname } = useLocation();
 
   return (
-    <div id="NavBar"
-      style={pathname === path.login || pathname === path.register ? { display: 'none' } : { display: 'block' }}
-    >
-      <nav className="navbar navbar-light bg-light mb-5 ">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="#">
-            <img src={logo} alt="" width="30" height="24" className="d-inline-block align-top" />
-            ngeBoot seterap
-          </a>
-          <form className="d-flex">
-            <input className="form-control me-1 m-2 w-40-rem" type="search" placeholder="Search" aria-label="Search" />
-            <button className="btn btn-outline-primary m-2" type="submit">Login</button>
-            <button className="btn btn-outline-success m-2" type="submit">Register</button>
-          </form>
+    <nav id="NavBar" className="navbar navbar-light bg-light sticky-top" style={pathname === path.login || pathname === path.register ? { display: 'none' } : { display: 'block' }}>
+      <div className="container-fluid" style={{ paddingRight: 64, paddingLeft: 64 }}>
+        <div className="navbar-brand">
+          <img src={logo} alt="logo" height="30" />
         </div>
-      </nav>
-    </div>
+        <form style={{ flex: 3 }}>
+          <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" style={{ width: '100%' }} />
+        </form>
+        <div className="d-flex">
+          <Link to={path.login}>
+            <button className="btn btn-link" type="button" style={{ marginLeft: 16, marginRight: 16, textDecoration: 'none', fontWeight: 500 }}>Login</button>
+          </Link>
+          <Link to={path.register}>
+            <button className="btn btn-primary" type="button">Get Started</button>
+          </Link>
+        </div>
+      </div>
+    </nav>
   )
 }
 
