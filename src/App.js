@@ -3,6 +3,7 @@ import {
   ArtistPortfolio,
   Home,
   Login,
+  OrderFinish,
   OrderProcess,
   Register
 } from './pages/index.js';
@@ -17,6 +18,9 @@ const App = _ => {
       <NavBar />
 
       <Switch>
+        <Route path={path.orderFinish}>
+          <OrderFinish />
+        </Route>
         <Route path={path.orderProcess}>
           <OrderProcess />
         </Route>
