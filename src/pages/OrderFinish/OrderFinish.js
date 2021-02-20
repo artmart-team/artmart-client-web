@@ -2,6 +2,7 @@ import React from 'react';
 
 import Invoice from './components/Invoice.js';
 import ItemPic from './components/ItemPic.js';
+import ReviewField from './components/ReviewField.js';
 
 const OrderFinish = _ => {
   return (
@@ -21,7 +22,9 @@ const OrderFinish = _ => {
           </div>
 
         </div>
+
       </div>
+        <ReviewField />
     </div>
   );
 };
