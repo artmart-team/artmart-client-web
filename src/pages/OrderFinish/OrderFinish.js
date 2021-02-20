@@ -1,5 +1,8 @@
 import React from 'react';
 
+import Invoice from './components/Invoice.js';
+import ItemPic from './components/ItemPic.js';
+
 const OrderFinish = _ => {
   return (
     <div id="OrderFinish" style={{ borderRadius: 8, padding: 32, marginLeft: 64, marginRight: 64 }}>
@@ -10,11 +13,11 @@ const OrderFinish = _ => {
         <div className="row">
 
           <div className="col-6">
-            TEST
+            <ItemPic />
           </div>
 
           <div className="col-6">
-            TEST
+            <Invoice />
           </div>
 
         </div>
