@@ -4,6 +4,7 @@ import {
   ArtistPortfolio,
   Home,
   Login,
+  OrderDescribe,
   OrderFinish,
   OrderProcess,
   PaymentGateway,
@@ -21,11 +22,14 @@ const App = _ => {
       <NavBar />
 
       <Switch>
-        <Route path={path.orderFinish}>
-          <OrderFinish />
+        <Route path={path.orderDescribe}>
+          <OrderDescribe />
         </Route>
         <Route path={path.orderProcess}>
           <OrderProcess />
+        </Route>
+        <Route path={path.orderFinish}>
+          <OrderFinish />
         </Route>
         <Route path={path.artistPortfolio}>
           <ArtistPortfolio />
