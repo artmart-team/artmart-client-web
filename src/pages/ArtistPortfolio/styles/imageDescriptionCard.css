@@ -1,0 +1,6 @@
+.description-para{
+  overflow-y: scroll;
+  display: -webkit-box;
+  -webkit-line-clamp: 10;
+  -webkit-box-orient: vertical;  
+}
