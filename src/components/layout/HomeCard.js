@@ -18,7 +18,7 @@ const HomeCard = _ => {
               <img
                 src={imageDP}
                 className="rounded-circle"
-                style={{ width: 60, height: 60, objectFit: 'cover' }}
+                style={{ width: 56, height: 56, objectFit: 'cover' }}
               />
             </div>
             <div className="col-12 col-sm-8">

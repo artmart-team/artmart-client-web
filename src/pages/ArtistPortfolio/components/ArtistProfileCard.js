@@ -27,7 +27,7 @@ const ArtistProfileCard = _ => {
         </div>
         <button className="btn btn-outline-primary w-100 mt-3" style={{ borderRadius: 8 }}>Contact Me!</button>
       </div>
-    </div >
+    </div>
   );
 };
 

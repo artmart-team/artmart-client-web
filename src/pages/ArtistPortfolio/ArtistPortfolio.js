@@ -4,6 +4,7 @@ import ArtistProfileCard from './components/ArtistProfileCard.js';
 import CustomOrderCard from './components/CustomOrderCard.js';
 import ImageDescriptionCard from './components/ImageDescriptionCard.js';
 import ImagePortfolioCard from './components/ImagePortfolioCard.js';
+import CommentCardContainer from './components/CommentCardContainer.js';
 
 const ArtistPortfolio = _ => {
   return (
@@ -19,6 +20,11 @@ const ArtistPortfolio = _ => {
           <div className="col-6">
             <CustomOrderCard />
             <ImageDescriptionCard />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-12">
+            <CommentCardContainer />
           </div>
         </div>
       </div>
