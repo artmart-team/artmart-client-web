@@ -1,14 +1,13 @@
 import React from 'react';
 
-import CommentCard from './CommentCard.js';
+import ChatCard from './ChatCard';
 
-const CommentCardContainer = _ => {
+const ChatCardContainer = _ => {
   return (
-    <div id="CommentCardContainer" style={{ height: 'auto',  borderRadius: 8, marginTop: 32, marginBottom: 32, }}>
-      <h1>COMMENT</h1>
+    <div id="ChatCardContainer" style={{ height: 'auto', borderRadius: 8, marginTop: 32, marginBottom: 32, }}>
 
       <div style={{ height: 'auto', backgroundColor: '#dddddd', borderRadius: 8, padding: 32, marginTop: 16 }}>
-        <CommentCard />
+        <ChatCard />
         <div className="form-floating">
           <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea" style={{ borderRadius: 8, height: 100 }}></textarea>
           <label htmlFor="floatingTextarea">Comments</label>
@@ -19,4 +18,4 @@ const CommentCardContainer = _ => {
   );
 };
 
-export default CommentCardContainer;
+export default ChatCardContainer;

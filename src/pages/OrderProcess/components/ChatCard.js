@@ -2,9 +2,9 @@ import React from 'react';
 
 import imageDP2 from '../../../assets/images/placeholder/pla_DP2.jpg';
 
-const CommentCard = _ => {
+const ChatCard = _ => {
   return (
-    <div id="CommentCard">
+    <div id="ChatCard">
       <div className="d-flex" style={{ marginTop: 16 }}>
         <div style={{ flex: 1 }} >
           <img
@@ -20,8 +20,8 @@ const CommentCard = _ => {
 
       </div>
       <hr />
-    </ div>
+    </div>
   );
 };
 
-export default CommentCard;
+export default ChatCard;

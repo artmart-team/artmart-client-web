@@ -1,5 +1,14 @@
 import React from 'react';
-import { Home, Login, Register, ArtistPortfolio, PaymentGateway } from './pages/index.js';
+
+import {
+  ArtistPortfolio,
+  Home,
+  Login,
+  OrderProcess,
+  PaymentGateway,
+  Register
+} from './pages/index.js';
+
 import { Switch, Route } from 'react-router-dom';
 
 import path from './routers/index.js';
@@ -11,6 +20,9 @@ const App = _ => {
       <NavBar />
 
       <Switch>
+        <Route path={path.orderProcess}>
+          <OrderProcess />
+        </Route>
         <Route path={path.artistPortfolio}>
           <ArtistPortfolio />
         </Route>
