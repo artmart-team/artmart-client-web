@@ -45,7 +45,7 @@ const NavBar = () => {
           <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
             <li>
               <div className="dropdown-item text-center disabled" style={{ width: 'inherit' }}>
-                <img src={imageDP} style={{ borderRadius: '2.5rem', margin: '16px auto', width: 48, height: 48 }} />
+                <img src={imageDP} style={{ borderRadius: '2.5rem', margin: '16px auto', width: 48, height: 48, objectFit: 'cover' }} />
                 <h6 style={{ margin: 0, fontSize: 16, color: '#202124' }}>Satomizu.</h6>
                 <p style={{ marginBottom: 16 }}>satomizu@gmail.com</p>
               </div>
