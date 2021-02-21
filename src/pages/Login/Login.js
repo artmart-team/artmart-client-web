@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import path from '../../routers/index.js';
+import { useDispatch } from 'react-redux';
+
+import { loginArtist, loginCustomer } from '../../utils/store/actions/userAction.js';
 
 import '../../styles/auth.css';
 
 const Login = _ => {
+  const dispatch = useDispatch()
   const { pathname } = useLocation();
   const [passwordType, setPasswordType] = useState('password');
   const [passwordChecked, setPasswordChecked] = useState(false);
@@ -29,9 +33,13 @@ const Login = _ => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    const payload = {
+      email: user.email,
+      password: user.password
+    };
     if (!user.email) return console.log('MASUKAN EMAIL');
     if (!user.password) return console.log('MASUKAN PASSWORD');
-    return console.log(user)
+    return pathname === path.loginArtist ? dispatch(loginArtist(payload)) : dispatch(loginCustomer(payload));
   };
 
   return (
@@ -59,8 +67,8 @@ const Login = _ => {
                 <button type="submit" className="btn btn-primary w-100" onClick={e => handleSubmit(e)}>Submit</button>
               </form>
               <p style={{ marginTop: 16, marginBottom: 0 }} className="text-muted">Don't have any account? <Link to={path.registerCustomer} style={{ textDecoration: 'none', fontWeight: 500 }}>Register!</Link></p>
-              <p className="text-muted" style={pathname === path.loginCustomer ? {display: 'block'} : { display: 'none' }}>Are you an Artist? <Link to={path.loginArtist} style={{ textDecoration: 'none', fontWeight: 500 }}>Login as Artist!</Link></p>
-              <p className="text-muted" style={pathname === path.loginArtist ? {display: 'block'} : { display: 'none' }}>Are you a Customer? <Link to={path.loginCustomer} style={{ textDecoration: 'none', fontWeight: 500 }}>Login as Customer!</Link></p>
+              <p className="text-muted" style={pathname === path.loginCustomer ? { display: 'block' } : { display: 'none' }}>Are you an Artist? <Link to={path.loginArtist} style={{ textDecoration: 'none', fontWeight: 500 }}>Login as Artist!</Link></p>
+              <p className="text-muted" style={pathname === path.loginArtist ? { display: 'block' } : { display: 'none' }}>Are you a Customer? <Link to={path.loginCustomer} style={{ textDecoration: 'none', fontWeight: 500 }}>Login as Customer!</Link></p>
             </div>
           </div>
         </div>
