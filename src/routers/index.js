@@ -7,7 +7,9 @@ const path = {
   orderDescribe: '/order/describe/:orderId',
   orderCheckout: '/order/checkout/:orderId',
   orderProcess: '/order/process/:orderId',
-  orderFinish: '/order/finish/:orderId'
+  orderFinish: '/order/finish/:orderId',
+  artistPage: '/artist/:artistId',
+  userPage: '/user/:userId'
 };
 
 export default path;
