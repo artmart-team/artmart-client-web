@@ -1,8 +1,62 @@
-import React from 'react';
+import React from 'react'
+import { useHistory } from 'react-router-dom'
+import axios from 'axios'
 
 import image from '../../../assets/images/placeholder/pla_Card.png';
 
 const DetailProduct = _ => {
+  const history = useHistory()
+  async function handleConfirmAndPay (event) {
+    try {
+      event.preventDefault()
+      window.snap.show()
+
+      const obj = {
+        gross_amount: 110000   // masih hardcode total harga
+      }
+      
+      const gateway = await axios.post('http://localhost:3000/users/1/requestPaymentGateway/orders/15', obj, {  // masih hardcode order idnya 
+        headers: {
+          "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ1c2VycXdlMyIsInByb2ZpbGVQaWN0dXJlIjoiaHR0cHM6Ly91aS1hdmF0YXJzLmNvbS9hcGkvP25hbWU9cXdlZmlyc3QzK3F3ZWxhc3QzIiwiaWF0IjoxNjEzOTA4NDc0fQ.IfsJ7e-HNFyscx-WmpFRhTS6q_43kbwwevGbOPAUxgE"  // masih hardcorde, nanti diganti dari access_token di localStorage
+        }
+      })
+      console.log(gateway.data)
+      window.snap.pay(gateway.data.token, {
+        onSuccess: function(result){
+          console.log('success')
+          console.log(result)
+          axios.patch('http://localhost:3000/users/1/orders/15/paid', null, {
+            headers: {
+              "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ1c2VycXdlMyIsInByb2ZpbGVQaWN0dXJlIjoiaHR0cHM6Ly91aS1hdmF0YXJzLmNvbS9hcGkvP25hbWU9cXdlZmlyc3QzK3F3ZWxhc3QzIiwiaWF0IjoxNjEzOTAyNDQ3fQ.aoGmzjzqEeHxyPBySKccrdIqMvU7Xy-HPXmVlXZ-la8"
+            }
+          })
+            .then(orderPaid => {
+              console.log(orderPaid)
+              history.push('/')
+            })
+            .catch(err => {
+              console.log(err, 'err update db paid >> true')
+            })
+        },
+        onPending: function(result){
+          console.log('pending')
+          console.log(result)
+        },
+        onError: function(result){
+          console.log('error')
+          console.log(result)
+        },
+        onClose: function(){
+          console.log('customer closed the popup without finishing the payment')
+        }
+      })
+    } catch (err) {
+      console.log(err, 'err handleConfirmAndPay')
+      console.log(err.message, 'err handleConfirmAndPay msg')
+      window.snap.hide()
+    }
+  }
+
   return (
     <div id="DetailProduct">
       <div className="card mx-auto" style={{ borderRadius: 8, marginTop: 32 }}>
@@ -87,7 +141,7 @@ const DetailProduct = _ => {
             <p style={{ fontWeight: 400, marginBottom: 8 }}>Service fee</p>
             <p style={{ fontWeight: 400, marginBottom: 8 }}>Rp. 10.000</p>
           </div>
-          <button type="submit" className="btn btn-success w-100">Confirm & Pay</button>
+          <button type="submit" className="btn btn-success w-100" onClick={(e) => handleConfirmAndPay(e)}>Confirm & Pay</button>
         </div>
       </div>
 
