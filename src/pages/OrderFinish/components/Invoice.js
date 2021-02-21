@@ -14,43 +14,36 @@ const Invoice = _ => {
 
           <div className="mb-2 mt-2 form-check" style={{paddingLeft: 0}}>
             <div className="d-flex justify-content-between">
-              <label className="form-check-label" htmlFor="showPass">HD Resolution</label>
-              <label className="form-check-label" htmlFor="showPass">+ Rp. 10.000</label>
+              <p style={{ marginBottom: 0 }}>HD Resolution</p>
+              <p style={{ marginBottom: 0 }}>+ Rp. 10.000</p>
             </div>
           </div>
 
           <div className="mb-2 mt-2 form-check" style={{paddingLeft: 0}}>
             <div className="d-flex justify-content-between">
-              <label className="form-check-label" htmlFor="showPass">Full Color</label>
-              <label className="form-check-label" htmlFor="showPass">+ Rp. 10.000</label>
+              <p style={{ marginBottom: 0 }}>Full Color</p>
+              <p style={{ marginBottom: 0 }}>+ Rp. 10.000</p>
             </div>
           </div>
 
           <div className="mb-2 mt-2 form-check" style={{paddingLeft: 0}}>
             <div className="d-flex justify-content-between">
-              <label className="form-check-label" htmlFor="showPass">Full Body</label>
-              <label className="form-check-label" htmlFor="showPass">+ Rp. 10.000</label>
+              <p style={{ marginBottom: 0 }}>Full Body</p>
+              <p style={{ marginBottom: 0 }}>+ Rp. 10.000</p>
             </div>
           </div>
 
           <div className="mb-2 mt-2 form-check" style={{paddingLeft: 0}}>
             <div className="d-flex justify-content-between">
-              <label className="form-check-label" htmlFor="showPass">Half Body</label>
-              <label className="form-check-label" htmlFor="showPass">+ Rp. 10.000</label>
+              <p style={{ marginBottom: 0 }}>Half Body</p>
+              <p style={{ marginBottom: 0 }}>+ Rp. 10.000</p>
             </div>
           </div>
 
           <div className="mb-2 mt-2 form-check" style={{paddingLeft: 0}}>
             <div className="d-flex justify-content-between">
-              <label className="form-check-label" htmlFor="showPass">Commercial Use</label>
-              <label className="form-check-label" htmlFor="showPass">+ Rp. 10.000</label>
-            </div>
-          </div>
-
-          <div className="mb-2 mt-2 form-check" style={{paddingLeft: 0}}>
-            <div className="d-flex justify-content-between">
-              <label className="form-check-label" htmlFor="showPass">Commercial Use</label>
-              <label className="form-check-label" htmlFor="showPass">+ Rp. 10.000</label>
+              <p style={{ marginBottom: 0 }}>Commercial Use</p>
+              <p style={{ marginBottom: 0 }}>+ Rp. 10.000</p>
             </div>
           </div>
 
@@ -58,8 +51,8 @@ const Invoice = _ => {
 
         <hr />
         <div className="d-flex justify-content-between mb-3">
-          <label className="form-check-label" style={{ fontWeight: 600 }} htmlFor="showPass">Total</label>
-          <label className="form-check-label" style={{ fontWeight: 600 }} htmlFor="showPass">Rp. 110.000</label>
+          <p style={{ fontWeight: 600, marginBottom: 0 }}>Total</p>
+          <p style={{ fontWeight: 600, marginBottom: 0 }}>Rp. 110.000</p>
         </div>
       </div>
     </div>
