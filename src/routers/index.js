@@ -1,7 +1,8 @@
 // Index for collecting router path, so when importing just destructure from here.
 const path = {
   home: '/',
-  login: '/login',
+  loginArtist: '/login/artist',
+  loginCustomer: '/login/customer',
   register: '/register',
   stallForm: '/stall/add',
   artistPortfolio: '/stall/:stallId',

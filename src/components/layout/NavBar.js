@@ -11,13 +11,15 @@ const NavBar = () => {
     <nav id="NavBar" className="navbar navbar-light bg-light sticky-top" style={pathname === path.login || pathname === path.register ? { display: 'none' } : { display: 'block' }}>
       <div className="container-fluid" style={{ paddingRight: 64, paddingLeft: 64 }}>
         <div className="navbar-brand">
-          <img src={logo} alt="logo" height="30" />
+          <Link to={path.home} >
+            <img src={logo} alt="logo" height="30" />
+          </Link>
         </div>
         <form style={{ flex: 3 }}>
           <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" style={{ width: '100%' }} />
         </form>
         <div className="d-flex">
-          <Link to={path.login}>
+          <Link to={path.loginCustomer}>
             <button className="btn btn-link" type="button" style={{ marginLeft: 16, marginRight: 16, textDecoration: 'none', fontWeight: 500 }}>Login</button>
           </Link>
           <Link to={path.register}>

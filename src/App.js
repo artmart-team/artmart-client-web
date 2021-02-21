@@ -49,7 +49,10 @@ const App = _ => {
         <Route path={path.artistPortfolio}>
           <ArtistPortfolio />
         </Route>
-        <Route path={path.login}>
+        <Route path={path.loginArtist}>
+          <Login />
+        </Route>
+        <Route path={path.loginCustomer}>
           <Login />
         </Route>
         <Route path={path.register}>
