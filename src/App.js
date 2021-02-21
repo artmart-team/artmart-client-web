@@ -7,7 +7,7 @@ import {
   OrderDescribe,
   OrderFinish,
   OrderProcess,
-  PaymentGateway,
+  OrderCheckout,
   Register
 } from './pages/index.js';
 
@@ -22,14 +22,17 @@ const App = _ => {
       <NavBar />
 
       <Switch>
-        <Route path={path.orderDescribe}>
-          <OrderDescribe />
+        <Route path={path.orderFinish}>
+          <OrderFinish />
         </Route>
         <Route path={path.orderProcess}>
           <OrderProcess />
         </Route>
-        <Route path={path.orderFinish}>
-          <OrderFinish />
+        <Route path={path.orderCheckout}>
+          <OrderCheckout />
+        </Route>
+        <Route path={path.orderDescribe}>
+          <OrderDescribe />
         </Route>
         <Route path={path.artistPortfolio}>
           <ArtistPortfolio />
@@ -39,9 +42,6 @@ const App = _ => {
         </Route>
         <Route path={path.register}>
           <Register />
-        </Route>
-        <Route path={path.paymentGateway}>
-          <PaymentGateway />
         </Route>
         <Route path={path.home}>
           <Home />
