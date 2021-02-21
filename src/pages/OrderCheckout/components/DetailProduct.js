@@ -15,7 +15,7 @@ const DetailProduct = _ => {
         gross_amount: 110000   // masih hardcode total harga
       }
       
-      const gateway = await axios.post('http://localhost:3000/users/1/requestPaymentGateway/orders/15', obj, {  // masih hardcode order idnya 
+      const gateway = await axios.post('http://localhost:4000/users/1/requestPaymentGateway/orders/15', obj, {  // masih hardcode order idnya 
         headers: {
           "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ1c2VycXdlMyIsInByb2ZpbGVQaWN0dXJlIjoiaHR0cHM6Ly91aS1hdmF0YXJzLmNvbS9hcGkvP25hbWU9cXdlZmlyc3QzK3F3ZWxhc3QzIiwiaWF0IjoxNjEzOTA4NDc0fQ.IfsJ7e-HNFyscx-WmpFRhTS6q_43kbwwevGbOPAUxgE"  // masih hardcorde, nanti diganti dari access_token di localStorage
         }
@@ -25,7 +25,7 @@ const DetailProduct = _ => {
         onSuccess: function(result){
           console.log('success')
           console.log(result)
-          axios.patch('http://localhost:3000/users/1/orders/15/paid', null, {
+          axios.patch('http://localhost:4000/users/1/orders/15/paid', null, {
             headers: {
               "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ1c2VycXdlMyIsInByb2ZpbGVQaWN0dXJlIjoiaHR0cHM6Ly91aS1hdmF0YXJzLmNvbS9hcGkvP25hbWU9cXdlZmlyc3QzK3F3ZWxhc3QzIiwiaWF0IjoxNjEzOTAyNDQ3fQ.aoGmzjzqEeHxyPBySKccrdIqMvU7Xy-HPXmVlXZ-la8"
             }
