@@ -1,19 +1,17 @@
 import React from 'react';
 
-import StallCard from './StallCard.js';
+import OrderCard from './OrderCard.js';
 
-const StallList = _ => {
+const OrderList = _ => {
   return (
     <div id="StallList" className="container-fluid" style={{ marginTop: 32 }}>
       <div className="row" >
 
-        <StallCard />
-        <StallCard />
-        <StallCard />
+        <OrderCard />
 
       </div>
     </div>
   );
 };
 
-export default StallList;
+export default OrderList;
