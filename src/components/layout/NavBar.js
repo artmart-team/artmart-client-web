@@ -39,7 +39,7 @@ const NavBar = () => {
             aria-expanded="false"
             role="button"
           >
-            <img src={imageDP} style={{ borderRadius: '2.5rem', width: 32, height: 32 }} />
+            <img src={imageDP} style={{ borderRadius: '2.5rem', width: 32, height: 32, objectFit: 'cover' }} />
           </div>
 
           <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">

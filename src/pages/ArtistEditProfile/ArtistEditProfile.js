@@ -1,9 +1,11 @@
 import React from 'react';
 
+import ArtistEditProfileForm from './components/ArtistEditProfileForm.js';
+
 const ArtistEditProfile = _ => {
   return (
     <div id="ArtistEditProfile">
-      <h1>EDIT</h1>
+      <ArtistEditProfileForm />
     </div>
   );
 };
