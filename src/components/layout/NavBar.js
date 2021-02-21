@@ -11,7 +11,9 @@ const NavBar = () => {
     <nav id="NavBar" className="navbar navbar-light bg-light sticky-top" style={pathname === path.login || pathname === path.register ? { display: 'none' } : { display: 'block' }}>
       <div className="container-fluid" style={{ paddingRight: 64, paddingLeft: 64 }}>
         <div className="navbar-brand">
-          <img src={logo} alt="logo" height="30" />
+          <Link to="/">
+            <img src={logo} alt="logo" height="30" />
+          </Link>
         </div>
         <form style={{ flex: 3 }}>
           <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" style={{ width: '100%' }} />
