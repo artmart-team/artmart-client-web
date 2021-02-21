@@ -1,0 +1,10 @@
+.circle {
+  width: 17vw;
+  height: 17vw;
+  padding: 4px;
+  border-radius: 50%;
+  object-fit: cover;
+  border-style: double;
+  border: thin solid black;
+}
+
