@@ -2,6 +2,7 @@ import React from 'react';
 
 import {
   ArtistPage,
+  ArtistEditProfile,
   ArtistPortfolio,
   Home,
   Login,
@@ -28,6 +29,9 @@ const App = _ => {
       <Switch>
         <Route path={path.stallForm}>
           <StallAdd />
+        </Route>
+        <Route path={path.artistEditProfile}>
+          <ArtistEditProfile />
         </Route>
         <Route path={path.artistPage}>
           <ArtistPage />

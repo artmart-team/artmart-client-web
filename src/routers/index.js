@@ -12,6 +12,7 @@ const path = {
   orderProcess: '/order/process/:orderId',
   orderFinish: '/order/finish/:orderId',
   artistPage: '/artist/:artistId',
+  artistEditProfile: '/artist/:artistId/edit',
   userPage: '/user/:userId'
 };
 
