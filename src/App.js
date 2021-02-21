@@ -9,9 +9,10 @@ import {
   OrderFinish,
   OrderProcess,
   OrderCheckout,
-  Register,
+  RegisterCustomer,
   UserPage,
-  StallAdd
+  StallAdd,
+  RegisterArtist
 } from './pages/index.js';
 
 import { Switch, Route } from 'react-router-dom';
@@ -55,8 +56,11 @@ const App = _ => {
         <Route path={path.loginCustomer}>
           <Login />
         </Route>
-        <Route path={path.register}>
-          <Register />
+        <Route path={path.registerArtist}>
+          <RegisterArtist />
+        </Route>
+        <Route path={path.registerCustomer}>
+          <RegisterCustomer />
         </Route>
         <Route path={path.home}>
           <Home />

@@ -58,7 +58,7 @@ const Login = _ => {
                 </div>
                 <button type="submit" className="btn btn-primary w-100" onClick={e => handleSubmit(e)}>Submit</button>
               </form>
-              <p style={{ marginTop: 16, marginBottom: 0 }} className="text-muted">Don't have any account? <Link to={path.register} style={{ textDecoration: 'none', fontWeight: 500 }}>Register!</Link></p>
+              <p style={{ marginTop: 16, marginBottom: 0 }} className="text-muted">Don't have any account? <Link to={path.registerCustomer} style={{ textDecoration: 'none', fontWeight: 500 }}>Register!</Link></p>
               <p className="text-muted" style={pathname === path.loginCustomer ? {display: 'block'} : { display: 'none' }}>Are you an Artist? <Link to={path.loginArtist} style={{ textDecoration: 'none', fontWeight: 500 }}>Login as Artist!</Link></p>
               <p className="text-muted" style={pathname === path.loginArtist ? {display: 'block'} : { display: 'none' }}>Are you a Customer? <Link to={path.loginCustomer} style={{ textDecoration: 'none', fontWeight: 500 }}>Login as Customer!</Link></p>
             </div>
