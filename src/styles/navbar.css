@@ -1,0 +1,15 @@
+.user-btn {
+  background-color: #eeeeee;
+  border-radius: 2.5rem;
+  padding: 4px 4px;
+  margin-left: 16px;
+}
+.user-btn:hover {
+  background-color: #e6e6e6;
+}
+.user-btn:active {
+  background-color: #d6d6d6;
+}
+.user-btn:focus-visible {
+  background-color: blue;
+}
