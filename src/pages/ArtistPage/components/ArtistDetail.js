@@ -24,8 +24,9 @@ const ArtistDetail = _ => {
         <BsStarHalf style={{ marginRight: 8, marginBottom: 2 }} className="align-self-center" />
         <p style={{ margin: 0 }} className="align-self-center">4.5</p>
       </div>
-      <button className="btn btn-outline-success w-100" style={{marginTop: 16, borderRadius: 8}}>Contact Me!</button>
-      {/* <button className="btn btn-outline-success w-100" style={{marginTop: 16, borderRadius: 8}}>Edit Profile</button> */}
+      {/* <button className="btn btn-outline-success w-100" style={{marginTop: 16, borderRadius: 8}}>Contact Me!</button> */}
+      <button className="btn btn-outline-success w-100" style={{marginTop: 16, borderRadius: 8}}>Edit Profile</button>
+      <button className="btn btn-outline-success w-100" style={{marginTop: 16, borderRadius: 8}}>Post an Art</button>
     </div>
   );
 };

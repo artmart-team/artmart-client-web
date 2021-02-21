@@ -20,7 +20,7 @@ const PaymentOptions = _ => {
   return (
     <div id="PaymentOptions" style={{ border: 'thin solid rgba(0, 0, 0, 0.5)', borderRadius: 8, marginTop: 32, padding: 32 }}>
       <h1>Payment Option</h1>
-      <hr></hr>
+      <hr />
       <div>
         <div className="form-check">
           <input className="form-check-input" type="radio" name="creditCard" id="creditCard" defaultChecked />
@@ -28,7 +28,7 @@ const PaymentOptions = _ => {
             Credit Cards
           </label>
         </div>
-        <hr></hr>
+        <hr />
         <form action="">
           <div className="mb-3">
             <div className="row">

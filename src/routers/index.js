@@ -3,6 +3,7 @@ const path = {
   home: '/',
   login: '/login',
   register: '/register',
+  stallForm: '/stall/add',
   artistPortfolio: '/stall/:stallId',
   orderDescribe: '/order/describe/:orderId',
   orderCheckout: '/order/checkout/:orderId',

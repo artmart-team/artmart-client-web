@@ -9,3 +9,4 @@ export { default as OrderCheckout } from './OrderCheckout/OrderCheckout';
 export { default as OrderProcess } from './OrderProcess/OrderProcess.js';
 export { default as OrderFinish } from './OrderFinish/OrderFinish.js';
 export { default as UserPage } from './UserPage/UserPage.js';
+export { default as StallAdd } from './StallAdd/StallAdd.js';

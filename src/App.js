@@ -10,7 +10,8 @@ import {
   OrderProcess,
   OrderCheckout,
   Register,
-  UserPage
+  UserPage,
+  StallAdd
 } from './pages/index.js';
 
 import { Switch, Route } from 'react-router-dom';
@@ -24,6 +25,9 @@ const App = _ => {
       <NavBar />
 
       <Switch>
+        <Route path={path.stallForm}>
+          <StallAdd />
+        </Route>
         <Route path={path.artistPage}>
           <ArtistPage />
         </Route>
