@@ -2,7 +2,8 @@
 export { default as ArtistPage } from './ArtistPage/ArtistPage.js';
 export { default as Home } from './Home/Home.js';
 export { default as Login } from './Login/Login.js';
-export { default as Register } from './Register/Register.js';
+export { default as RegisterArtist } from './RegisterArtist/RegisterArtist.js';
+export { default as RegisterCustomer } from './RegisterCustomer/RegisterCustomer.js';
 export { default as ArtistPortfolio } from './ArtistPortfolio/ArtistPortfolio.js';
 export { default as OrderDescribe } from './OrderDescribe/OrderDescribe.js';
 export { default as OrderCheckout } from './OrderCheckout/OrderCheckout';

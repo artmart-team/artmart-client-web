@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import path from '../../routers/index.js';
 
 import '../../styles/auth.css';
 
 const Login = _ => {
+  const { pathname } = useLocation();
   const [passwordType, setPasswordType] = useState('password');
   const [passwordChecked, setPasswordChecked] = useState(false);
   const [user, setUser] = useState({
@@ -39,7 +40,9 @@ const Login = _ => {
         <div className="row justify-content-center" style={{ height: '100vh' }}>
           <div className="col align-self-center" style={{ padding: 0, width: '100vh' }}>
             <div className="auth-card shadow">
-              <h4 style={{ fontSize: '2.6em', fontWeight: 400, letterSpacing: 3 }}>LOGIN</h4>
+              <h4 style={{ fontSize: '2.6em', fontWeight: 400, letterSpacing: 3, marginBottom: -4 }}>LOGIN</h4>
+              <h5 style={pathname === path.loginCustomer ? { fontWeight: 400 } : { display: 'none' }}>as customer.</h5>
+              <h5 style={pathname === path.loginArtist ? { fontWeight: 400 } : { display: 'none' }}>as artist.</h5>
               <form action="">
                 <div className="mb-3">
                   <label htmlFor="email" className="form-label">Email / Username</label>
@@ -55,7 +58,9 @@ const Login = _ => {
                 </div>
                 <button type="submit" className="btn btn-primary w-100" onClick={e => handleSubmit(e)}>Submit</button>
               </form>
-              <p style={{ marginTop: 16 }} className="text-muted">Don't have any account? <Link to={path.register} style={{ textDecoration: 'none', fontWeight: 500 }}>Register!</Link></p>
+              <p style={{ marginTop: 16, marginBottom: 0 }} className="text-muted">Don't have any account? <Link to={path.registerCustomer} style={{ textDecoration: 'none', fontWeight: 500 }}>Register!</Link></p>
+              <p className="text-muted" style={pathname === path.loginCustomer ? {display: 'block'} : { display: 'none' }}>Are you an Artist? <Link to={path.loginArtist} style={{ textDecoration: 'none', fontWeight: 500 }}>Login as Artist!</Link></p>
+              <p className="text-muted" style={pathname === path.loginArtist ? {display: 'block'} : { display: 'none' }}>Are you a Customer? <Link to={path.loginCustomer} style={{ textDecoration: 'none', fontWeight: 500 }}>Login as Customer!</Link></p>
             </div>
           </div>
         </div>
