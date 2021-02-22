@@ -22,3 +22,49 @@ export const fetchPictures = () => {
     }
   }
 }
+
+export const currentCollection = (artistId) => {
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type: 'FETCH_CURRENT_COLLECTION_START'
+      })
+
+      const { data } = await axios.get(`/artists/${artistId}/pictures`)
+
+      dispatch({
+        type: 'FETCH_CURRENT_COLLECTION_DONE',
+        payload: data
+      })
+    } catch (err) {
+      console.log(err, 'error currentCollection Action')
+      dispatch({
+        type: 'FETCH_CURRENT_COLLECTION_ERROR',
+        payload: err
+      })
+    }
+  }
+}
+
+export const showPicture = (link, picId, picPrice, picName, picDescription, artistRating, artistId) => {
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type: 'SHOW_PICTURE_DONE',
+        link: link,
+        picId,
+        picPrice,
+        picName,
+        picDescription,
+        artistRating,
+        artistId
+      })
+    } catch (err) {
+      console.log(err, 'error showPicture Action')
+      dispatch({
+        type: 'SHOW_PICTURE_ERROR',
+        payload: err
+      })
+    }
+  }
+}

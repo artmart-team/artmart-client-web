@@ -10,7 +10,7 @@ const Home = _ => {
   useEffect(() => {
     console.log('fetch running')
     dispatch(fetchPictures())
-  }, [dispatch])
+  }, [])
 
   if (!loading) {
     return (
