@@ -1,11 +1,24 @@
-import React from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useHistory, useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import axios from 'axios'
 
+import SelectedOption from './SelectedOption'
 import image from '../../../assets/images/placeholder/pla_Card.png';
 
 const DetailProduct = _ => {
   const history = useHistory()
+  const { artistId } = useParams()
+  const [duration, setDuration] = useState(0)
+  const { showPicture, showPictureName, showPicturePrice} = useSelector(state => state.pictures) 
+  const { selectedOptions, totalExtraPrice } = useSelector(state => state.options) 
+
+  useEffect(async () => {
+    let { data } = await axios.get('https://marterialize.herokuapp.com/artists/1')
+
+    setDuration(data.completeDuration)
+  }, [])
+
   async function handleConfirmAndPay (event) {
     try {
       event.preventDefault()
@@ -15,9 +28,9 @@ const DetailProduct = _ => {
         gross_amount: 110000   // masih hardcode total harga
       }
       
-      const gateway = await axios.post('http://localhost:4000/users/1/requestPaymentGateway/orders/15', obj, {  // masih hardcode order idnya 
+      const gateway = await axios.post('https://marterialize.herokuapp.com/users/1/requestPaymentGateway/orders/4', obj, {  // masih hardcode order idnya 
         headers: {
-          "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ1c2VycXdlMyIsInByb2ZpbGVQaWN0dXJlIjoiaHR0cHM6Ly91aS1hdmF0YXJzLmNvbS9hcGkvP25hbWU9cXdlZmlyc3QzK3F3ZWxhc3QzIiwiaWF0IjoxNjEzOTA4NDc0fQ.IfsJ7e-HNFyscx-WmpFRhTS6q_43kbwwevGbOPAUxgE"  // masih hardcorde, nanti diganti dari access_token di localStorage
+          "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJ1c2VybmFtZVRlc3RpbmdGb3JVU2VyIiwicHJvZmlsZVBpY3R1cmUiOiJsaW5rLmdvb2dsZS5jb20iLCJpYXQiOjE2MTQwMDk4NTd9.QheFhBXZV1W5SV7xPsGovKtH9JTeMrWEH7E9i5oJwHU"  // masih hardcorde, nanti diganti dari access_token di localStorage
         }
       })
       console.log(gateway.data)
@@ -25,14 +38,14 @@ const DetailProduct = _ => {
         onSuccess: function(result){
           console.log('success')
           console.log(result)
-          axios.patch('http://localhost:4000/users/1/orders/15/paid', null, {
+          axios.patch('https://marterialize.herokuapp.com/users/1/orders/4/paid', null, {
             headers: {
-              "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ1c2VycXdlMyIsInByb2ZpbGVQaWN0dXJlIjoiaHR0cHM6Ly91aS1hdmF0YXJzLmNvbS9hcGkvP25hbWU9cXdlZmlyc3QzK3F3ZWxhc3QzIiwiaWF0IjoxNjEzOTAyNDQ3fQ.aoGmzjzqEeHxyPBySKccrdIqMvU7Xy-HPXmVlXZ-la8"
+              "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJ1c2VybmFtZVRlc3RpbmdGb3JVU2VyIiwicHJvZmlsZVBpY3R1cmUiOiJsaW5rLmdvb2dsZS5jb20iLCJpYXQiOjE2MTQwMDk4NTd9.QheFhBXZV1W5SV7xPsGovKtH9JTeMrWEH7E9i5oJwHU"
             }
           })
             .then(orderPaid => {
               console.log(orderPaid)
-              history.push('/')
+              history.push('/order/process/:orderId')
             })
             .catch(err => {
               console.log(err, 'err update db paid >> true')
@@ -65,56 +78,19 @@ const DetailProduct = _ => {
           <div className="row">
 
             <div className="col-4">
-              <img src={image} className="card-img-top" style={{ borderRadius: 8 }} />
+              <img src={ showPicture } className="card-img-top" style={{ borderRadius: 8 }} />
             </div>
 
             <div className="col-8 mb-3">
-              <h4>Potato Style Drawing</h4>
-              <p>Duration: 5 days</p>
+              <h4>{ showPictureName }</h4>
+              <p>Duration: { duration } hours</p>
             </div>
           </div>
 
-          <div className="mb-2 mt-4 text-muted" style={{ paddingLeft: 0 }}>
-            <div className="d-flex justify-content-between">
-              <p style={{ fontWeight: 600, marginBottom: 0 }}>Basic price</p>
-              <p style={{ fontWeight: 600, marginBottom: 0 }}>Rp. 100.000</p>
-            </div>
-          </div>
+          {
+            selectedOptions.map((option, idx) => <SelectedOption option={option} key={idx}></SelectedOption>)
+          }
 
-          <div className="mb-2 mt-2 text-muted" style={{ paddingLeft: 0 }}>
-            <div className="d-flex justify-content-between">
-              <p style={{ marginBottom: 0 }}>HD Resolution</p>
-              <p style={{ marginBottom: 0 }}>+ Rp. 10.000</p>
-            </div>
-          </div>
-
-          <div className="mb-2 mt-2 text-muted" style={{ paddingLeft: 0 }}>
-            <div className="d-flex justify-content-between">
-              <p style={{ marginBottom: 0 }}>Full Color</p>
-              <p style={{ marginBottom: 0 }}>+ Rp. 10.000</p>
-            </div>
-          </div>
-
-          <div className="mb-2 mt-2 text-muted" style={{ paddingLeft: 0 }}>
-            <div className="d-flex justify-content-between">
-              <p style={{ marginBottom: 0 }}>Full Body</p>
-              <p style={{ marginBottom: 0 }}>+ Rp. 10.000</p>
-            </div>
-          </div>
-
-          <div className="mb-2 mt-2 text-muted" style={{ paddingLeft: 0 }}>
-            <div className="d-flex justify-content-between">
-              <p style={{ marginBottom: 0 }}>Half Body</p>
-              <p style={{ marginBottom: 0 }}>+ Rp. 10.000</p>
-            </div>
-          </div>
-
-          <div className="mb-2 mt-2 text-muted" style={{ paddingLeft: 0 }}>
-            <div className="d-flex justify-content-between">
-              <p style={{ marginBottom: 0 }}>Commercial Use</p>
-              <p style={{ marginBottom: 0 }}>+ Rp. 10.000</p>
-            </div>
-          </div>
         </div>
 
 
@@ -134,12 +110,12 @@ const DetailProduct = _ => {
         <button type="submit" className="btn btn-success d-flex justify-content-center mx-3 p-2 mb-3">Confirm & Pay</button> */}
         <div style={{ padding: 32 }} >
           <div className="d-flex justify-content-between">
-            <p style={{ fontWeight: 600, marginBottom: 8 }}>Total</p>
-            <p style={{ fontWeight: 600, marginBottom: 8 }}>Rp. 110.000</p>
+            <p style={{ fontWeight: 400, marginBottom: 8 }}>Service fee (+5%)</p>
+            <p style={{ fontWeight: 400, marginBottom: 8 }}>Rp. { (showPicturePrice + totalExtraPrice) * 5 / 100}</p>
           </div>
           <div className="d-flex justify-content-between">
-            <p style={{ fontWeight: 400, marginBottom: 8 }}>Service fee</p>
-            <p style={{ fontWeight: 400, marginBottom: 8 }}>Rp. 10.000</p>
+            <p style={{ fontWeight: 600, marginBottom: 8 }}>Total</p>
+            <p style={{ fontWeight: 600, marginBottom: 8 }}>Rp. { showPicturePrice + totalExtraPrice + ((showPicturePrice + totalExtraPrice) * 5 / 100) }</p>
           </div>
           <button type="submit" className="btn btn-success w-100" onClick={(e) => handleConfirmAndPay(e)}>Confirm & Pay</button>
         </div>

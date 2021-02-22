@@ -7,14 +7,15 @@ const path = {
   registerArtist: '/register/artist',
   stallForm: '/stall/add',
   artistPortfolio: '/stall/:stallId',
-  orderDescribe: '/order/describe/:orderId',
-  orderCheckout: '/order/checkout/:orderId',
+  orderDescribe: '/order/describe/:artistId',
+  orderCheckout: '/order/checkout/:artistId',
   orderProcess: '/order/process/:orderId',
   orderFinish: '/order/finish/:orderId',
   artistPage: '/artist/:artistId',
   artistEditProfile: '/artist/:artistId/edit',
   userPage: '/user/:userId',
-  userEditProfile: '/user/:userId/edit'
+  userEditProfile: '/user/:userId/edit',
+  artistOrder: '/artist/order'
 };
 
 export default path;
