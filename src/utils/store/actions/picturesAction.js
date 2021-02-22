@@ -24,9 +24,45 @@ export const fetchPictures = () => {
 }
 
 export const postPicture = payload => {
-  return async _ => {
+  return async next => {
     try {
-      console.log(payload)
+      next({ type: 'FETCH_PICTURES_START' });
+
+      const { data } = await axios({
+        method: 'POST',
+        url: `/artists/${localStorage.getItem('id')}/pictures`,
+        data: payload,
+        headers: { access_token: localStorage.getItem('access_token') }
+      });
+
+      return next({ type: 'POST_PICTURE', payload: data });
+    } catch (err) {
+      console.log(err);
+    };
+  };
+};
+
+export const resetPicture = _ => {
+  return async next => {
+    try {
+      return next({ type: 'RESET_PICTURE' });
+    } catch (err) {
+      console.log(err);
+    };
+  };
+};
+
+export const categoryList = _ => {
+  return async next => {
+    try {
+      next({ type: 'FETCH_PICTURES_START' });
+
+      const { data } = await axios({
+        method: 'GET',
+        url: `/categories`
+      });
+
+      return next({ type: 'FETCH_CATEGORIES', payload: data });
     } catch (err) {
       console.log(err);
     };
