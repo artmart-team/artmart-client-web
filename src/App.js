@@ -35,9 +35,6 @@ const App = _ => {
       dispatch(authenticated);
       dispatch(getUserByID(localStorage.getItem('id')));
       setAuth(true);
-      console.log(access_token)
-      console.log(localStorage.getItem('access_token'), '<<<')
-      console.log(auth, '<<< AUTH');
     };
   }, [dispatch, access_token])
 

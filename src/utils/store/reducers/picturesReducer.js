@@ -1,7 +1,9 @@
 const initState = {
   pictures: [],
+  picture: {},
   loading: false,
   errors: null,
+  categories: [],
   showPicture: '',
   showPictureId: null,
   showPicturePrice: '',
@@ -30,6 +32,22 @@ const picturesReducer = (state = initState, action) => {
         errors: action.payload,
         loading: false
       }
+    case 'POST_PICTURE':
+      return {
+        ...state,
+        picture: action.payload,
+        loading: false
+      }
+    case 'RESET_PICTURE':
+      return {
+        ...state,
+        picture: {}
+      }
+    case 'FETCH_CATEGORIES':
+      return {
+        ...state,
+        categories: action.payload,
+        loading: false
     case 'SHOW_PICTURE_DONE':
       return {
         ...state,
