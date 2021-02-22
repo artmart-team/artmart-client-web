@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import path from '../../routers/index.js';
+import { useDispatch } from 'react-redux';
+
+import { registerArtist } from '../../utils/store/actions/userAction.js';
 
 import '../../styles/auth.css';
 
 const RegisterArtist = _ => {
+  const dispatch = useDispatch();
+
   const { pathname } = useLocation();
   const [artist, setArtist] = useState({
     email: '',
@@ -13,8 +18,9 @@ const RegisterArtist = _ => {
     lastName: '',
     password: '',
     confPassword: '',
-    bankAccount: '',
-    completeDuration: ''
+    bankAccount: 0,
+    completeDuration: '',
+    defaultPrice: 0
   });
 
   const handleChange = e => {
@@ -24,15 +30,26 @@ const RegisterArtist = _ => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (!artist.email) return console.log('MASUKAN EMAIL');
-    if (!artist.username) return console.log('MASUKAN USERNAME');
-    if (!artist.firstName) return console.log('MASUKAN FIRSTNAME');
-    if (!artist.lastName) return console.log('MASUKAN LASTNAME');
-    if (!artist.password) return console.log('MASUKAN PASSWORD');
-    if (!artist.confPassword) return console.log('KONFIRMASI PASSWORD');
-    if (!artist.bankAccount) return console.log('MASUKAN BANK ACCOUNT');
-    if (!artist.completeDuration) return console.log('MASUKAN COMPLETE DURATION');
+    let payload = {
+      email: artist.email,
+      username: artist.username,
+      firstName: artist.firstName,
+      lastName: artist.lastName,
+      password: artist.password,
+      bankAccount: Number(artist.bankAccount),
+      completeDuration: Number(artist.bankAccount),
+      defaultPrice: Number(artist.defaultPrice)
+    }
+    // if (!artist.email) return console.log('MASUKAN EMAIL');
+    // if (!artist.username) return console.log('MASUKAN USERNAME');
+    // if (!artist.firstName) return console.log('MASUKAN FIRSTNAME');
+    // if (!artist.lastName) return console.log('MASUKAN LASTNAME');
+    // if (!artist.password) return console.log('MASUKAN PASSWORD');
+    // if (!artist.confPassword) return console.log('KONFIRMASI PASSWORD');
+    // if (!artist.bankAccount) return console.log('MASUKAN BANK ACCOUNT');
+    // if (!artist.completeDuration) return console.log('MASUKAN COMPLETE DURATION');
     if (artist.password !== artist.confPassword) return console.log('PASSWORD TIDAK SAMA!');
+    dispatch(registerArtist(payload));
   };
 
   return (
@@ -78,10 +95,16 @@ const RegisterArtist = _ => {
                   <label htmlFor="bankAccount" className="form-label">Bank Account</label>
                   <input type="text" name="bankAccount" className="form-control" id="bankAccount" onChange={handleChange} />
                 </div>
-                <div className="mb-3">
+                <div className="mb-2">
                   <div style={{ paddingRight: 6 }}>
                     <label htmlFor="completeDuration" className="form-label">Complete Duration Day</label>
                     <input type="number" name="completeDuration" className="form-control" id="completeDuration" onChange={handleChange} />
+                  </div>
+                </div>
+                <div className="mb-3">
+                  <div style={{ paddingRight: 6 }}>
+                    <label htmlFor="defaultPrice" className="form-label">Default Price for your Arts</label>
+                    <input type="number" name="defaultPrice" className="form-control" id="defaultPrice" onChange={handleChange} />
                   </div>
                 </div>
                 <button type="submit" className="btn btn-primary w-100" onClick={e => handleSubmit(e)}>Submit</button>

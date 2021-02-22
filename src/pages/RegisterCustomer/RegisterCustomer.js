@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import path from '../../routers/index.js';
+import { useDispatch } from 'react-redux';
+
+import { registerCustomer } from '../../utils/store/actions/userAction.js';
 
 import '../../styles/auth.css';
 
 const RegisterCustomer = _ => {
+  const dispatch = useDispatch();
+  
   const { pathname } = useLocation();
   const [user, setUser] = useState({
     email: '',
@@ -22,13 +27,21 @@ const RegisterCustomer = _ => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (!user.email) return console.log('MASUKAN EMAIL');
-    if (!user.username) return console.log('MASUKAN USERNAME');
-    if (!user.firstName) return console.log('MASUKAN FIRSTNAME');
-    if (!user.lastName) return console.log('MASUKAN LASTNAME');
-    if (!user.password) return console.log('MASUKAN PASSWORD');
-    if (!user.confPassword) return console.log('KONFIRMASI PASSWORD');
+    let payload = {
+      email: user.email,
+      username: user.username,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      password: user.password
+    };
+    // if (!user.email) return console.log('MASUKAN EMAIL');
+    // if (!user.username) return console.log('MASUKAN USERNAME');
+    // if (!user.firstName) return console.log('MASUKAN FIRSTNAME');
+    // if (!user.lastName) return console.log('MASUKAN LASTNAME');
+    // if (!user.password) return console.log('MASUKAN PASSWORD');
+    // if (!user.confPassword) return console.log('KONFIRMASI PASSWORD');
     if (user.password !== user.confPassword) return console.log('PASSWORD TIDAK SAMA!');
+    dispatch(registerCustomer(payload));
   };
 
   return (
