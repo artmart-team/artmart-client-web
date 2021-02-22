@@ -1,14 +1,23 @@
-import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 
 import path from '../../routers/index.js';
 import logo from '../../assets/images/img_logoC.svg';
 import imageDP from '../../assets/images/placeholder/pla_DP.jpg';
+import { logout } from '../../utils/store/actions/userAction.js';
 
 import '../../styles/navbar.css';
 
 const NavBar = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const { pathname } = useLocation();
+
+  const handleLogout = _ => {
+    dispatch(logout());
+    return history.push(path.home);
+  };
 
   return (
     <nav id="NavBar" className="navbar navbar-light bg-light sticky-top" style={pathname === path.loginCustomer || pathname === path.loginArtist || pathname === path.registerCustomer || pathname === path.registerArtist ? { display: 'none' } : { display: 'block' }}>
@@ -50,7 +59,7 @@ const NavBar = () => {
                 <p style={{ marginBottom: 16 }}>satomizu@gmail.com</p>
               </div>
               <div className="text-center">
-                <button className="btn btn-outline-danger btn-sm text-center" style={{ borderRadius: '2.5rem', marginBottom: 16 }}>Logout</button>
+                <button className="btn btn-outline-danger btn-sm text-center" style={{ borderRadius: '2.5rem', marginBottom: 16 }} onClick={() => handleLogout()}>Logout</button>
               </div>
             </li>
           </ul>
