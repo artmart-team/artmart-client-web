@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import path from '../../routers/index.js';
 import { useDispatch } from 'react-redux';
+import { VscChevronLeft } from 'react-icons/vsc';
 
 import { registerArtist } from '../../utils/store/actions/userAction.js';
 
@@ -58,8 +59,13 @@ const RegisterArtist = _ => {
         <div className="row justify-content-center" style={{ height: '100vh' }}>
           <div className="col align-self-center" style={{ padding: 0, width: '100vh' }}>
             <div className="auth-card shadow">
-              <h4 style={{ fontSize: '2.6em', fontWeight: 400, letterSpacing: 3, marginBottom: -4 }}>REGISTER</h4>
-              <h5 style={{ fontWeight: 400 }} >as artist.</h5>
+              <div className="d-flex justify-content-between">
+                <Link to={path.home} style={{ textDecoration: 0, marginBottom: 0 }} className="align-self-center">
+                  <h5 style={{ fontWeight: 400, letterSpacing: 3, marginBottom: -4 }} ><VscChevronLeft />BACK</h5>
+                </Link>
+                <h4 style={{ fontSize: '2.6em', fontWeight: 400, letterSpacing: 3, marginBottom: -4 }}>REGIST.</h4>
+              </div>
+              <h5 style={{ fontWeight: 400, textAlign: 'right' }} >as artist.</h5>
               <form action="">
                 <div className="mb-2">
                   <label htmlFor="email" className="form-label">Email</label>
