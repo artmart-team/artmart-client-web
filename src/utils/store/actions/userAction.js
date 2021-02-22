@@ -1,6 +1,4 @@
 import axios from '../../API/axios.js';
-import { useHistory } from 'react-router-dom';
-import path from '../../../routers/index.js';
 
 export const registerArtist = payload => {
   return async next => {
@@ -21,15 +19,17 @@ export const registerArtist = payload => {
 };
 
 export const loginArtist = payload => {
-  return async _ => {
+  return async next => {
     try {
-      const login = await axios({
+      next({ type: 'LOADING' });
+
+      const { data } = await axios({
         method: 'POST',
         url: '/artists/login',
         data: payload
       });
 
-      return console.log(login)
+      return next({ type: 'LOGIN', payload: data.access_token });
     } catch (err) {
       console.log(err);
     };
@@ -55,15 +55,27 @@ export const registerCustomer = payload => {
 };
 
 export const loginCustomer = payload => {
-  return async _ => {
+  return async next => {
     try {
-      const login = await axios({
+      next({ type: 'LOADING' });
+
+      const { data } = await axios({
         method: 'POST',
         url: '/users/login',
         data: payload
       });
 
-      return console.log(login)
+      return next({ type: 'LOGIN', payload: data.access_token });
+    } catch (err) {
+      console.log(err);
+    };
+  };
+};
+
+export const logout = _ => {
+  return async next => {
+    try {
+      return next({ type: 'LOGOUT' });
     } catch (err) {
       console.log(err);
     };
@@ -74,6 +86,16 @@ export const reset = _ => {
   return async next => {
     try {
       return next({ type: 'RESET_USER' });
+    } catch (err) {
+      console.log(err);
+    };
+  };
+};
+
+export const authenticated = _ => {
+  return async next => {
+    try {
+      return next({ type: 'AUTHENTICATED' });
     } catch (err) {
       console.log(err);
     };

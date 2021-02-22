@@ -20,6 +20,10 @@ const RegisterCustomer = _ => {
       dispatch(reset());
       return history.push(path.loginCustomer);
     };
+
+    // if (localStorage.getItem('access_token')) {
+    //   return history.push(path.home);
+    // };
   }, [user]);
 
   const handleSubmit = e => {

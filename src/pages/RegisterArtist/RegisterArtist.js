@@ -20,6 +20,10 @@ const RegisterArtist = _ => {
       dispatch(reset());
       return history.push(path.loginArtist);
     };
+
+    // if (localStorage.getItem('access_token')) {
+    //   return history.push(path.home);
+    // };
   }, [user]);
 
   const handleSubmit = e => {
@@ -55,48 +59,48 @@ const RegisterArtist = _ => {
               <form action="" onSubmit={e => handleSubmit(e)}>
                 <div className="mb-2">
                   <label htmlFor="email" className="form-label">Email</label>
-                  <input type="email" name="email" className="form-control" id="email"/>
+                  <input type="email" name="email" className="form-control" id="email" />
                 </div>
                 <div className="mb-2">
                   <div style={{ paddingRight: 6 }}>
                     <label htmlFor="username" className="form-label">User Name</label>
-                    <input type="username" name="username" className="form-control" id="username"/>
+                    <input type="username" name="username" className="form-control" id="username" />
                   </div>
                 </div>
                 <div className="row mb-2">
                   <div className="col-6" style={{ paddingRight: 6 }}>
                     <label htmlFor="firstName" className="form-label">First Name</label>
-                    <input type="firstName" name="firstName" className="form-control" id="firstName"/>
+                    <input type="firstName" name="firstName" className="form-control" id="firstName" />
                   </div>
                   <div className="col-6" style={{ paddingLeft: 6 }}>
                     <label htmlFor="lastName" className="form-label">Last Name</label>
-                    <input type="lastName" name="lastName" className="form-control" id="lastName"/>
+                    <input type="lastName" name="lastName" className="form-control" id="lastName" />
                   </div>
                 </div>
                 <div className="row mb-2">
                   <div className="col-6" style={{ paddingRight: 6 }}>
                     <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" name="password" className="form-control" id="password"/>
+                    <input type="password" name="password" className="form-control" id="password" />
                   </div>
                   <div className="col-6" style={{ paddingLeft: 6 }}>
                     <label htmlFor="confPassword" className="form-label">Confirm Password</label>
-                    <input type="password" name="confPassword" className="form-control" id="confPassword"/>
+                    <input type="password" name="confPassword" className="form-control" id="confPassword" />
                   </div>
                 </div>
                 <div className="mb-2">
                   <label htmlFor="bankAccount" className="form-label">Bank Account</label>
-                  <input type="text" name="bankAccount" className="form-control" id="bankAccount"/>
+                  <input type="text" name="bankAccount" className="form-control" id="bankAccount" />
                 </div>
                 <div className="mb-2">
                   <div style={{ paddingRight: 6 }}>
                     <label htmlFor="completeDuration" className="form-label">Complete Duration Day</label>
-                    <input type="number" name="completeDuration" className="form-control" id="completeDuration"/>
+                    <input type="number" name="completeDuration" className="form-control" id="completeDuration" />
                   </div>
                 </div>
                 <div className="mb-3">
                   <div style={{ paddingRight: 6 }}>
                     <label htmlFor="defaultPrice" className="form-label">Default Price for your Arts</label>
-                    <input type="number" name="defaultPrice" className="form-control" id="defaultPrice"/>
+                    <input type="number" name="defaultPrice" className="form-control" id="defaultPrice" />
                   </div>
                 </div>
                 <button type="submit" className="btn btn-primary w-100">Submit</button>
