@@ -51,7 +51,8 @@ const App = _ => {
       <NavBar />
 
       <Switch>
-        <Route path={path.artistOrder}>
+        <Route exact path={path.artistOrder}>
+
           <ArtistOrderList />
         </Route>
         <Route exact path={path.stallForm}>

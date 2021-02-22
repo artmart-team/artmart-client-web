@@ -3,7 +3,14 @@ const initState = {
   picture: {},
   loading: false,
   errors: null,
-  categories: []
+  categories: [],
+  showPicture: '',
+  showPictureId: null,
+  showPicturePrice: '',
+  showPictureName: '',
+  showPictureDesc: '',
+  showPictureRating: '',
+  showPictureArtistId: ''
 };
 
 const picturesReducer = (state = initState, action) => {
@@ -41,6 +48,21 @@ const picturesReducer = (state = initState, action) => {
         ...state,
         categories: action.payload,
         loading: false
+    case 'SHOW_PICTURE_DONE':
+      return {
+        ...state,
+        showPicture: action.link,
+        showPictureId: action.picId,
+        showPicturePrice: action.picPrice,
+        showPictureName: action.picName,
+        showPictureDesc: action.picDescription,
+        showPictureRating: action.artistRating,
+        showPictureArtistId: action.artistId
+      }
+    case 'SHOW_PICTURE_ERROR':
+      return {
+        ...state,
+        errors: action.payload,
       }
     default:
       return state;

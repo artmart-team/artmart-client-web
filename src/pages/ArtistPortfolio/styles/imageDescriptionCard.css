@@ -4,3 +4,8 @@
   -webkit-line-clamp: 10;
   -webkit-box-orient: vertical;  
 }
+
+
+.hover-pointer:hover {
+  cursor: pointer;
+}
