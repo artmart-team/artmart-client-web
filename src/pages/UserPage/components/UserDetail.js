@@ -22,8 +22,6 @@ const UserDetail = _ => {
 
   if (isLoading) return '';
 
-  console.log(otherUser, '<<<<< DI PAGE')
-
   return (
     <div id="UserDetail" style={{ marginTop: 32, paddingTop: 8, paddingBottom: 32 }} className="d-flex flex-column">
       <div style={{ width: '100%', height: '100%', textAlign: 'center' }} className="align-self-center">
