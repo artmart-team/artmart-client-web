@@ -26,7 +26,7 @@ const DescribeField = _ => {
 
       <div style={{ height: 'auto', backgroundColor: '#dddddd', borderRadius: 8, padding: 32 }}>
         <h4>What kind of request do you want?</h4>
-        
+
         <form action="">
           <div className="mb-3">
             <label htmlFor="name" className="form-label">Commission Title</label>

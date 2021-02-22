@@ -55,6 +55,7 @@ const App = _ => {
 
       <Switch>
         <Route exact path={path.artistOrder}>
+
           <ArtistOrderList />
         </Route>
         <Route exact path={path.stallForm}>
