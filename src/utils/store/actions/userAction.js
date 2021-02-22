@@ -3,17 +3,17 @@ import { useHistory } from 'react-router-dom';
 import path from '../../../routers/index.js';
 
 export const registerArtist = payload => {
-  return async _ => {
-    // const history = useHistory();
+  return async next => {
     try {
-      await axios({
+      next({ type: 'LOADING' });
+
+      const { data } = await axios({
         method: 'POST',
         url: '/artists/register',
         data: payload
       });
 
-      console.log('Register Success')
-      // return history.push(path.loginArtist);
+      return next({ type: 'REGISTER', payload: data });
     } catch (err) {
       console.log(err)
     };
@@ -37,15 +37,17 @@ export const loginArtist = payload => {
 };
 
 export const registerCustomer = payload => {
-  return async _ => {
+  return async next => {
     try {
-      await axios({
+      next({ type: 'LOADING' });
+
+      const { data } = await axios({
         method: 'POST',
         url: '/users/register',
         data: payload
       });
 
-      console.log('Register Success')
+      return next({ type: 'REGISTER', payload: data });
     } catch (err) {
       console.log(err);
     };
@@ -62,6 +64,16 @@ export const loginCustomer = payload => {
       });
 
       return console.log(login)
+    } catch (err) {
+      console.log(err);
+    };
+  };
+};
+
+export const reset = _ => {
+  return async next => {
+    try {
+      return next({ type: 'RESET_USER' });
     } catch (err) {
       console.log(err);
     };
