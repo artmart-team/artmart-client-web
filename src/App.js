@@ -21,7 +21,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import path from './routers/index.js';
 import { NavBar } from './components/layout/index.js';
-import { authenticated } from './utils/store/actions/userAction.js';
+import { authenticated, getUserByID } from './utils/store/actions/userAction.js';
 
 const App = _ => {
   const dispatch = useDispatch();
@@ -32,6 +32,7 @@ const App = _ => {
   useEffect(() => {
     if (localStorage.getItem('access_token')) {
       dispatch(authenticated);
+      dispatch(getUserByID(localStorage.getItem('id')));
       setAuth(true);
       console.log(access_token)
       console.log(localStorage.getItem('access_token'), '<<<')
@@ -83,16 +84,16 @@ const App = _ => {
           <ArtistPortfolio />
         </Route>
         <SecuredRoute path={path.loginArtist} component={Login}>
-        {/* FOR LOGIN ARTIST */}
+          {/* FOR LOGIN ARTIST */}
         </SecuredRoute>
         <SecuredRoute path={path.loginCustomer} component={Login}>
-        {/*FOR LOGIN CUSTOMER */}
+          {/*FOR LOGIN CUSTOMER */}
         </SecuredRoute>
         <SecuredRoute path={path.registerArtist} component={RegisterArtist}>
-        {/* FOR REGISTER ARTIST */}
+          {/* FOR REGISTER ARTIST */}
         </SecuredRoute>
         <SecuredRoute path={path.registerCustomer} component={RegisterCustomer}>
-        {/* FOR REGISTER CUSTOMER */}
+          {/* FOR REGISTER CUSTOMER */}
         </SecuredRoute>
         <Route exact path={path.home}>
           <Home />
