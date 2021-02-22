@@ -14,7 +14,8 @@ const path = {
   artistPage: '/artist/:artistId',
   artistEditProfile: '/artist/:artistId/edit',
   userPage: '/user/:userId',
-  userEditProfile: '/user/:userId/edit'
+  userEditProfile: '/user/:userId/edit',
+  artistOrder: '/artist/order'
 };
 
 export default path;

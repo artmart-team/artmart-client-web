@@ -22,3 +22,13 @@ export const fetchPictures = () => {
     }
   }
 }
+
+export const postPicture = payload => {
+  return async _ => {
+    try {
+      console.log(payload)
+    } catch (err) {
+      console.log(err);
+    };
+  };
+};

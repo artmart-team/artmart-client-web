@@ -14,7 +14,8 @@ import {
   RegisterCustomer,
   UserPage,
   StallAdd,
-  RegisterArtist
+  RegisterArtist,
+  ArtistOrderList
 } from './pages/index.js';
 
 import { Switch, Route, Redirect } from 'react-router-dom';
@@ -53,6 +54,9 @@ const App = _ => {
       <NavBar />
 
       <Switch>
+        <Route path={path.artistOrder}>
+          <ArtistOrderList />
+        </Route>
         <Route exact path={path.stallForm}>
           <StallAdd />
         </Route>

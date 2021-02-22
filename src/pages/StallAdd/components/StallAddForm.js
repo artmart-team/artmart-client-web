@@ -1,6 +1,15 @@
 import React from 'react';
 
 const StallAddForm = _ => {
+  
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    const payload = {
+
+    }
+  }
+
   return (
     <form>
       <div className="mb-3">

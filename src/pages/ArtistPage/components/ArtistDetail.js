@@ -45,7 +45,10 @@ const ArtistDetail = _ => {
       <button className="btn btn-outline-success w-100" style={Number(otherUser?.id) !== Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 8 } : { display: 'none' }}>Contact Me!</button>
       <button className="btn btn-outline-success w-100" style={Number(otherUser?.id) === Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 8 } : { display: 'none' }}>Edit Profile</button>
       <Link to={path.stallForm} style={{textDecoration: 'none'}}>
-        <button className="btn btn-outline-success w-100" style={Number(otherUser?.id) === Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 8 } : { display: 'none' }}>Post an Art</button>
+        <button className="btn btn-outline-primary w-100" style={Number(otherUser?.id) === Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 8 } : { display: 'none' }}>Post an Art</button>
+      </Link>
+      <Link to={path.artistOrder} style={{textDecoration: 'none'}}>
+        <button className="btn btn-outline-primary w-100" style={Number(otherUser?.id) === Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 8 } : { display: 'none' }}>My Order List</button>
       </Link>
     </div>
   );

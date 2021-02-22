@@ -6,8 +6,13 @@ const DescribeField = _ => {
 
       <div style={{ height: 'auto', backgroundColor: '#dddddd', borderRadius: 8, padding: 32 }}>
         <h4>What kind of request do you want?</h4>
-        
+
         <form action="">
+          <div className="mb-3">
+            <label htmlFor="name" className="form-label">Name of your art</label>
+            <input type="text" className="form-control" id="name" aria-describedby="titleHelp" />
+            <div id="titleHelp" className="form-text">Keep it simple but powerful.</div>
+          </div>
           <div className="form-floating">
             <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea" style={{ borderRadius: 8, height: 100 }}></textarea>
             <label htmlFor="floatingTextarea">Describe</label>
