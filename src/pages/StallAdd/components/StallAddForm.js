@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { storage } from '../../../utils/firebase/config.js';
 
 import path from '../../../routers/index.js';
 import { postPicture, resetPicture, categoryList } from '../../../utils/store/actions/picturesAction.js';
@@ -8,6 +9,10 @@ import { postPicture, resetPicture, categoryList } from '../../../utils/store/ac
 const StallAddForm = _ => {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const [image, setImage] = useState(null);
+  const [url, setUrl] = useState("");
+  const [error, setError] = useState(false)
 
   const { categories, picture, loading, errors } = useSelector(state => state.pictures);
 
@@ -22,8 +27,44 @@ const StallAddForm = _ => {
       link: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/402px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg'
     };
 
-    dispatch(postPicture(payload));
+    console.log(payload);
+    // dispatch(postPicture(payload));
   };
+
+  const handleChange = e => {
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
+  };
+
+  const handleUpload = e => {
+    // e.preventDefault();
+    if (!image) {
+      return setError(true)
+    };
+    const uploadTask = storage.ref(`images/${image.name}`).put(image); // image bisa diubah ke handle file 
+    uploadTask.on(
+      "state_changed",
+      error => {
+        setError(true);
+        console.log(error);
+      },
+      snapshot => {
+
+      },
+      () => {
+        storage
+          .ref("images")
+          .child(image.name)
+          .getDownloadURL()
+          .then(url => {
+            console.log(url)
+            setUrl(url); // ini contoh set di local state, bisa diubah ke reduxnya
+          });
+      }
+    );
+  };
+
 
   useEffect(() => {
     dispatch(categoryList());
@@ -34,8 +75,6 @@ const StallAddForm = _ => {
   }, [picture]);
 
   if (loading) return '';
-
-  console.log(categories, 'CATE')
 
   return (
     <form action="" onSubmit={e => handleSubmit(e)}>
@@ -72,7 +111,14 @@ const StallAddForm = _ => {
 
       <div className="mb-3">
         <label htmlFor="link" className="form-label">Upload your image file</label>
-        <input className="form-control" type="file" id="link" />
+        <p style={error ? { display: 'block' } : { display: 'none' }}>Please input your image first!</p>
+        <div className="d-flex">
+          <input className="form-control" type="file" id="link" style={{ marginRight: 16 }} onChange={handleChange} />
+          <button className="btn btn-primary" style={{ borderRadius: 8 }} onClick={e => handleUpload(e)}>Upload</button>
+        </div>
+      </div>
+      <div>
+        <img src={url ? url : "http://via.placeholder.com/300"} height="300" width="300" style={{ borderRadius: 8 }} className="mb-3"></img>
       </div>
 
       <button type="submit" className="btn btn-primary">Submit</button>
