@@ -1,5 +1,6 @@
 const initState = {
   user: null,
+  otherUser: null,
   access_token: '',
   isLoading: false,
   errors: []
@@ -20,9 +21,13 @@ const userReducer = (state = initState, action) => {
       localStorage.removeItem('role');
       return { ...state, access_token: '', user: null };
     case 'GET_USER_ID':
-      return { ...state, user: action.payload }
+      return { ...state, user: action.payload };
+    case 'GET_OTHER_USER':
+      return { ...state, otherUser: action.payload };
     case 'RESET_USER':
       return { ...state, user: null };
+    case 'RESET_OTHER_USER':
+      return { ...state, otherUser: null };
     case 'AUTHENTICATED':
       return { ...state, access_token: localStorage.getItem('accessToken') };
     case 'LOADING':
