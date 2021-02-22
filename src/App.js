@@ -27,16 +27,19 @@ const App = _ => {
       <NavBar />
 
       <Switch>
-        <Route path={path.stallForm}>
+        <Route exact path={path.stallForm}>
           <StallAdd />
         </Route>
-        <Route path={path.artistEditProfile}>
+        <Route exact path={path.artistEditProfile}>
           <ArtistEditProfile />
         </Route>
-        <Route path={path.artistPage}>
+        <Route exact path={path.artistPage}>
           <ArtistPage />
         </Route>
-        <Route path={path.userPage}>
+        <Route exact path={path.userEditProfile}>
+          <h1>USER EDIT</h1>
+        </Route>
+        <Route exact path={path.userPage}>
           <UserPage />
         </Route>
         <Route path={path.orderFinish}>
@@ -51,23 +54,26 @@ const App = _ => {
         <Route path={path.orderDescribe}>
           <OrderDescribe />
         </Route>
-        <Route path={path.artistPortfolio}>
+        <Route exact path={path.artistPortfolio}>
           <ArtistPortfolio />
         </Route>
-        <Route path={path.loginArtist}>
+        <Route exact path={path.loginArtist}>
           <Login />
         </Route>
-        <Route path={path.loginCustomer}>
+        <Route exact path={path.loginCustomer}>
           <Login />
         </Route>
-        <Route path={path.registerArtist}>
+        <Route exact path={path.registerArtist}>
           <RegisterArtist />
         </Route>
-        <Route path={path.registerCustomer}>
+        <Route exact path={path.registerCustomer}>
           <RegisterCustomer />
         </Route>
-        <Route path={path.home}>
+        <Route exact path={path.home}>
           <Home />
+        </Route>
+        <Route path="*" >
+          <h1>NOT FOUND</h1>
         </Route>
       </Switch>
     </div>
