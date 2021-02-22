@@ -106,6 +106,8 @@ export const authenticated = _ => {
 export const getUserByID = id => {
   return async next => {
     try {
+      next({ type: 'RESET_USER' });
+
       const { data } =
         localStorage.getItem('role') === 'artist' ? (await axios({
           method: 'GET',
@@ -116,6 +118,27 @@ export const getUserByID = id => {
         }))
 
       return next({ type: 'GET_USER_ID', payload: data });
+    } catch (err) {
+      console.log(err)
+    };
+  };
+};
+
+export const getOtherUserId = (role, id) => {
+  return async next => {
+    try {
+      next({ type: 'RESET_OTHER_USER' });
+
+      const { data } =
+        role === 'artist' ? (await axios({
+          method: 'GET',
+          url: `/artists/${id}`
+        })) : (await axios({
+          method: 'GET',
+          url: `/users/${id}`
+        }))
+
+      return next({ type: 'GET_OTHER_USER', payload: data });
     } catch (err) {
       console.log(err)
     };

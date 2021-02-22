@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 
 import path from '../../routers/index.js';
 import logo from '../../assets/images/img_logoC.svg';
-import imageDP from '../../assets/images/placeholder/pla_DP.jpg';
 import { logout, getUserByID } from '../../utils/store/actions/userAction.js';
 
 import '../../styles/navbar.css';
@@ -26,8 +25,6 @@ const NavBar = () => {
   }, [dispatch])
 
   if (isLoading) return '';
-
-  console.log(user, '<<<<< DI NAVBAR')
 
   return (
     <nav id="NavBar" className="navbar navbar-light bg-light sticky-top" style={pathname === path.loginCustomer || pathname === path.loginArtist || pathname === path.registerCustomer || pathname === path.registerArtist ? { display: 'none' } : { display: 'block' }}>
@@ -72,11 +69,19 @@ const NavBar = () => {
                 <button className="btn btn-outline-danger btn-sm text-center" style={{ borderRadius: '2.5rem', marginBottom: 16 }} onClick={() => handleLogout()}>Logout</button>
               </div>
             </li>
+            <div className="nav-drop">
+              <li><hr className="dropdown-divider" /></li>
+              <Link to={localStorage.getItem('role') === 'artist' ? `/artist/${user?.id}` : `/user/${user?.id}`} style={{ textDecoration: 'none' }}>
+                <li className="dropdown-item">
+                  <p className="dropdown-item text " style={{ marginBottom: 0 }} >My Profile</p>
+                </li>
+              </Link>
+            </div>
           </ul>
         </div>
 
       </div>
-    </nav>
+    </nav >
   )
 }
 
