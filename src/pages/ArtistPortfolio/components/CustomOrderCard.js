@@ -1,6 +1,15 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
-const CustomOrderCard = _ => {
+const CustomOrderCard = (props) => {
+  const history = useHistory();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+
+    console.log(props)
+  }
+
   return (
     <div id="CustomOrderCard" style={{ height: '444px', border: 'thin solid rgba(0, 0, 0, 0.5)', borderRadius: 8, marginTop: 32, padding: 32 }}>
       <div className="d-flex justify-content-between">
@@ -59,7 +68,7 @@ const CustomOrderCard = _ => {
           <label className="form-check-label" style={{ fontWeight: 600 }} htmlFor="showPass">Total</label>
           <label className="form-check-label" style={{ fontWeight: 600 }} htmlFor="showPass">Rp. 110.000</label>
         </div>
-        <button type="submit" className="btn btn-primary w-100" style={{borderRadius: 8}} >Order Now</button>
+        <button type="submit" className="btn btn-primary w-100" style={{ borderRadius: 8 }} onClick={e => handleSubmit(e)}>Order Now</button>
       </form>
     </div>
   );
