@@ -29,7 +29,7 @@ export const loginArtist = payload => {
         data: payload
       });
 
-      return next({ type: 'LOGIN', payload: data.access_token });
+      return next({ type: 'LOGIN', payload: data.access_token, role: 'artist', id: data.id });
     } catch (err) {
       console.log(err);
     };
@@ -65,7 +65,7 @@ export const loginCustomer = payload => {
         data: payload
       });
 
-      return next({ type: 'LOGIN', payload: data.access_token });
+      return next({ type: 'LOGIN', payload: data.access_token, role: 'customer', id: data.id });
     } catch (err) {
       console.log(err);
     };
@@ -98,6 +98,26 @@ export const authenticated = _ => {
       return next({ type: 'AUTHENTICATED' });
     } catch (err) {
       console.log(err);
+    };
+  };
+};
+
+
+export const getUserByID = id => {
+  return async next => {
+    try {
+      const { data } =
+        localStorage.getItem('role') === 'artist' ? (await axios({
+          method: 'GET',
+          url: `/artists/${id}`
+        })) : (await axios({
+          method: 'GET',
+          url: `/users/${id}`
+        }))
+
+      return next({ type: 'GET_USER_ID', payload: data });
+    } catch (err) {
+      console.log(err)
     };
   };
 };

@@ -10,11 +10,17 @@ const userReducer = (state = initState, action) => {
     case 'REGISTER':
       return { ...state, user: action.payload, isLoading: false };
     case 'LOGIN':
+      localStorage.setItem('role', action.role)
+      localStorage.setItem('id', action.id)
       localStorage.setItem('access_token', action.payload);
       return { ...state, access_token: action.payload, isLoading: false };
     case 'LOGOUT':
       localStorage.removeItem('access_token');
-      return { ...state, access_token: '' };
+      localStorage.removeItem('id');
+      localStorage.removeItem('role');
+      return { ...state, access_token: '', user: null };
+    case 'GET_USER_ID':
+      return { ...state, user: action.payload }
     case 'RESET_USER':
       return { ...state, user: null };
     case 'AUTHENTICATED':
