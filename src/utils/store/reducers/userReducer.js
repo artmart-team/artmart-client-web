@@ -1,5 +1,5 @@
 const initState = {
-  user: {},
+  user: null,
   access_token: '',
   isLoading: false,
   errors: []
@@ -7,8 +7,10 @@ const initState = {
 
 const userReducer = (state = initState, action) => {
   switch (action.type) {
-    case 'GET_USER':
-      return state;
+    case 'REGISTER':
+      return { ...state, user: action.payload, isLoading: false };
+    case 'RESET_USER':
+      return { ...state, user: null };
     case 'LOADING':
       return { ...state, isLoading: true };
     default:
