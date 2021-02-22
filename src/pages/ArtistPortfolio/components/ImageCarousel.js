@@ -14,9 +14,9 @@ const ImageCarousel = ({ picture }) => {
   }
 
   return (
-    <div  style={{ height: 95, width: 137, marginLeft: 8, marginRight: 8, overflowY: 'auto' }} >
+    <div className="thumbnail-image-container" >
       <div onClick={() => handleImageClick()} className="hover-pointer">
-        <img src={ picture.link } className="card-img" style={{ height: '100%', borderRadius: 8, objectFit: 'cover' }}/>
+        <img src={picture.link} className="card-img thumbnail-image" />
       </div>
     </div>
   );

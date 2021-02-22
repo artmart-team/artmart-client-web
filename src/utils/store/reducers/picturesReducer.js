@@ -48,6 +48,7 @@ const picturesReducer = (state = initState, action) => {
         ...state,
         categories: action.payload,
         loading: false
+      };
     case 'SHOW_PICTURE_DONE':
       return {
         ...state,
