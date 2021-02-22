@@ -13,8 +13,7 @@ const path = {
   orderFinish: '/order/finish/:orderId',
   artistPage: '/artist/:artistId',
   artistEditProfile: '/artist/:artistId/edit',
-  userPage: '/user/:userId',
-  userEditProfile: '/user/:userId/edit'
+  userPage: '/user/:userId'
 };
 
 export default path;

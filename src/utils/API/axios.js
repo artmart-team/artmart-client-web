@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const initAxios = axios.create({
-  baseURL: 'https://marterialize.herokuapp.com/'
+  baseURL: 'http://localhost:4000'
 });
 
 export default initAxios;
