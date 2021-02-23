@@ -5,7 +5,8 @@ const initState = {
   title: '',
   description: '',
   price: '',
-  totalPrice: ''
+  totalPrice: '',
+  artistOrders: []
 };
 
 const ordersReducer = (state = initState, action) => {
@@ -22,6 +23,54 @@ const ordersReducer = (state = initState, action) => {
         errors: action.payload,
         loading: false
       }
+    case 'FETCH_ORDER_BY_ARTIST_START':
+      return {
+        ...state,
+        loading: true
+      }
+    case 'FETCH_ORDER_BY_ARTIST_DONE':
+      return {
+        ...state,
+        loading: false,
+        artistOrders: action.payload
+      }
+    case 'FETCH_ORDER_BY_ARTIST_ERROR':
+      return {
+        ...state,
+        errors: action.payload,
+        loading: false
+      }
+    case 'DECLINE_ORDER_START':
+      return {
+        ...state,
+        loading: true
+      }
+    case 'DECLINE_ORDER_DONE':
+      return {
+        ...state,
+        loading: false
+      }
+    case 'DECLINE_ORDER_ERROR':
+      return {
+        ...state,
+        errors: action.payload,
+        loading: false
+      }
+    case 'ACCEPT_ORDER_START':
+      return {
+        ...state,
+        loading: true
+      }
+    case 'ACCEPT_ORDER_DONE':
+      return {
+        ...state,
+        loading: false
+      }
+    case 'ACCEPT_ORDER_ERROR':
+      return {
+        ...state,
+        errors: action.payload,
+        loading: false
     case 'SUBMIT_COMMISSION':
       return {
         ...state,
@@ -32,6 +81,7 @@ const ordersReducer = (state = initState, action) => {
       return {
         ...state,
         commission: {}
+
       }
     default:
       return state;

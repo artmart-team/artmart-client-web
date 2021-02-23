@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector} from 'react-redux'
 import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 
@@ -6,8 +6,9 @@ import WhatYouGet from './WhatYouGet.js'
 import image from '../../../assets/images/placeholder/pla_Card.png'
 
 const DetailProduct = _ => {
-  const { showPicture, showPictureName, showPictureRating } = useSelector(state => state.pictures) 
-  const { selectedOptions } = useSelector(state => state.options) 
+  const [rating, setRating] = useState (localStorage.getItem('selectedPicRating'))
+  const [selectedOptions, setSelectedOptions] = useState (JSON.parse(localStorage.getItem('selectedOptions')))
+  const { showPicture, showPictureRating } = useSelector(state => state.pictures) 
 
   return (
     <div id="DetailProduct" style={{ height: 'auto', borderRadius: 8, marginTop: 32, padding: 32, }}>
@@ -21,14 +22,14 @@ const DetailProduct = _ => {
           </div>
         </div>
         <div style={{ flex: 2, marginLeft: 16, marginTop: 8 }}>
-          <h5 style={{ width: '20vw', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{ showPictureName }</h5>
+          <h5 style={{ width: '20vw', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{ localStorage.getItem('selectedPicName') }</h5>
           <div className="d-flex">
             <BsStarFill style={{ marginRight: 4, marginBottom: 2 }} className="align-self-center" />
             <BsStarFill style={{ marginRight: 4, marginBottom: 2 }} className="align-self-center" />
             <BsStarFill style={{ marginRight: 4, marginBottom: 2 }} className="align-self-center" />
             <BsStarFill style={{ marginRight: 4, marginBottom: 2 }} className="align-self-center" />
             <BsStarHalf style={{ marginRight: 8, marginBottom: 2 }} className="align-self-center" />
-            <p style={{ margin: 0 }} className="align-self-center">{ showPictureRating ? showPictureRating.toFixed(1): '' }</p>
+            <p style={{ margin: 0 }} className="align-self-center">{ rating ? Number(rating).toFixed(1) : '' }</p>
           </div>
           <h6 className="mt-2" style={{ width: '20vw', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>What you get:</h6>
           <ul>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { BsStarFill, BsStarHalf } from 'react-icons/bs';
 import { Link, useLocation, useHistory } from 'react-router-dom';
@@ -12,6 +12,7 @@ const ArtistDetail = _ => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   const history = useHistory();
+  const [artistId, setArtistId] = useState(localStorage.getItem('id'))
 
   const { otherUser, isLoading, errors } = useSelector(state => state.user);
 
@@ -47,7 +48,7 @@ const ArtistDetail = _ => {
       <Link to={path.stallForm} style={{textDecoration: 'none'}}>
         <button className="btn btn-outline-primary w-100" style={Number(otherUser?.id) === Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 8 } : { display: 'none' }}>Post an Art</button>
       </Link>
-      <Link to={path.artistOrder} style={{textDecoration: 'none'}}>
+      <Link to={`/artist/${artistId}/orders`} style={{textDecoration: 'none'}}>
         <button className="btn btn-outline-primary w-100" style={Number(otherUser?.id) === Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 8 } : { display: 'none' }}>My Order List</button>
       </Link>
     </div>

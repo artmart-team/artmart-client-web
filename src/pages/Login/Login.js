@@ -59,7 +59,7 @@ const Login = _ => {
               <form action="" onSubmit={e => handleSubmit(e)}>
                 <div className="mb-3">
                   <label htmlFor="email" className="form-label">Email</label>
-                  <input type="email" name="email" className="form-control" id="email" />
+                  <input type="text" name="email" className="form-control" id="email" />
                 </div>
                 <div className="mb-3">
                   <label htmlFor="password" className="form-label">Password</label>
