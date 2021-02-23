@@ -1,21 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-import imageDP2 from '../../../assets/images/placeholder/pla_DP2.jpg';
+import { commentDelete } from '../../../utils/store/actions/CommentAction.js';
 
-const CommentCard = _ => {
+const CommentCard = ({ props }) => {
+  const { stallId } = useParams();
+  const dispatch = useDispatch();
+
+  const handleDelete = id => {
+    dispatch(commentDelete(id, stallId));
+  };
+  // console.log(props)
+
   return (
     <div id="CommentCard">
       <div className="d-flex" style={{ marginTop: 16 }}>
         <div style={{ flex: 1 }} >
           <img
-            src={imageDP2}
+            src={props?.User?.profilePicture}
             className="rounded-circle"
             style={{ width: 68, height: 68, objectFit: 'cover' }}
           />
         </div>
         <div style={{ flex: 10 }}>
-          <h4 className="card-title" style={{ width: 'auto', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>lemondseven</h4>
-          <p>Magna mollit consectetur eiusmod elit ut non. Tempor anim aute dolore Lorem duis pariatur ullamco. Ea mollit laboris officia nostrud minim adipisicing. Tempor sint labore occaecat aliqua amet consectetur adipisicing nisi non duis. Proident est occaecat tempor cillum laboris consequat nisi consectetur nostrud aute ad pariatur consectetur.</p>
+          <h4 className="card-title" style={{ width: 'auto', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{props?.User?.username}</h4>
+          <p style={{ marginBottom: 8 }}>{props?.description}</p>
+          <button className="btn btn-link btn-sm" style={{ textDecoration: 'none' }} style={props?.User?.id !== Number(localStorage.getItem('id')) ? { display: 'none' } : { paddingLeft: 0, paddingRight: 0 }} onClick={() => handleDelete(props.id)}>Delete</button>
         </div>
 
       </div>

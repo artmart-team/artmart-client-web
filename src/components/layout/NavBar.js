@@ -29,6 +29,7 @@ const NavBar = () => {
     dispatch(getUserByID(localStorage.getItem('id')))
   }, [dispatch])
 
+
   function handleResetReduxAndStorage () {
     dispatch( updateSelectedOptions([]))
     dispatch( updateExtraPrice(0))

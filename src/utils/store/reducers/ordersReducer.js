@@ -1,4 +1,7 @@
 const initState = {
+  commission: {},
+  loading: false,
+  errors: [],
   title: '',
   description: '',
   price: '',
@@ -68,6 +71,17 @@ const ordersReducer = (state = initState, action) => {
         ...state,
         errors: action.payload,
         loading: false
+    case 'SUBMIT_COMMISSION':
+      return {
+        ...state,
+        commission: action.payload,
+        loading: false
+      }
+    case 'RESET_SUBMIT':
+      return {
+        ...state,
+        commission: {}
+
       }
     default:
       return state;
