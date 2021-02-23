@@ -10,7 +10,7 @@ const OrderCard = _ => {
       <div className="card" style={{ width: '100%', borderRadius: 8, marginTop: 8, marginBottom: 8 }}>
         <div className="row">
           <div className="col-6" style={{ padding: 0 }}>
-            <img src={image} className="card-img-top" style={{ height: '100%', objectFit: 'cover', borderTopLeftRadius: 8, borderBottomLeftRadius: 8 }} />
+            <img src={image} className="card-img-top" style={{ borderTopRightRadius: 0, height: '100%', objectFit: 'cover', borderTopLeftRadius: 8, borderBottomLeftRadius: 8 }} />
           </div>
           <div className="col-6" style={{ padding: 32 }}>
             <h5>Lorem Ipsum</h5>

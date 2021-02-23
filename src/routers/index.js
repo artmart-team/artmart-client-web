@@ -15,6 +15,7 @@ const path = {
   artistEditProfile: '/artist/:artistId/edit',
   userPage: '/user/:userId',
   userEditProfile: '/user/:userId/edit',
+  userOrder: '/user/order',
   artistOrder: '/artist/order'
 };
 

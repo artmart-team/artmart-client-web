@@ -15,6 +15,7 @@ import {
   UserPage,
   StallAdd,
   RegisterArtist,
+  UserOrderList,
   ArtistOrderList
 } from './pages/index.js';
 
@@ -51,8 +52,10 @@ const App = _ => {
       <NavBar />
 
       <Switch>
+        <Route exact path={path.userOrder}>
+          <UserOrderList />
+        </Route>
         <Route exact path={path.artistOrder}>
-
           <ArtistOrderList />
         </Route>
         <Route exact path={path.stallForm}>

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation, useHistory } from 'react-router-dom';
+import path from '../../../routers/index.js';
 
 import { getOtherUserId } from '../../../utils/store/actions/userAction.js';
 
@@ -34,6 +35,9 @@ const UserDetail = _ => {
       <p style={{ textAlign: 'center' }}>{otherUser?.email}</p>
       {/* <button className="btn btn-outline-success w-100" style={{ marginTop: 16, borderRadius: 8 }}>Contact Me!</button> */}
       <button className="btn btn-outline-success w-100" style={Number(otherUser?.id) === Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 8 } : { display: 'none' }}>Edit Profile</button>
+      <Link to={path.userOrder}>
+        <button className="btn btn-outline-primary w-100" style={Number(otherUser?.id) === Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 8 } : { display: 'none' }}>My Order</button>
+      </Link>
     </div>
   );
 };
