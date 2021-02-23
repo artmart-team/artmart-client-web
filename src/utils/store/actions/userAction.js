@@ -144,3 +144,21 @@ export const getOtherUserId = (role, id) => {
     };
   };
 };
+
+export const getTotalRatingArtist = artistId => {
+  return async next => {
+    try {
+      next({ type: 'RESET_RATING' });
+      next({ type: 'LOADING' });
+
+      const { data } = await axios({
+        method: 'GET',
+        url: `artists/${artistId}/ratings/average`
+      });
+
+      return next({ type: 'GET_TOTAL_RATING', payload: data.averageRating });
+    } catch (err) {
+      console.log(err.response)
+    }
+  }
+}
