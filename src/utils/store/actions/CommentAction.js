@@ -1,19 +1,23 @@
 import axios from '../../API/axios.js'
-import { artistPic } from './picturesAction.js';
 
 export const commentSubmit = (payload, UserId, ArtistId) => {
   return async next => {
     try {
       // console.log(payload, '<<<< DI ACTION');
 
-      const { data } = await axios({
+      const submit = await axios({
         method: 'POST',
         url: `/users/${UserId}/artists/${ArtistId}/comments`,
         data: payload,
         headers: { access_token: localStorage.getItem('access_token') }
       });
 
-      next({ type: 'COMMENT_SUBMIT', payload: data });
+      const { data } = await axios({
+        method: 'GET',
+        url: `/artists/${ArtistId}/comments`,
+      });
+
+      next({ type: 'COMMENT_SUBMIT', payload: submit.data, comments: data });
     } catch (err) {
       console.log(err);
     };
@@ -23,9 +27,41 @@ export const commentSubmit = (payload, UserId, ArtistId) => {
 export const commentFetch = ArtistId => {
   return async next => {
     try {
-      console.log(ArtistId, 'FETCHING')
+      next({ type: 'LOADING' });
+
+      const { data } = await axios({
+        method: 'GET',
+        url: `/artists/${ArtistId}/comments`,
+      });
+
+      next({ type: 'COMMENT_FETCH', payload: data });
     } catch (err) {
       console.log(err);
+    };
+  };
+};
+
+export const commentDelete = (CommentId, ArtistId) => {
+  return async next => {
+    try {
+      // next({ type: 'LOADING' });
+
+      const message = await axios({
+        method: 'DELETE',
+        url: `/users/${Number(localStorage.getItem('id'))}/artists/${Number(ArtistId)}/comments/${CommentId}`,
+        headers: {access_token: localStorage.getItem('access_token')}
+      });
+
+      // const { data } = await axios({
+      //   method: 'GET',
+      //   url: `/artists/${ArtistId}/comments`,
+      // });
+
+      console.log(message.data);
+
+      next({ type: 'COMMENT_DELETE', payload: Number(CommentId) });
+    } catch (err) {
+      console.log(err)
     };
   };
 };
