@@ -71,6 +71,7 @@ const ordersReducer = (state = initState, action) => {
         ...state,
         errors: action.payload,
         loading: false
+      }
     case 'SUBMIT_COMMISSION':
       return {
         ...state,

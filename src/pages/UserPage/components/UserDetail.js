@@ -21,8 +21,6 @@ const UserDetail = _ => {
     dispatch(getOtherUserId(role, id))
   }, [dispatch])
 
-  if (isLoading) return '';
-
   return (
     <div id="UserDetail" style={{ marginTop: 32, paddingTop: 8, paddingBottom: 32 }} className="d-flex flex-column">
       <div style={{ width: '100%', height: '100%', textAlign: 'center' }} className="align-self-center">
