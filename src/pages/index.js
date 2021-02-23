@@ -14,4 +14,5 @@ export { default as UserPage } from './UserPage/UserPage.js';
 export { default as StallAdd } from './StallAdd/StallAdd.js';
 export { default as ArtistOrderList } from './ArtistOrderList/ArtistOrderList.js';
 export { default as UserOrderList } from './UserOrderList/UserOrderList.js';
+export { default as OrderActive } from './OrderActive/OrderActive.js';
 export { default as SubmitCommission } from './SubmitCommission/SubmitCommission.js';
