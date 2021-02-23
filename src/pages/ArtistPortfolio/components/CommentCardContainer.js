@@ -10,7 +10,9 @@ const CommentCardContainer = _ => {
 
   const handleCommentSubmit = event => {
     event.preventDefault()
-    dispatch(postComment({comment}))
+    dispatch(postComment({
+      comment
+    }))
   }
 
   const handleCommentInput = event => {

@@ -6,7 +6,7 @@ import picturesReducer from './picturesReducer.js';
 
 const reducers = combineReducers({
   user: userReducer,
-  comment: commentReducer,
+  description: commentReducer,
   pictures: picturesReducer
 });
 
