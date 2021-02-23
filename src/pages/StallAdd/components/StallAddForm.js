@@ -24,6 +24,7 @@ const StallAddForm = _ => {
       description: e.target?.description.value,
       price: Number(e.target?.price.value),
       category: e.target?.categories.value === '' ? null : Number(e.target?.categories.value),
+      hidden: false,
       link: url
     };
 

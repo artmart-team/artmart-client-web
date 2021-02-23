@@ -81,7 +81,30 @@ export const currentCollection = (artistId) => {
       dispatch({
         type: 'FETCH_CURRENT_COLLECTION_DONE',
         payload: data
+      });
+    } catch (err) {
+      console.log(err, 'error currentCollection Action')
+      dispatch({
+        type: 'FETCH_CURRENT_COLLECTION_ERROR',
+        payload: err
       })
+    }
+  }
+}
+
+export const artistPic = (artistId) => {
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type: 'FETCH_ARTIST_PIC_START'
+      })
+
+      const { data } = await axios.get(`/artists/${artistId}/pictures`)
+
+      dispatch({
+        type: 'FETCH_ARTIST_PIC_DONE',
+        payload: data
+      });
     } catch (err) {
       console.log(err, 'error currentCollection Action')
       dispatch({
