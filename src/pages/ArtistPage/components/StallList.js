@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -10,6 +10,14 @@ const StallList = _ => {
   const dispatch = useDispatch();
   const { artistId } = useParams();
   const { artistPics, loading } = useSelector(state => state.pictures);
+  const [ filtered, setFiltered ] = useState([])
+
+  useEffect(() => {
+    let FilteredPics = artistPics.filter(picture => {
+      return picture.link
+    })
+    setFiltered(FilteredPics)
+  }, [artistPics])
 
   useEffect(() => {
     dispatch(artistPic(artistId));
@@ -22,8 +30,7 @@ const StallList = _ => {
       <div className="row" >
         <h3 style={{ marginBottom: 16 }}>My Pictures</h3>
         <hr />
-
-        {artistPics?.map(e => <StallCard key={e.id} props={e}/>)}
+        {filtered?.map(e => <StallCard key={e.id} props={e}/>)}
       </div>
     </div>
   );
