@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import {
   ArtistPage,
@@ -13,20 +14,47 @@ import {
   RegisterCustomer,
   UserPage,
   StallAdd,
-  RegisterArtist
+  RegisterArtist,
+  ArtistOrderList
 } from './pages/index.js';
 
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 import path from './routers/index.js';
 import { NavBar } from './components/layout/index.js';
+import { authenticated, getUserByID } from './utils/store/actions/userAction.js';
 
 const App = _ => {
+  const dispatch = useDispatch();
+  const [auth, setAuth] = useState(false);
+  // const history = useHistory();
+  const { access_token, isLoading, errors } = useSelector(state => state.user);
+
+  useEffect(() => {
+    if (localStorage.getItem('access_token')) {
+      dispatch(authenticated);
+      dispatch(getUserByID(localStorage.getItem('id')));
+      setAuth(true);
+    };
+  }, [dispatch, access_token])
+
+  const SecuredRoute = props => {
+    return (
+      <Route exact path={props.path} >{!localStorage.getItem('access_token') ?
+        (<props.component />) :
+        (<Redirect to={{ pathname: '/' }}></Redirect>)}</Route>
+    );
+  };
+
   return (
     <div className="App">
       <NavBar />
 
       <Switch>
+        <Route exact path={path.artistOrder}>
+
+          <ArtistOrderList />
+        </Route>
         <Route exact path={path.stallForm}>
           <StallAdd />
         </Route>
@@ -57,18 +85,18 @@ const App = _ => {
         <Route exact path={path.artistPortfolio}>
           <ArtistPortfolio />
         </Route>
-        <Route exact path={path.loginArtist}>
-          <Login />
-        </Route>
-        <Route exact path={path.loginCustomer}>
-          <Login />
-        </Route>
-        <Route exact path={path.registerArtist}>
-          <RegisterArtist />
-        </Route>
-        <Route exact path={path.registerCustomer}>
-          <RegisterCustomer />
-        </Route>
+        <SecuredRoute path={path.loginArtist} component={Login}>
+          {/* FOR LOGIN ARTIST */}
+        </SecuredRoute>
+        <SecuredRoute path={path.loginCustomer} component={Login}>
+          {/*FOR LOGIN CUSTOMER */}
+        </SecuredRoute>
+        <SecuredRoute path={path.registerArtist} component={RegisterArtist}>
+          {/* FOR REGISTER ARTIST */}
+        </SecuredRoute>
+        <SecuredRoute path={path.registerCustomer} component={RegisterCustomer}>
+          {/* FOR REGISTER CUSTOMER */}
+        </SecuredRoute>
         <Route exact path={path.home}>
           <Home />
         </Route>

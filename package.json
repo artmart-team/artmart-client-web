@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^12.7.1",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.0-beta2",
+    "firebase": "^7.21.1",
     "i18next": "^19.8.9",
     "i18next-browser-languagedetector": "^6.0.1",
     "i18next-http-backend": "^1.1.0",

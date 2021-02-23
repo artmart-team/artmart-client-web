@@ -1,5 +1,6 @@
 const initState = {
-  user: {},
+  user: null,
+  otherUser: null,
   access_token: '',
   isLoading: false,
   errors: []
@@ -7,8 +8,28 @@ const initState = {
 
 const userReducer = (state = initState, action) => {
   switch (action.type) {
-    case 'GET_USER':
-      return state;
+    case 'REGISTER':
+      return { ...state, user: action.payload, isLoading: false };
+    case 'LOGIN':
+      localStorage.setItem('role', action.role)
+      localStorage.setItem('id', action.id)
+      localStorage.setItem('access_token', action.payload);
+      return { ...state, access_token: action.payload, isLoading: false };
+    case 'LOGOUT':
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('id');
+      localStorage.removeItem('role');
+      return { ...state, access_token: '', user: null };
+    case 'GET_USER_ID':
+      return { ...state, user: action.payload };
+    case 'GET_OTHER_USER':
+      return { ...state, otherUser: action.payload };
+    case 'RESET_USER':
+      return { ...state, user: null };
+    case 'RESET_OTHER_USER':
+      return { ...state, otherUser: null };
+    case 'AUTHENTICATED':
+      return { ...state, access_token: localStorage.getItem('accessToken') };
     case 'LOADING':
       return { ...state, isLoading: true };
     default:

@@ -1,49 +1,47 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import path from '../../routers/index.js';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useLocation, useHistory } from 'react-router-dom';
 import { VscChevronLeft } from 'react-icons/vsc';
 
-import { registerCustomer } from '../../utils/store/actions/userAction.js';
+import path from '../../routers/index.js';
+import { registerCustomer, reset } from '../../utils/store/actions/userAction.js';
 
 import '../../styles/auth.css';
 
 const RegisterCustomer = _ => {
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const { pathname } = useLocation();
-  const [user, setUser] = useState({
-    email: '',
-    username: '',
-    firstName: '',
-    lastName: '',
-    password: '',
-    confPassword: ''
-  });
+  const { user, isLoading, errors } = useSelector(state => state.user);
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
-  };
+  useEffect(_ => {
+    if (user) {
+      console.log('REGISTER SUCCESS');
+      dispatch(reset());
+      return history.push(path.loginCustomer);
+    };
+
+    // if (localStorage.getItem('access_token')) {
+    //   return history.push(path.home);
+    // };
+  }, [user]);
 
   const handleSubmit = e => {
     e.preventDefault();
     let payload = {
-      email: user.email,
-      username: user.username,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      password: user.password
+      email: e.target?.email.value,
+      username: e.target?.username.value,
+      firstName: e.target?.firstName.value,
+      lastName: e.target?.lastName.value,
+      password: e.target?.password.value
     };
-    // if (!user.email) return console.log('MASUKAN EMAIL');
-    // if (!user.username) return console.log('MASUKAN USERNAME');
-    // if (!user.firstName) return console.log('MASUKAN FIRSTNAME');
-    // if (!user.lastName) return console.log('MASUKAN LASTNAME');
-    // if (!user.password) return console.log('MASUKAN PASSWORD');
-    // if (!user.confPassword) return console.log('KONFIRMASI PASSWORD');
-    if (user.password !== user.confPassword) return console.log('PASSWORD TIDAK SAMA!');
+
+    if (e.target?.password.value !== e.target?.confPassword.value) return console.log('Password isn\'t match!');
     dispatch(registerCustomer(payload));
   };
+
+  // HANDLE LOADING => WITH SWAL
+  // HANDLE ERROR => WITH SWAL
 
   return (
     <div id="RegisterCustomer">
@@ -58,38 +56,38 @@ const RegisterCustomer = _ => {
                 <h4 style={{ fontSize: '2.6em', fontWeight: 400, letterSpacing: 3, marginBottom: -4 }}>REGIST.</h4>
               </div>
               <h5 style={{ fontWeight: 400, textAlign: 'right' }}>as customer.</h5>
-              <form action="">
+              <form action="" onSubmit={e => handleSubmit(e)}>
                 <div className="mb-2">
                   <label htmlFor="email" className="form-label">Email</label>
-                  <input type="email" name="email" className="form-control" id="email" onChange={handleChange} />
+                  <input type="email" name="email" className="form-control" id="email" />
                 </div>
                 <div className="mb-2">
                   <div style={{ paddingRight: 6 }}>
                     <label htmlFor="username" className="form-label">User Name</label>
-                    <input type="text" name="username" className="form-control" id="username" onChange={handleChange} />
+                    <input type="text" name="username" className="form-control" id="username" />
                   </div>
                 </div>
                 <div className="row mb-2">
                   <div className="col-6" style={{ paddingRight: 6 }}>
                     <label htmlFor="firstName" className="form-label">First Name</label>
-                    <input type="firstName" name="firstName" className="form-control" id="firstName" onChange={handleChange} />
+                    <input type="firstName" name="firstName" className="form-control" id="firstName" />
                   </div>
                   <div className="col-6" style={{ paddingLeft: 6 }}>
                     <label htmlFor="lastName" className="form-label">Last Name</label>
-                    <input type="lastName" name="lastName" className="form-control" id="lastName" onChange={handleChange} />
+                    <input type="lastName" name="lastName" className="form-control" id="lastName" />
                   </div>
                 </div>
                 <div className="row mb-3">
                   <div className="col-6" style={{ paddingRight: 6 }}>
                     <label htmlFor="password" className="form-label">Password</label>
-                    <input type="password" name="password" className="form-control" id="password" onChange={handleChange} />
+                    <input type="password" name="password" className="form-control" id="password" />
                   </div>
                   <div className="col-6" style={{ paddingLeft: 6 }}>
                     <label htmlFor="confPassword" className="form-label">Confirm Password</label>
-                    <input type="password" name="confPassword" className="form-control" id="confPassword" onChange={handleChange} />
+                    <input type="password" name="confPassword" className="form-control" id="confPassword" />
                   </div>
                 </div>
-                <button type="submit" className="btn btn-primary w-100" onClick={e => handleSubmit(e)}>Submit</button>
+                <button type="submit" className="btn btn-primary w-100" >Submit</button>
               </form>
               <p style={{ marginTop: 16, marginBottom: 0 }} className="text-muted">Already have account? <Link to={path.loginCustomer} style={{ textDecoration: 'none', fontWeight: 500 }}>Login!</Link></p>
               <p className="text-muted" style={pathname === path.registerCustomer ? { display: 'block' } : { display: 'none' }}>Are you an Artist? <Link to={path.registerArtist} style={{ textDecoration: 'none', fontWeight: 500 }}>Register Here!</Link></p>
