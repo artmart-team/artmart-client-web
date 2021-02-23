@@ -14,7 +14,7 @@ const reducers = combineReducers({
   pictures: picturesReducer,
   options: optionsReducer,
   orders: ordersReducer,
-  orderUser: orderUserReducer
+  userOrders: orderUserReducer
 });
 
 export default reducers;
