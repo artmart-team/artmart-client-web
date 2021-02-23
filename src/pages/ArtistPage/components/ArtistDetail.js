@@ -23,7 +23,6 @@ const ArtistDetail = _ => {
     dispatch(getOtherUserId(role, id))
   }, [dispatch])
 
-  if (isLoading) return '';
 
   return (
     <div id="ArtistDetail" style={{ marginTop: 32, paddingTop: 8, paddingBottom: 32 }} className="d-flex flex-column">
