@@ -18,28 +18,44 @@ export const updateOrderDetails = (title, description) => {
   }
 }
 
-export const postOrder = (title, description, price, totalPrice, artistId, userId) => {
+export const postOrder = (title, description, price, totalPrice, artistId, options, refPictureId) => {
   return async (dispatch) => {
     try {
+      let userId = localStorage.getItem('id')
+      let access_token = localStorage.getItem('access_token')
+
       dispatch({
         type: 'UPDATE_ORDER_DETAILS_START',
       })
-
+      
+      options = JSON.stringify(options)
+      
       const obj = {
         title,
         description,
         price,
-        totalPrice
+        totalPrice,
+        options,
+        refPictureId
       }
-
-      const orderData = await axios.post(`/users/1/artists/${artistId}/orders/`, obj, {  // masih hardcode
+      
+      const orderData = await axios.post(`/users/${userId}/artists/${artistId}/orders/`, obj, { 
         headers: {
-          "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJ1c2VybmFtZVRlc3RpbmdGb3JVU2VyIiwicHJvZmlsZVBpY3R1cmUiOiJsaW5rLmdvb2dsZS5jb20iLCJpYXQiOjE2MTQwMDg5OTd9.A2e2OGEsbFHlBQZHYJqX9Hya2gmXrkxsN4VG_wogZMA"
+          "access_token": access_token
         }
       })
-
+      
+      const latestOrder = await axios.get(`/users/${userId}/order/latest`, {
+        headers: {
+          "access_token": access_token
+        }
+      })
+      localStorage.setItem('orderId', latestOrder.data.id)
+      console.log(latestOrder.data.id, '<< latest order')
+      
       dispatch({
-        type: 'UPDATE_ORDER_DETAILS_DONE'
+        type: 'UPDATE_ORDER_DETAILS_DONE',
+        payload: latestOrder.id
       })
 
 
@@ -47,6 +63,112 @@ export const postOrder = (title, description, price, totalPrice, artistId, userI
       console.log(err, 'error postOrder Action')
       dispatch({
         type: 'UPDATE_ORDER_DETAILS_ERROR',
+        payload: err
+      })
+    }
+  }
+}
+
+
+//////////////////////////////////////////////////////////////////////
+
+export const fetchOrderByArtistId = _ => {
+  return async (dispatch) => {
+    try {
+      let role = localStorage.getItem('role')
+      if (role === 'artist') {
+        dispatch({
+          type: 'FETCH_ORDER_BY_ARTIST_START'
+        })
+  
+        let artistId = localStorage.getItem('id')
+        let access_token = localStorage.getItem('access_token')
+  
+  
+        const { data } = await axios.get(`/artists/${artistId}/orders/`, {
+          headers: {
+            "access_token": access_token
+          }
+        })
+
+        dispatch({
+          type: 'FETCH_ORDER_BY_ARTIST_DONE',
+          payload: data
+        })
+
+      }
+    } catch (err) {
+      console.log(err, 'error fetchOrderByArtistId Action')
+      dispatch({
+        type: 'FETCH_ORDER_BY_ARTIST_DONE',
+        payload: err
+      })
+    }
+  }
+}
+
+export const declineOrder = (orderId) => {
+  return async (dispatch) => {
+    try {
+      let role = localStorage.getItem('role')
+      if (role === 'artist') {
+        dispatch({
+          type: 'DECLINE_ORDER_START',
+        })
+
+        let artistId = localStorage.getItem('id')
+        let access_token = localStorage.getItem('access_token')
+  
+        const data = await axios.delete(`/artists/${artistId}/orders/${orderId}`, {
+          headers: {
+            "access_token": access_token
+          }
+        })
+
+        dispatch({
+          type: 'DECLINE_ORDER_DONE',
+        })
+
+      }
+    } catch (err) {
+      console.log(err, 'error declineOrder Action')
+      dispatch({
+        type: 'DECLINE_ORDER_ERROR',
+        payload: err
+      })
+    }
+  }
+}
+
+
+
+export const acceptOrder = (orderId) => {
+  return async (dispatch) => {
+    try {      
+      let role = localStorage.getItem('role')
+      if (role === 'artist') {
+        dispatch({
+          type: 'ACCEPT_ORDER_START',
+        })
+
+        let artistId = localStorage.getItem('id')
+        let access_token = localStorage.getItem('access_token')
+  
+        const data = await axios.patch(`/artists/${artistId}/orders/${orderId}/accepted`, {}, {
+          headers: {
+            "access_token": access_token
+          }
+        })
+
+        dispatch({
+          type: 'ACCEPT_ORDER_DONE',
+        })
+
+      }
+    } catch (err) {
+      console.log(err, 'error acceptOrder Action')
+      dispatch({
+        type: 'ACCEPT_ORDER_DONE',
         payload: err
       })
     }

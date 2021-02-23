@@ -10,14 +10,24 @@ const CustomOrderCard = (props) => {
   const history = useHistory();
   const dispatch = useDispatch()
   let { stallId } = useParams()
-  const { options, totalExtraPrice } = useSelector(state => state.options) 
-  const { showPicturePrice, showPictureName } = useSelector(state => state.pictures) 
+  const { options, totalExtraPrice, selectedOptions } = useSelector(state => state.options) 
+  const { showPictureId, showPicture, showPicturePrice, showPictureName, showPictureDesc, showPictureRating } = useSelector(state => state.pictures) 
 
   useEffect(() => {
     dispatch( getArtistOptions(stallId))
   }, [])
 
   function handleOrderNow () {
+    localStorage.setItem('selectedPicId', showPictureId)
+    localStorage.setItem('selectedPicLink', showPicture)
+    localStorage.setItem('selectedPicName', showPictureName)
+    localStorage.setItem('selectedPicDesc', showPictureDesc)
+    localStorage.setItem('selectedPicRating', showPictureRating)
+
+    localStorage.setItem('selectedPicPrice', showPicturePrice)
+    localStorage.setItem('totalExtraPrice', totalExtraPrice)
+
+    localStorage.setItem('selectedOptions', JSON.stringify(selectedOptions))
     history.push(`/order/describe/${stallId}`)
   }
 

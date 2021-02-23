@@ -5,6 +5,8 @@ import { Link, useLocation, useHistory } from 'react-router-dom';
 import path from '../../routers/index.js';
 import logo from '../../assets/images/img_logoC.svg';
 import { logout, getUserByID } from '../../utils/store/actions/userAction.js';
+import { showPicture } from '../../utils/store/actions/picturesAction'
+import { updateExtraPrice, updateSelectedOptions } from '../../utils/store/actions/optionsAction'
 
 import '../../styles/navbar.css';
 
@@ -17,6 +19,9 @@ const NavBar = () => {
 
   const handleLogout = _ => {
     dispatch(logout());
+    dispatch( updateSelectedOptions([]))
+    dispatch( updateExtraPrice(0))
+    localStorage.clear()
     return history.push(path.home);
   };
 
@@ -24,13 +29,19 @@ const NavBar = () => {
     dispatch(getUserByID(localStorage.getItem('id')))
   }, [dispatch])
 
+  function handleResetReduxAndStorage () {
+    dispatch( updateSelectedOptions([]))
+    dispatch( updateExtraPrice(0))
+    localStorage.setItem('orderId', '')
+  }
+
   if (isLoading) return '';
 
   return (
     <nav id="NavBar" className="navbar navbar-light bg-light sticky-top" style={pathname === path.loginCustomer || pathname === path.loginArtist || pathname === path.registerCustomer || pathname === path.registerArtist ? { display: 'none' } : { display: 'block' }}>
       <div className="container-fluid" style={{ paddingRight: 64, paddingLeft: 64 }}>
         <div className="navbar-brand">
-          <Link to={path.home} >
+          <Link to={path.home}  onClick={() => handleResetReduxAndStorage()}>
             <img src={logo} alt="logo" height="30" />
           </Link>
         </div>
