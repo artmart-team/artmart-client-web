@@ -1,33 +1,41 @@
 import axios from '../../API/axios.js'
+import { artistPic } from './picturesAction.js';
 
-export const postComment = (payload) => {
-console.log("🚀 ~ file: CommentAction.js ~ line 4 ~ postComment ~ payload", payload)
-  return async (dispatch) => {
+export const commentSubmit = (payload, UserId, ArtistId) => {
+  return async next => {
     try {
-      dispatch({
-        type: "ADD_COMMENT_START"
-      })
+      // console.log(payload, '<<<< DI ACTION');
 
       const { data } = await axios({
-        method: 'post',
-        url: '/users/52/artists/1/comments',
-        headers: {
-          'Content-Type': 'application/json',
-          'access_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTIsInVzZXJuYW1lIjoiYmFuZ2RlYnVnIiwicHJvZmlsZVBpY3R1cmUiOiJodHRwczovL3VpLWF2YXRhcnMuY29tL2FwaS8_bmFtZT1iYW5nK2RlYnVnIiwiaWF0IjoxNjEzOTkwOTcyfQ.CtoLmpj_Uw4rH946iw7j1PnLODLrFqbodsE2P-DJ14s'
-        }
-      })
+        method: 'POST',
+        url: `/users/${UserId}/artists/${ArtistId}/comments`,
+        data: payload,
+        headers: { access_token: localStorage.getItem('access_token') }
+      });
 
-      console.log("🚀 ~ file: CommentAction.js ~ line 24 ~ return ~ data", data)
-      dispatch({
-        type: 'FETCH_COMMENT_DONE',
-        payload: data
-      })
+      next({ type: 'COMMENT_SUBMIT', payload: data });
     } catch (err) {
-      console.log("🚀 ~ file: CommentAction.js ~ line 18 ~ return ~ error", err)
-      dispatch({
-        type: 'FETCH_COMMENT_ERROR',
-        payload: err
-      })      
-    }
-  }
-}
+      console.log(err);
+    };
+  };
+};
+
+export const commentFetch = ArtistId => {
+  return async next => {
+    try {
+      console.log(ArtistId, 'FETCHING')
+    } catch (err) {
+      console.log(err);
+    };
+  };
+};
+
+export const commentReset = _ => {
+  return async next => {
+    try {
+      next({ type: 'RESET_COMMENT' });
+    } catch (err) {
+      console.log(err);
+    };
+  };
+};
