@@ -44,18 +44,12 @@ export const commentFetch = ArtistId => {
 export const commentDelete = (CommentId, ArtistId) => {
   return async next => {
     try {
-      // next({ type: 'LOADING' });
 
       const message = await axios({
         method: 'DELETE',
         url: `/users/${Number(localStorage.getItem('id'))}/artists/${Number(ArtistId)}/comments/${CommentId}`,
         headers: {access_token: localStorage.getItem('access_token')}
       });
-
-      // const { data } = await axios({
-      //   method: 'GET',
-      //   url: `/artists/${ArtistId}/comments`,
-      // });
 
       console.log(message.data);
 

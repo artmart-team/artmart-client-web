@@ -3,7 +3,8 @@ const initState = {
   loading: false,
   errors: null,
   totalExtraPrice: 0,
-  selectedOptions: []
+  selectedOptions: [],
+  selfOptions: []
 };
 
 const ordersReducer = (state = initState, action) => {
@@ -44,6 +45,28 @@ const ordersReducer = (state = initState, action) => {
       return {
         ...state,
         errors: action.payload
+      }
+    case 'ADD_OPTION':
+      return {
+        ...state,
+        selfOptions: [...state.selfOptions, action.payload]
+      }
+    case 'LOADING':
+      return {
+        ...state,
+        loading: true
+      }
+    case 'FETCH_SELF_OPTION':
+      return {
+        ...state,
+        selfOptions: action.payload,
+        loading: false
+      }
+    case 'DELETE_SELF_OPTION':
+      return {
+        ...state,
+        loading: false,
+        selfOptions: state.selfOptions.filter(e => e.id !== action.payload)
       }
     default:
       return state;

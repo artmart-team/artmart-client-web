@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { commentFetch, commentReset, commentSubmit } from '../../../utils/store/actions/CommentAction.js';
+import { commentFetch, commentSubmit } from '../../../utils/store/actions/CommentAction.js';
 
 import CommentCard from './CommentCard.js';
 
