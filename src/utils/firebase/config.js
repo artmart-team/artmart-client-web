@@ -1,17 +1,18 @@
 import firebase from 'firebase/app';
 import 'firebase/storage';
 
-const firebaseConfig = {
-    apiKey: 'AIzaSyBAXpEPyLgNb3lXeFDDZgUhuzzhlmLdZbI',
-    authDomain: 'react-upload-file-2755a.firebaseapp.com',
-    projectId: 'react-upload-file-2755a',
-    storageBucket: 'react-upload-file-2755a.appspot.com',
-    messagingSenderId: '99140113125',
-    appId: '1:99140113125:web:6ce34a7ad8350319f6ba0c'
-};
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyBFVivNh3Rn8x5rX7sPeJRqHBQwI4tpmlY",
+    authDomain: "marterialize.firebaseapp.com",
+    projectId: "marterialize",
+    storageBucket: "marterialize.appspot.com",
+    messagingSenderId: "245537760975",
+    appId: "1:245537760975:web:ded05166b029eb2ac0b9ba"
+  };
+  // Initialize Firebase
+export const firebaseConf = firebase.initializeApp(firebaseConfig);
 
-firebase.initializeApp(firebaseConfig);
+// const storage = firebase.storage();
 
-const storage = firebase.storage();
-
-export { storage, firebase as default };
+// export { storage, firebase as default };

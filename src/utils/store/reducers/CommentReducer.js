@@ -5,7 +5,7 @@ const initialState = {
 }
 
 const commentReducer = (state = initialState, action) => {
-console.log("🚀 ~ file: CommentReducer.js ~ line 7 ~ reducer ~ action", action)
+// console.log("🚀 ~ file: CommentReducer.js ~ line 7 ~ reducer ~ action", action)
   switch (action.type) {
     case 'ADD_COMMENT_START':
       return {
