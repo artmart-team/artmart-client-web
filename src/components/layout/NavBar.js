@@ -24,7 +24,7 @@ const NavBar = () => {
     dispatch(getUserByID(localStorage.getItem('id')))
   }, [dispatch])
 
-  if (isLoading) return '';
+  // if (isLoading) return '';
 
   return (
     <nav id="NavBar" className="navbar navbar-light bg-light sticky-top" style={pathname === path.loginCustomer || pathname === path.loginArtist || pathname === path.registerCustomer || pathname === path.registerArtist ? { display: 'none' } : { display: 'block' }}>
