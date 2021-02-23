@@ -52,3 +52,30 @@ export const postOrder = (title, description, price, totalPrice, artistId, userI
     }
   }
 }
+
+export const submitCommission = (payload, orderId) => {
+  return async (dispatch) => {
+    try {
+      dispatch({ type: 'LOADING' });
+
+      const { data } = await axios({
+        method: 'POST',
+        url: `/artists/${localStorage.getItem('id')}/orders/${orderId}/done`
+      });
+
+      return dispatch({ type: 'SUBMIT_COMMISSION', payload: data });
+    } catch (err) {
+      console.log(err);
+    };
+  };
+};
+
+export const resetSubmit = _ => {
+  return async (dispatch) => {
+    try {
+      return dispatch({ type: 'RESET_SUBMIT' });
+    } catch (err) {
+      console.log(err);
+    };
+  };
+};
