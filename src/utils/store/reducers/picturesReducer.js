@@ -1,5 +1,6 @@
 const initState = {
   pictures: [],
+  artistPics: [],
   picture: {},
   loading: false,
   errors: null,
@@ -20,12 +21,34 @@ const picturesReducer = (state = initState, action) => {
         ...state,
         loading: true
       }
+    case 'FETCH_CURRENT_COLLECTION_START':
+      return {
+        ...state,
+        loading: true
+      }
+    case 'FETCH_ARTIST_PIC_START':
+      return {
+        ...state,
+        loading: true
+      }
     case 'FETCH_PICTURES_DONE':
       return {
         ...state,
         pictures: action.payload,
         loading: false
-      }
+      };
+    case 'FETCH_CURRENT_COLLECTION_DONE':
+      return {
+        ...state,
+        pictures: action.payload,
+        loading: false
+      };
+    case 'FETCH_ARTIST_PIC_DONE':
+      return {
+        ...state,
+        artistPics: action.payload,
+        loading: false
+      };
     case 'FETCH_PICTURES_ERROR':
       return {
         ...state,
