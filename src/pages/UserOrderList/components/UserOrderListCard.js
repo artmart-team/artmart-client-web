@@ -22,7 +22,6 @@ const UserOrderListCard = _ => {
             </div>
             <p className="description">Exercitation dolore tempor nulla dolore Lorem proident consequat exercitation non in. Non culpa do qui consectetur voluptate ea esse. Pariatur dolor sit Lorem cupidatat mollit ea ullamco officia consequat duis irure.</p>
 
-
             <div className="mb-4 mt-2 text-muted" style={{ paddingLeft: 0 }}>
               <div className="d-flex justify-content-between">
                 <p style={{ fontWeight: 600, marginBottom: 0 }}>Total</p>
@@ -30,9 +29,7 @@ const UserOrderListCard = _ => {
               </div>
             </div>
 
-
             <hr />
-
 
             <div className="d-flex" style={{marginBottom: 32, marginTop: 28}}>
               <div style={{ marginRight: 4, flex: 1 }}>

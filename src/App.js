@@ -16,6 +16,7 @@ import {
   StallAdd,
   RegisterArtist,
   UserOrderList,
+  SubmitCommission,
   ArtistOrderList
 } from './pages/index.js';
 
@@ -52,6 +53,9 @@ const App = _ => {
       <NavBar />
 
       <Switch>
+        <Route exact path={path.submitCommission}>
+          <SubmitCommission />
+        </Route>
         <Route exact path={path.userOrder}>
           <UserOrderList />
         </Route>
