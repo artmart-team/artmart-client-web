@@ -7,18 +7,34 @@ const initState = {
 
 const orderUserReducer = (state = initState, action) => {
   switch (action.type) {
-    case 'FETCH_USER_ORDER_START':
+    case 'FETCH_ORDER_USER_START':
       return {
         ...state,
         loading: true
       }
-    case 'FETCH_USER_ORDER_DONE':
+    case 'FETCH_ORDER_USER_DONE':
       return {
         ...state,
-        pictures: action.payload,
+        orders: action.payload,
         loading: false
       }
-    case 'FETCH_USER_ORDER_ERROR':
+    case 'FETCH_ORDER_USER_ERROR':
+      return {
+        ...state,
+        errors: action.payload,
+        loading: false
+      }
+    case 'CANCEL_ORDER_USER_START':
+    return {
+      ...state,
+      loading: true
+    }
+    case 'CANCEL_ORDER_USER_DONE':
+      return {
+        ...state,
+        loading: false
+      }
+    case 'CANCEL_ORDER_USER_ERROR':
       return {
         ...state,
         errors: action.payload,

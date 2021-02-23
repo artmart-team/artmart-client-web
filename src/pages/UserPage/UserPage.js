@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchOrders } from '../../utils/store/actions/orderUserAction.js';
+import { fetchOrdersUsers } from '../../utils/store/actions/orderUserAction.js';
 
 import OrderList from './components/OrderList.js';
 import UserDetail from './components/UserDetail.js';
@@ -11,7 +11,7 @@ const UserPage = _ => {
 
   useEffect(() => {
     console.log('running fetching')
-    dispatch(fetchOrders())
+    dispatch(fetchOrdersUsers())
   }, [])
 
   return(
