@@ -8,6 +8,8 @@ import ordersReducer from './ordersReducer.js';
 
 const reducers = combineReducers({
   user: userReducer,
+  description: commentReducer,
+  pictures: picturesReducer,
   comment: commentReducer,
   pictures: picturesReducer,
   options: optionsReducer,
