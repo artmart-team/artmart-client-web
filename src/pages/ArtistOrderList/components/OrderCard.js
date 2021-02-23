@@ -10,7 +10,7 @@ import '../styles/OrderCard.css';
 
 const OrderCard = ({ order }) => {
   const dispatch = useDispatch()
-  const [options, setOptions] = useState(JSON.parse(order.options))
+  const [options, setOptions] = useState(order.options ? JSON.parse(order.options) : [])
 
   function handleDecline () {
     dispatch( declineOrder(order.id))
@@ -22,88 +22,52 @@ const OrderCard = ({ order }) => {
     dispatch(fetchOrderByArtistId())
   }
 
-  if (order.options) {
-    return (
-      <div id="OrderCard" className="col-12">
-        <div className="card" style={{ width: '100%', borderRadius: 8, marginTop: 8, marginBottom: 8 }}>
-          <div className="row">
-            <div className="col-6" style={{ padding: 0 }}>
-              <img src={ order.refLink ? order.refLink : image } className="card-img-top" style={{ borderTopRightRadius: 0, height: '100%', objectFit: 'cover', borderTopLeftRadius: 8, borderBottomLeftRadius: 8 }} />
-            </div>
-            <div className="col-6" style={{ padding: 32 }}>
-              <h5>{ order.title }</h5>
-              <p className="description">{ order.description }</p>
-  
-              {
-                options.map((option, idx) => <Option option={option} key={idx}></Option>)
-              }
-  
-
-              <hr />
-              <div className="mb-4 mt-2 text-muted" style={{ paddingLeft: 0 }}>
-                <div className="d-flex justify-content-between">
-                  <p style={{ fontWeight: 600, marginBottom: 0 }}>Total</p>
-                  <p style={{ fontWeight: 600, marginBottom: 0 }}>Rp. { order.totalPrice }</p>
-                </div>
-              </div>
-  
-  
-              <div className="row">
-                <div className="col">
-                  <button className="btn btn-primary w-100" onClick={() => handleAccept()}>Accept</button>
-                </div>
-                <div className="col">
-                  <button className="btn btn-danger w-100" onClick={() => handleDecline()}>Decline</button>
-                </div>
-              </div>
-            </div>
+  return (
+    <div id="OrderCard" className="col-12">
+      <div className="card" style={{ width: '100%', borderRadius: 8, marginTop: 8, marginBottom: 8 }}>
+        <div className="row">
+          <div className="col-6" style={{ padding: 0 }}>
+            <img src={ order.refLink ? order.refLink : image } className="card-img-top" style={{ borderTopRightRadius: 0, height: '100%', objectFit: 'cover', borderTopLeftRadius: 8, borderBottomLeftRadius: 8 }} />
           </div>
-  
-        </div >
-      </div >
-    )
-  } else {
-    return (
-      <div id="OrderCard" className="col-12">
-        <div className="card" style={{ width: '100%', borderRadius: 8, marginTop: 8, marginBottom: 8 }}>
-          <div className="row">
-            <div className="col-6" style={{ padding: 0 }}>
-              <img src={ order.refLink ? order.refLink : image } className="card-img-top" style={{ borderTopRightRadius: 0, height: '100%', objectFit: 'cover', borderTopLeftRadius: 8, borderBottomLeftRadius: 8 }} />
-            </div>
-            <div className="col-6" style={{ padding: 32 }}>
-              <h5>{ order.title }</h5>
-              <p className="description">{ order.description }</p>
-  
-              <div className="mb-2 mt-2 text-muted" style={{ paddingLeft: 0 }}>
+          <div className="col-6" style={{ padding: 32 }}>
+            <h5>{ order.title }</h5>
+            <p className="description">{ order.description }</p>
+
+            { !order.option ?    <div className="mb-2 mt-2 text-muted" style={{ paddingLeft: 0 }}>
                 <div className="d-flex justify-content-between">
                   <p style={{ marginBottom: 0 }}>No Extra Options</p>
-                </div>
+                  </div>
+                </div> 
+                : '' 
+            }
+
+            {
+              options.map((option, idx) => <Option option={option} key={idx}></Option>)
+            }
+
+            <hr />
+            <div className="mb-4 mt-2 text-muted" style={{ paddingLeft: 0 }}>
+              <div className="d-flex justify-content-between">
+                <p style={{ fontWeight: 600, marginBottom: 0 }}>Total</p>
+                <p style={{ fontWeight: 600, marginBottom: 0 }}>Rp. { order.totalPrice }</p>
               </div>
-  
-              <hr />
-              <div className="mb-4 mt-2 text-muted" style={{ paddingLeft: 0 }}>
-                <div className="d-flex justify-content-between">
-                  <p style={{ fontWeight: 600, marginBottom: 0 }}>Total</p>
-                  <p style={{ fontWeight: 600, marginBottom: 0 }}>Rp. { order.totalPrice }</p>
-                </div>
+            </div>
+
+
+            <div className="row">
+              <div className="col">
+                <button className="btn btn-primary w-100" onClick={() => handleAccept()}>Accept</button>
               </div>
-  
-  
-              <div className="row">
-                <div className="col">
-                  <button className="btn btn-primary w-100" onClick={() => handleAccept()}>Accept</button>
-                </div>
-                <div className="col">
-                  <button className="btn btn-danger w-100" onClick={() => handleDecline()}>Decline</button>
-                </div>
+              <div className="col">
+                <button className="btn btn-danger w-100" onClick={() => handleDecline()}>Decline</button>
               </div>
             </div>
           </div>
-  
-        </div >
+        </div>
+
       </div >
-    )
-  }
+    </div >
+  )
   
     // <div id="OrderCard" className="col-12 col-md-6">
     //   <div className="card" style={{ width: '100%', borderRadius: 8, marginTop: 8, marginBottom: 8 }}>

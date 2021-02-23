@@ -174,11 +174,13 @@ export const submitCommission = (payload, orderId) => {
   return async (dispatch) => {
     try {
       dispatch({ type: 'LOADING' });
-
-      const { data } = await axios({
-        method: 'POST',
-        url: `/artists/${localStorage.getItem('id')}/orders/${orderId}/done`
-      });
+      console.log(payload, 'payload action')
+      let access_token = localStorage.getItem('access_token')
+      const { data } = await axios.patch(`/artists/${localStorage.getItem('id')}/orders/${orderId}/done`, payload, {
+        headers: {
+          "access_token": access_token
+        }
+      })
 
       return dispatch({ type: 'SUBMIT_COMMISSION', payload: data });
     } catch (err) {

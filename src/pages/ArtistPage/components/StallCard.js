@@ -5,9 +5,9 @@ import image from '../../../assets/images/placeholder/pla_Card.png';
 
 const StallCard = ({ props }) => {
 
-  console.log(props)
+  // console.log(props)
 
-  console.log(props, '<<< DI PROPS')
+  // console.log(props, '<<< DI PROPS')
   return (
     <div id="StallCard" className="col-6 col-sm-6 col-md-4 col-lg-4 col-xxl-2">
       <div className="card" style={{ width: '100%', borderRadius: 8, marginTop: 8, marginBottom: 8 }}>

@@ -50,6 +50,9 @@ const ArtistDetail = _ => {
       <Link to={`/artist/${artistId}/orders`} style={{textDecoration: 'none'}}>
         <button className="btn btn-outline-primary w-100" style={Number(otherUser?.id) === Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 8 } : { display: 'none' }}>My Order List</button>
       </Link>
+      <Link to={`/artist/${artistId}/orders/active`} style={{textDecoration: 'none'}}>
+        <button className="btn btn-outline-primary w-100" style={Number(otherUser?.id) === Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 8 } : { display: 'none' }}>My Active Order List</button>
+      </Link>
     </div>
   );
 };

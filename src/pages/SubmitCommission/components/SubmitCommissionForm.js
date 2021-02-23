@@ -23,7 +23,7 @@ const SubmitCommissionForm = _ => {
     const payload = {
       imageURL: url
     };
-
+    console.log(payload)
     // console.log(payload);
     dispatch(submitCommission(payload, orderId));
     setSubmitOK(true)
@@ -75,7 +75,7 @@ const SubmitCommissionForm = _ => {
           <img src={url ? url : "http://via.placeholder.com/300"} height="300" width="300" style={{ borderRadius: 8, objectFit: 'cover' }} className="mb-3"></img>
         </div>
 
-        <button type="submit" className="btn btn-primary mb-5" disabled={submitOK} >Submit</button>
+        <button type="submit" className="btn btn-primary mb-5" disabled={submitOK}>Submit</button>
 
       </form>
     </div>

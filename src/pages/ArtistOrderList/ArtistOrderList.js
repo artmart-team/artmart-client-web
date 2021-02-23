@@ -18,7 +18,7 @@ const ArtistOrderList = _ => {
 
   useEffect(() => {
     dispatch(fetchOrderByArtistId())
-  }, [])
+  }, [artistOrders])
 
   return (
     <div id="ArtistOrderList" style={{ borderRadius: 8, padding: 32, marginLeft: 64, marginRight: 64 }}>
