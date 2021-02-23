@@ -17,6 +17,7 @@ const path = {
   userEditProfile: '/user/:userId/edit',
   userOrder: '/user/order',
   artistOrder: '/artist/:artistId/orders',
+  artistOption: '/artist/:artistId/option',
   submitCommission: '/order/submit/:orderId',
   orderActive: '/order/active',
 };

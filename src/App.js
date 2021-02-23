@@ -5,6 +5,7 @@ import {
   ArtistPage,
   ArtistEditProfile,
   ArtistPortfolio,
+  ArtistOption,
   Home,
   Login,
   OrderDescribe,
@@ -21,7 +22,7 @@ import {
   ArtistOrderList
 } from './pages/index.js';
 
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 
 import path from './routers/index.js';
 import { NavBar } from './components/layout/index.js';
@@ -30,7 +31,7 @@ import { authenticated, getUserByID } from './utils/store/actions/userAction.js'
 const App = _ => {
   const dispatch = useDispatch();
   const [auth, setAuth] = useState(false);
-  // const history = useHistory();
+  const paramArtistId = Number(useLocation().pathname.split('/')[2]);
   const { access_token, isLoading, errors } = useSelector(state => state.user);
 
   useEffect(() => {
@@ -54,6 +55,11 @@ const App = _ => {
       <NavBar />
 
       <Switch>
+        <Route exact path={path.artistOption}>
+          {Number(localStorage.getItem('id')) === paramArtistId ?
+            (<ArtistOption />) :
+            (<Redirect to={{ pathname: path.home }}></Redirect>)}
+        </Route>
         <Route exact path={path.orderActive}>
           <OrderActive />
         </Route>
