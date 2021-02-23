@@ -3,11 +3,16 @@ const initState = {
   otherUser: null,
   access_token: '',
   isLoading: false,
-  errors: []
+  errors: [],
+  rating: null
 };
 
 const userReducer = (state = initState, action) => {
   switch (action.type) {
+    case 'RESET_RATING':
+      return { ...state, rating: null };
+    case 'GET_TOTAL_RATING':
+      return { ...state, rating: action.payload, isLoading: false }
     case 'REGISTER':
       return { ...state, user: action.payload, isLoading: false };
     case 'LOGIN':
@@ -21,9 +26,9 @@ const userReducer = (state = initState, action) => {
       localStorage.removeItem('role');
       return { ...state, access_token: '', user: null };
     case 'GET_USER_ID':
-      return { ...state, user: action.payload };
+      return { ...state, user: action.payload, isLoading: false };
     case 'GET_OTHER_USER':
-      return { ...state, otherUser: action.payload };
+      return { ...state, otherUser: action.payload, isLoading: false };
     case 'RESET_USER':
       return { ...state, user: null };
     case 'RESET_OTHER_USER':
