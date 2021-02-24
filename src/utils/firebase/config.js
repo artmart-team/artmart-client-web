@@ -13,6 +13,6 @@ import 'firebase/storage';
   // Initialize Firebase
 export const firebaseConf = firebase.initializeApp(firebaseConfig);
 
-// const storage = firebase.storage();
+const storage = firebase.storage();
 
-// export { storage, firebase as default };
+export { storage, firebase as default };

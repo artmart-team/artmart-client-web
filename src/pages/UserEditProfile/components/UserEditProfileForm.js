@@ -6,12 +6,15 @@ import { useState } from 'react';
 import { editUserProfile } from '../../../utils/store/actions/userAction';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 
+import { storage } from '../../../utils/firebase/config'
+
 const UserEditProfileForm = (props) => {
   // init
   const dispatch = useDispatch()
   const history = useHistory()
 
   let userId = localStorage.getItem('id')
+  const [ image, setImage] = useState(null)
   const [ username, setUsername ] = useState(props.user.username)
   const [ email, setEmail ] = useState(props.user.email)
   const [ firstName, setFirst ] = useState(props.user.firstName)
@@ -35,17 +38,36 @@ const UserEditProfileForm = (props) => {
     } else if (!email){
       setErrorEmail(true)
     } else {
-      let data = {
-        username : username,
-        email : email,
-        firstName : firstName,
-        lastName : lastName,
-        profilePicture : profile
-      }
-      dispatch(editUserProfile(userId, data))
-      history.goBack(`user/${userId}`)
+
+      const uploadTask = storage.ref(`image/${image.name}`).put(image);
+      uploadTask.on(
+      "state_changed",
+      snapshot => {
+        },
+      error => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref("image")
+          .child(image.name)
+          .getDownloadURL()
+          .then(url => {
+            // console.log(url)
+            setProfile(url); 
+          })
+        }
+      );
     }
   };
+
+  // dispatch(editUserProfile(userId, {
+  //   username : username,
+  //   email : email,
+  //   firstName : firstName,
+  //   lastName : lastName,
+  //   profilePicture : profile
+  // }))
 
 
   // handle if change and error
@@ -82,12 +104,13 @@ const UserEditProfileForm = (props) => {
   }
 
   const editProfile = (e) => {
-    e.preventDefault()
-
-    editProfile(e.target.value)
+    if (e.target.files[0]) {
+      setImage(e.target.files[0]);
+    }
   }
 
-  console.log(firstName)
+  // console.log(firstName)
+  console.log(profile)
 
   return (
     <div id="UserEditProfileForm">
@@ -119,7 +142,7 @@ const UserEditProfileForm = (props) => {
 
         <div className="mb-3">
           <label htmlFor="link" className="form-label">Upload your image file</label>
-          <input className="form-control" type="file" id="link" onChange={setProfile}/>
+          <input className="form-control" type="file" id="link" onChange={editProfile}/>
         </div>
 
         <button type="submit" className="btn btn-primary">Submit</button>
