@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { BsStarFill, BsStarHalf, BsStar } from 'react-icons/bs';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getOtherUserId, getTotalRatingArtist } from '../../../utils/store/actions/userAction.js';
@@ -70,8 +70,10 @@ const ArtistProfileCard = _ => {
           </div>
         </div>
         <div className="d-flex justify-content-between">
-          <button className="btn btn-outline-success w-100 mt-3" style={{ borderRadius: 8, marginRight: 8 }}>My Review</button>
-          <button className="btn btn-outline-primary w-100 mt-3" style={{ borderRadius: 8 }}>Contact Me!</button>
+          <button className="btn btn-outline-success w-100 mt-3" style={{ borderRadius: 8, marginRight: 8 }}>Review</button>
+          <Link to={`/artist/${otherUser.id}`} className="w-100">
+            <button className="btn btn-outline-primary w-100 mt-3" style={{ borderRadius: 8 }}>Profile</button>
+          </Link>
         </div>
       </div>
     </div>
