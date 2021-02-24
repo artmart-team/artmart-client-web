@@ -1,4 +1,5 @@
 const initState = {
+  picturesPagination : [],
   pictures: [],
   artistPics: [],
   picture: {},
@@ -12,7 +13,8 @@ const initState = {
   showPictureDesc: '',
   showPictureRating: '',
   showPictureArtistId: '',
-  searching : ""
+  searching : "",
+  pagination : 1,
 };
 
 const picturesReducer = (state = initState, action) => {
@@ -33,9 +35,19 @@ const picturesReducer = (state = initState, action) => {
         loading: true
       }
     case 'FETCH_PICTURES_DONE':
+      let pictData = []
+      let pictPage = []
+      for (let i = 1 ; i <= action.payload.length ; i++) {
+          pictData.push(action.payload[i - 1])
+        if((i / 12) == 1 || i == action.payload.length) {
+          pictPage.push(pictData)
+          pictData = []
+        }
+      }
       return {
         ...state,
-        pictures: action.payload,
+        pictures : action.payload,
+        picturesPagination: pictPage,
         loading: false
       };
     case 'FETCH_CURRENT_COLLECTION_DONE':
@@ -94,6 +106,11 @@ const picturesReducer = (state = initState, action) => {
       return { 
         ...state,
         searching : action.payload
+      }
+    case "PAGINATION_PAGE" :
+      return {
+        ...state,
+        pagination : action.payload
       }
     default:
       return state;
