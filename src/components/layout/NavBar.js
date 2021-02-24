@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { BiSearch } from 'react-icons/bi';
@@ -12,6 +12,8 @@ import logo from '../../assets/images/img_logoG.svg';
 import { logout, getUserByID } from '../../utils/store/actions/userAction.js';
 import { updateExtraPrice, updateSelectedOptions } from '../../utils/store/actions/optionsAction'
 
+import { searchCharacter } from '../../utils/store/actions/picturesAction'
+
 import '../../styles/navbar.css';
 
 const NavBar = () => {
@@ -20,6 +22,8 @@ const NavBar = () => {
   const { pathname } = useLocation();
 
   const { user, isLoading, errors } = useSelector(state => state.user);
+
+  const [ search, setSearch ] = useState("")
 
   const handleLogout = _ => {
     dispatch(logout());
@@ -39,6 +43,19 @@ const NavBar = () => {
     dispatch(updateExtraPrice(0))
     localStorage.setItem('orderId', '')
   }
+
+  const handleSearch = e => {
+    e.preventDefault()
+    dispatch(searchCharacter(e.target.value))
+    // setSearch(e.target.value)
+  }
+
+  const searchStart = e => {
+    e.preventDefault()
+    
+  }
+
+  console.log(search)
 
   return (
     <nav
@@ -67,6 +84,8 @@ const NavBar = () => {
                 <button
                   style={{ color: '#1c1e21', height: 40, border: 'none', borderRadius: '56px 0 0 56px ', backgroundColor: '#F0F2F5' }}
                   className="btn btn-outline-secondary" type="button" id="submit-search-button"
+                  onClick={searchStart}
+                  onKeyPress={searchStart}
                 >
                   <BiSearch />
                 </button>
@@ -75,6 +94,7 @@ const NavBar = () => {
                   type="text"
                   className="form-control"
                   placeholder="Search"
+                  onChange={handleSearch}
                 />
               </div>
             </form>
