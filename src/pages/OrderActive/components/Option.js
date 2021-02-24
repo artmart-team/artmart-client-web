@@ -7,7 +7,7 @@ const ArtistOrderList = ({ option }) => {
     <div className="mb-2 mt-2 text-muted" style={{ paddingLeft: 0 }}>
       <div className="d-flex justify-content-between">
         <p style={{ marginBottom: 0 }}>{ option[0] }</p>
-        <p style={{ marginBottom: 0 }}>+ Rp. { option[1] }</p>
+        <p style={{ marginBottom: 0 }}>+ Rp. { option[1]?.toLocaleString('id-ID') }</p>
       </div>
     </div>
 

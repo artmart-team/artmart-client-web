@@ -52,7 +52,7 @@ const OrderProcess = _ => {
 
   if (deadline) {
     return (
-      <div id="OrderProcess" style={{ borderRadius: 8, padding: 32, marginLeft: 64, marginRight: 64 }}>
+      <div id="OrderProcess" style={{ borderRadius: 16, paddingTop: 32, marginLeft: 32, marginRight: 32 }}>
         <h3>Thank you for ordering.</h3>
   
         <TimerWidget rawTime={5000} />
@@ -62,7 +62,7 @@ const OrderProcess = _ => {
     );
   } else {
     return (
-    <div id="OrderProcess" style={{ borderRadius: 8, padding: 32, marginLeft: 64, marginRight: 64 }}>
+    <div id="OrderProcess" style={{ borderRadius: 16, paddingTop: 32, marginLeft: 32, marginRight: 32 }}>
       {
         role === 'artist' ? <h3>What kind of request do they want?</h3> :  <h3>Thank you for ordering.</h3>
       }

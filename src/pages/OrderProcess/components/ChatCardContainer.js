@@ -64,8 +64,8 @@ const ChatCardContainer = ({ messages }) => {
 
   if (newMessages) {
     return (
-      <div id="ChatCardContainer" style={{ height: 'auto', borderRadius: 8, marginTop: 32, marginBottom: 32, }}>
-        <div style={{ height: 'auto', backgroundColor: '#dddddd', borderRadius: 8, padding: 32, marginTop: 16 }}>
+      <div id="ChatCardContainer" style={{ height: 'auto', borderRadius: 16, marginTop: 32, marginBottom: 32, }}>
+        <div className="shadow" style={{ height: 'auto', backgroundColor: '#fff', borderRadius: 16, padding: 32, marginTop: 16 }}>
 
           {
             newMessages.map((message, idx) => <ChatCard message={message} key={idx} artist={messages[0]?.Artist} user={messages[0]?.User}></ChatCard>)
@@ -73,25 +73,25 @@ const ChatCardContainer = ({ messages }) => {
   
           <form action="">
             <div className="form-floating">
-              <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea" required style={{ borderRadius: 8, height: 100 }} value={inputMsg} onChange={(e) => handleTypeMsg(e)}></textarea>
+              <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea" required style={{ borderRadius: 16, height: 100 }} value={inputMsg} onChange={(e) => handleTypeMsg(e)}></textarea>
               <label htmlFor="floatingTextarea">Comments</label>
             </div>
-            <button className="btn btn-primary w-100 mt-3" style={{ borderRadius: 8 }} onClick={(e) => handleSend(e)}>Send</button>
+            <button className="btn btn-primary w-100 mt-3" style={{ borderRadius: 12 }} onClick={(e) => handleSend(e)}>Send</button>
           </form>
         </div>
       </div>
     );
   } else {
     return (
-      <div id="ChatCardContainer" style={{ height: 'auto', borderRadius: 8, marginTop: 32, marginBottom: 32, }}>
-      <div style={{ height: 'auto', backgroundColor: '#dddddd', borderRadius: 8, padding: 32, marginTop: 16 }}>
+      <div id="ChatCardContainer" style={{ height: 'auto', borderRadius: 12, marginTop: 32, marginBottom: 32, }}>
+      <div style={{ height: 'auto', backgroundColor: '#fff', borderRadius: 12, padding: 32, marginTop: 16 }}>
 
         <form action="">
           <div className="form-floating">
-            <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea" required style={{ borderRadius: 8, height: 100 }} value={inputMsg} onChange={(e) => handleTypeMsg(e)}></textarea>
+            <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea" required style={{ borderRadius: 16, height: 100 }} value={inputMsg} onChange={(e) => handleTypeMsg(e)}></textarea>
             <label htmlFor="floatingTextarea">Comments</label>
           </div>
-          <button className="btn btn-primary w-100 mt-3" style={{ borderRadius: 8 }} onClick={(e) => handleSend(e)}>Send</button>
+          <button className="btn btn-primary w-100 mt-3" style={{ borderRadius: 16 }} onClick={(e) => handleSend(e)}>Send</button>
         </form>
       </div>
     </div>
