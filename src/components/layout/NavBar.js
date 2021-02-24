@@ -55,7 +55,7 @@ const NavBar = () => {
     
   }
 
-  console.log(search)
+  // console.log(search)
 
   return (
     <nav

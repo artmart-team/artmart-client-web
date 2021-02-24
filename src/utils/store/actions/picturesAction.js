@@ -26,8 +26,18 @@ export const fetchPictures = () => {
 export const searchCharacter = (search) => {
   return async next => {
     try {
-      console.log('masuk sini')
+      // console.log('masuk sini')
       next({ type: "SEARCH_CHARACTER", payload : search})
+    } catch (error) {
+      
+    }
+  }
+}
+
+export const paginationPage = (val) => {
+  return async next => {
+    try {
+      next( { type : 'PAGINATION_PAGE', payload : val})
     } catch (error) {
       
     }
