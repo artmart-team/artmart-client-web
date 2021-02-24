@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { firebaseConf } from '../../../utils/firebase/config.js';
+import axios from '../../../utils/API/axios'
 
 import { submitCommission, resetSubmit } from '../../../utils/store/actions/ordersAction.js';
+import CategoryOption from './CategoryOption'
 
 const SubmitCommissionForm = _ => {
 
@@ -14,14 +16,22 @@ const SubmitCommissionForm = _ => {
   const [url, setUrl] = useState("");
   const [error, setError] = useState(false)
   const [submitOK, setSubmitOK] = useState(true);
+  const [categories, setCategories] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState(1)
 
   const { commission, loading, errors } = useSelector(state => state.orders);
+
+  useEffect(async () => {
+    let { data } = await axios.get(`/categories`)
+    setCategories(data)
+  }, [])
 
   const handleSubmit = e => {
     e.preventDefault();
 
     const payload = {
-      imageURL: url
+      imageURL: url,
+      categoryId: selectedCategory
     };
     console.log(payload)
     // console.log(payload);
@@ -58,11 +68,26 @@ const SubmitCommissionForm = _ => {
 
   if (loading) return '';
 
-  console.log(commission)
+  // console.log(commission)
+
+  function handleChangeCategory (e) {
+    setSelectedCategory(e.target.value)
+  }
 
   return (
     <div id="SubmitCommissionForm" >
       <form action="" onSubmit={e => handleSubmit(e)}>
+        <div className="mb-3">
+          <label>Choose a Category</label>
+          <div className="mt-2">
+            <select onChange={(e) => handleChangeCategory(e)}>
+              {
+                categories?.map(category => <CategoryOption category={category} key={category.id}></CategoryOption>)
+              }
+            </select>
+          </div>
+        </div>
+        
         <div className="mb-3">
           <label htmlFor="link" className="form-label">Upload your image file</label>
           <p style={error ? { display: 'block' } : { display: 'none' }}>Please input your image first!</p>

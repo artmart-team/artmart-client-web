@@ -38,7 +38,7 @@ const OptionsList = ({ option }) => {
       <input type="checkbox" className="form-check-input" id="showPass" onChange={(e) => handleCheckOption(e)}/>
       <div className="d-flex justify-content-between">
         <label className="form-check-label" htmlFor="showPass">{ option.title }</label>
-        <label className="form-check-label" htmlFor="showPass">Rp. { option.extraPrice }</label>
+        <label className="form-check-label" htmlFor="showPass">Rp. { option.extraPrice.toLocaleString("id-ID") }</label>
       </div>
     </div>
   );

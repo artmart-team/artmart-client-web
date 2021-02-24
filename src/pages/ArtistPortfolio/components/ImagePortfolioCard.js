@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'
-import axios from '../../../utils/API/axios'
+import { useDispatch, useSelector } from 'react-redux';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
-import ImageCarousel from './ImageCarousel'
-// import image from '../../../assets/images/placeholder/pla_Card.png';
-// import image2 from '../../../assets/images/placeholder/pla_Card2.png';
-// import image3 from '../../../assets/images/placeholder/pla_Card3.png';
+import ImageCarousel from './ImageCarousel';
+import axios from '../../../utils/API/axios';
+
+import '../styles/imagePortfolioCard.css';
 
 const ImagePortfolioCard = _ => {
   let { stallId } = useParams()
   const dispatch = useDispatch()
   const [picturesCollection, setPicturesCollection] = useState([])
-  const { showPicture, showPictureId } = useSelector(state => state.pictures) 
+  const { showPicture, showPictureId } = useSelector(state => state.pictures)
 
   useEffect(async () => {
     const { data } = await axios.get(`/artists/${stallId}/pictures`)
@@ -23,13 +23,13 @@ const ImagePortfolioCard = _ => {
   if (picturesCollection.length > 0) {
     return (
       <div id="ImagePortfolioCard">
-        <div className="card bg-dark text-white" style={{ marginTop: 32, height: '444px', borderRadius: 8 }}>
-          <img src={showPicture ? showPicture : picturesCollection[0].link} className="card-img" style={{ height: '444px', borderRadius: 8, objectFit: 'cover' }} />
+        <div className="card shadow" style={{ marginTop: 32, height: '444px', borderRadius: 16, border: 'none' }}>
+          <img src={showPicture ? showPicture : picturesCollection[0].link} className="custom-card-image" />
         </div>
-  
-        <div className="d-flex flex-nowrap " style={{ overflowX: 'auto', borderRadius: 8, height: 128, marginTop: 32, border: 'thin solid rgba(0, 0, 0, 0.5)' }}>
+
+        <div className="d-flex flex-nowrap shadow" style={{ overflowX: 'auto', borderRadius: 16, height: 128, marginTop: 32, backgroundColor: '#fff', border: 'none' }}>
           <div className="d-flex flex-nowrap align-self-center" >
-            { picturesCollection.map((picture) => <ImageCarousel picture={picture} key={picture.id}></ImageCarousel>) }
+            {picturesCollection.map((picture) => <ImageCarousel picture={picture} key={picture.id}></ImageCarousel>)}
           </div>
         </div>
       </div >
@@ -37,16 +37,17 @@ const ImagePortfolioCard = _ => {
   } else {
     return (
       <div id="ImagePortfolioCard">
-      <div className="card bg-dark text-white" style={{ marginTop: 32, height: '444px', borderRadius: 8 }}>
-        <img src="https://img.icons8.com/ios/452/no-image.png" className="card-img" style={{ height: '444px', borderRadius: 8, objectFit: 'cover' }} />
-      </div>
+        <SkeletonTheme color="#dedede" highlightColor="#eee">
+          <Skeleton height={444} style={{ marginTop: 32, borderRadius: 16 }} />
+        </SkeletonTheme>
+        <SkeletonTheme color="#dedede" highlightColor="#eee" >
+          <Skeleton height={128} style={{ borderRadius: 12, marginTop: 32 }} />
+        </SkeletonTheme>
+        {/* <div className="d-flex flex-nowrap" style={{ overflowX: 'auto', borderRadius: 12, height: 128, marginTop: 32, border: 'none' }}>
+          <div className="d-flex flex-nowrap align-self-center" >
 
-      <div className="d-flex flex-nowrap " style={{ overflowX: 'auto', borderRadius: 8, height: 128, marginTop: 32, border: 'thin solid rgba(0, 0, 0, 0.5)' }}>
-        <div className="d-flex flex-nowrap align-self-center" >
-
-        </div>
+          </div> */}
       </div>
-    </div >
     )
   }
 };

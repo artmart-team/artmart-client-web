@@ -1,0 +1,15 @@
+#Branding {
+  height: calc(100vh - 56px);
+  /* background-color: mediumaquamarine; */
+}
+
+.scroll-anim {
+  position: absolute;
+  bottom: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  .scroll-anim {
+    display: none
+  }
+}

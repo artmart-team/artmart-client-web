@@ -3,9 +3,9 @@ const initState = {
   otherUser: null,
   access_token: '',
   isLoading: false,
-  errors: [],
-  rating: null,
-  pictures : null
+  pictures : null,
+  errors: null,
+  rating: null
 };
 
 const userReducer = (state = initState, action) => {
@@ -42,6 +42,8 @@ const userReducer = (state = initState, action) => {
       return { ...state, pictures : action.payload, isLoading : false}
     case 'LOADING':
       return { ...state, isLoading: true };
+    case 'ERROR':
+      return { ...state, errors: action.payload, isLoading: false }
     default:
       return state;
   };

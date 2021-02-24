@@ -9,7 +9,6 @@ import { useHistory, useLocation } from 'react-router-dom';
 // import { useState } from 'react';
 
 const UserEdit = () => {
-
   const dispatch = useDispatch()
   const history = useHistory()
   const { pathname } = useLocation()

@@ -1,8 +1,28 @@
+.hide-674 {
+  display: block;
+}
+
+.hide-402 {
+  display: block;
+}
+
+@media screen and (max-width: 402px) {
+  .hide-402 {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 674px) {
+  .hide-674 {
+    display: none;
+  }
+}
+
 .user-btn {
-  background-color: #eeeeee;
   border-radius: 2.5rem;
   padding: 4px 4px;
   margin-left: 16px;
+  transition: .5s;
 }
 .user-btn:hover {
   background-color: #e6e6e6;
@@ -10,6 +30,20 @@
 .user-btn:active {
   background-color: #d6d6d6;
 }
-.user-btn:focus-visible {
-  background-color: blue;
+
+.btn-custom {
+  height: 40px;
+  width: 40px;
+  background-color: #F0F2F5;
+  border: none;
+  border-radius: 52px;
+  transition: .5s;
+}
+
+.btn-custom:hover {
+  background-color: #d1d3d6;
+}
+
+.btn-custom:focus {
+  background-color: #e2e4e5;
 }

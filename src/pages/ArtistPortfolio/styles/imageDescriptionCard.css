@@ -15,11 +15,7 @@
   margin-left: 8px;
   margin-right: 8px; 
   overflow: hidden;
-  border-radius: 8px
-}
-
-.thumbnail-image-container:hover {
-  border: thin solid #343a40
+  border-radius: 8px;
 }
 
 .thumbnail-image {
@@ -30,6 +26,6 @@
 }
 
 .thumbnail-image:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 

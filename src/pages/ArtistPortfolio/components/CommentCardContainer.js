@@ -36,17 +36,17 @@ const CommentCardContainer = _ => {
     <div id="CommentCardContainer" style={{ height: 'auto', borderRadius: 8, marginTop: 32, marginBottom: 32, }}>
       <h1>COMMENT</h1>
 
-      <div style={{ height: 'auto', backgroundColor: '#dddddd', borderRadius: 8, padding: 32, marginTop: 16 }}>
+      <div className="shadow" style={{ height: 'auto', backgroundColor: '#fff', borderRadius: 16, padding: 32, marginTop: 16 }}>
 
         {comments?.map(e => <CommentCard key={e.id} props={e} />)}
 
         <form onSubmit={handleSubmitComment} action="" style={localStorage.getItem('role') === 'artist' ? { display: 'none' } : { display: 'block' }}>
           <div className="form-floating">
-            <textarea className="form-control" placeholder="Leave a comment here" name="comment" id="comment" style={{ borderRadius: 8, height: 100 }} required />
+            <textarea className="form-control" placeholder="Leave a comment here" name="comment" id="comment" style={{ borderRadius: 12, height: 100 }} required />
             <label name="comment" htmlFor="comment">Comments</label>
           </div>
           <div className="d-flex justify-content-between">
-            <button className="btn btn-primary mt-3" style={{ borderRadius: 8 }} type="submit">Send</button>
+            <button className="btn btn-primary mt-3" style={{ borderRadius: 12 }} type="submit">Send</button>
           </div>
         </form>
       </div>

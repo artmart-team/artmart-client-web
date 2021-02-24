@@ -1,4 +1,5 @@
 import axios from '../../API/axios.js';
+import Swal from 'sweetalert2';
 
 export const registerArtist = payload => {
   return async next => {
@@ -11,9 +12,23 @@ export const registerArtist = payload => {
         data: payload
       });
 
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000,
+      })
+
+      Toast.fire({
+        icon: 'success',
+        title: 'Account created.'
+      })
+
       return next({ type: 'REGISTER', payload: data });
     } catch (err) {
-      console.log(err)
+      err?.response?.data?.messages ?
+        next({ type: 'ERROR', payload: [err.response.data.messages] }) :
+        next({ type: 'ERROR', payload: err.response.data.errors })
     };
   };
 };
@@ -47,9 +62,23 @@ export const registerCustomer = payload => {
         data: payload
       });
 
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000,
+      })
+
+      Toast.fire({
+        icon: 'success',
+        title: 'Account created.'
+      })
+
       return next({ type: 'REGISTER', payload: data });
     } catch (err) {
-      console.log(err);
+      err?.response?.data?.messages ?
+        next({ type: 'ERROR', payload: [err.response.data.messages] }) :
+        next({ type: 'ERROR', payload: err.response.data.errors })
     };
   };
 };
@@ -67,7 +96,7 @@ export const loginCustomer = payload => {
 
       return next({ type: 'LOGIN', payload: data.access_token, role: 'customer', id: data.id });
     } catch (err) {
-      console.log(err);
+      next({ type: 'ERROR', payload: err.response.data.messages });
     };
   };
 };
@@ -102,6 +131,25 @@ export const authenticated = _ => {
   };
 };
 
+export const setError = error => {
+  return async next => {
+    try {
+      next({ type: 'ERROR', payload: [error] })
+    } catch (err) {
+      console.log(err);
+    };
+  };
+};
+
+export const resetError = _ => {
+  return async next => {
+    try {
+      next({ type: 'ERROR', payload: null })
+    } catch (err) {
+      console.log(err);
+    };
+  };
+};
 
 export const getUserByID = id => {
   return async next => {
@@ -166,22 +214,22 @@ export const getTotalRatingArtist = artistId => {
 export const editUserProfile = (userId, payload) => {
   return async next => {
     try {
-      next({ type: 'LOADING'})
+      next({ type: 'LOADING' })
 
       console.log("masuk edit user dispatch")
 
       const { data } = await axios({
-        method : "PUT",
-        url : `users/${userId}`,
+        method: "PUT",
+        url: `users/${userId}`,
         data: payload,
-        headers : { access_token : localStorage.getItem("access_token")}
+        headers: { access_token: localStorage.getItem("access_token") }
       })
 
       console.log(data)
 
-      next({ type : "DONE_EDIT_USER", payload : data})
+      next({ type: "DONE_EDIT_USER", payload: data })
 
-    } catch(err) {
+    } catch (err) {
       console.log(err.response)
     }
   }
