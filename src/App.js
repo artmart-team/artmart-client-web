@@ -19,6 +19,7 @@ import {
   UserOrderList,
   SubmitCommission,
   OrderActive,
+  ReviewPage,
   ArtistOrderList
 } from './pages/index.js';
 
@@ -55,6 +56,9 @@ const App = _ => {
       <NavBar />
 
       <Switch>
+        <Route exact path={path.reviewPage}>
+          <ReviewPage />
+        </Route>
         <Route exact path={path.artistOption}>
           {Number(localStorage.getItem('id')) === paramArtistId ?
             (<ArtistOption />) :

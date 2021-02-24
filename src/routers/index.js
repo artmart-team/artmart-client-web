@@ -20,6 +20,7 @@ const path = {
   artistOption: '/artist/:artistId/option',
   submitCommission: '/order/submit/:orderId',
   orderActive: '/artist/:artistId/orders/active',
+  reviewPage: '/artist/:artistId/review'
 };
 
 export default path;
