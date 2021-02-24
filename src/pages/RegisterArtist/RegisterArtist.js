@@ -17,7 +17,6 @@ const RegisterArtist = _ => {
 
   useEffect(() => {
     if (user) {
-      console.log('REGISTER SUCCESS');
       dispatch(reset());
       return history.push(path.loginArtist);
     };
@@ -33,7 +32,7 @@ const RegisterArtist = _ => {
       password: e.target?.password.value,
       bankAccount: Number(e.target?.bankAccount.value),
       completeDuration: Number(e.target?.bankAccount.value),
-      defaultPrice: 0
+      defaultPrice: 1
     };
 
     if (e.target?.password.value !== e.target?.confPassword.value) return dispatch(setError('Password isn\'t match!'));

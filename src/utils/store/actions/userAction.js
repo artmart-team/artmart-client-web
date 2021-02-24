@@ -1,4 +1,5 @@
 import axios from '../../API/axios.js';
+import Swal from 'sweetalert2';
 
 export const registerArtist = payload => {
   return async next => {
@@ -10,6 +11,18 @@ export const registerArtist = payload => {
         url: '/artists/register',
         data: payload
       });
+
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000,
+      })
+
+      Toast.fire({
+        icon: 'success',
+        title: 'Account created.'
+      })
 
       return next({ type: 'REGISTER', payload: data });
     } catch (err) {
@@ -48,6 +61,18 @@ export const registerCustomer = payload => {
         url: '/users/register',
         data: payload
       });
+
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000,
+      })
+
+      Toast.fire({
+        icon: 'success',
+        title: 'Account created.'
+      })
 
       return next({ type: 'REGISTER', payload: data });
     } catch (err) {
