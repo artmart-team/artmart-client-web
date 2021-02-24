@@ -4,7 +4,8 @@ const initState = {
   access_token: '',
   isLoading: false,
   errors: [],
-  rating: null
+  rating: null,
+  pictures : null
 };
 
 const userReducer = (state = initState, action) => {
@@ -37,6 +38,8 @@ const userReducer = (state = initState, action) => {
       return { ...state, access_token: localStorage.getItem('accessToken') };
     case "DONE_EDIT_PROFILE":
       return { ...state, otherUser : action.payload, isLoading: false }
+    case "GET_PICTURES_USER": 
+      return { ...state, pictures : action.payload, isLoading : false}
     case 'LOADING':
       return { ...state, isLoading: true };
     default:

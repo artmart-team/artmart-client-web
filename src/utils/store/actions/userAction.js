@@ -186,3 +186,24 @@ export const editUserProfile = (userId, payload) => {
     }
   }
 }
+
+export const pictureByUser =(userId) => {
+  return async next => {
+    try {
+    next ({ type : "LOADING" })
+    let role = localStorage.getItem('role')
+    
+    if(role === 'customer') {
+      const { data } = await axios.get(`/users/${userId}/pictures`)
+
+      next({
+        type : "GET_PICTURES_USER",
+        payload : data
+      })
+    } 
+
+    } catch (error) {
+      console.log(error.response)
+    }
+  }
+}

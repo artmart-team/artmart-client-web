@@ -52,8 +52,6 @@ const UserEditProfileForm = (props) => {
     }
   }
 
-
-
   // handle if change and error
   const editUsername = (e) => {
     e.preventDefault()
