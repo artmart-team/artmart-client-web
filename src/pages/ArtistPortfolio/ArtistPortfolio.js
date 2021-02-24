@@ -8,16 +8,16 @@ import CommentCardContainer from './components/CommentCardContainer.js';
 
 const ArtistPortfolio = _ => {
   return (
-    <div id="ArtistPortfolio" style={{ marginLeft: 64, marginRight: 64 }}>
+    <div id="ArtistPortfolio" style={{ marginLeft: 32, marginRight: 32 }}>
       <div className="container-fluid">
         <div className="row">
           {/* This is for Left Side */}
-          <div className="col-6">
+          <div className="col-12 col-md-6">
             <ImagePortfolioCard />
             <ArtistProfileCard />
           </div>
           {/* This is for Right Side */}
-          <div className="col-6">
+          <div className="col-12 col-md-6">
             <CustomOrderCard />
             <ImageDescriptionCard />
           </div>

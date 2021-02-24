@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
 
 import {
   ArtistPage,
@@ -22,11 +23,8 @@ import {
   ReviewPage,
   ArtistOrderList
 } from './pages/index.js';
-
-import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
-
 import path from './routers/index.js';
-import { NavBar } from './components/layout/index.js';
+import NavBar from './components/layout/NavBar.js';
 import { authenticated, getUserByID } from './utils/store/actions/userAction.js';
 
 const App = _ => {
@@ -98,10 +96,14 @@ const App = _ => {
           <OrderProcess />
         </Route>
         <Route path={path.orderCheckout}>
-          <OrderCheckout />
+          {!localStorage.getItem('access_token') || localStorage.getItem('role') === 'artist' ?
+            (<Redirect to={{ pathname: path.loginCustomer }}></Redirect>) :
+            (<OrderCheckout />)}
         </Route>
         <Route path={path.orderDescribe}>
-          <OrderDescribe />
+          {!localStorage.getItem('access_token') || localStorage.getItem('role') === 'artist' ?
+            (<Redirect to={{ pathname: path.loginCustomer }}></Redirect>) :
+            (<OrderDescribe />)}
         </Route>
         <Route exact path={path.artistPortfolio}>
           <ArtistPortfolio />
