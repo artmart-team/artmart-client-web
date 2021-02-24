@@ -49,6 +49,7 @@ const UserEditProfileForm = (props) => {
       }))
 
       history.goBack(`user/${userId}`)
+      // location.reload();
     }
   }
 

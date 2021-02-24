@@ -23,8 +23,8 @@ const UserPage = _ => {
     setLoading(false)
   }, [])
 
-  console.log(orders)
-  console.log(picturesUser)
+  // console.log(orders)
+  // console.log(picturesUser)
 
   return(
     <div id="UserPage"  style={{ marginLeft: 64, marginRight: 64 }}>

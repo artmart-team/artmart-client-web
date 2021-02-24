@@ -32,21 +32,19 @@ const PictureUserCard = (props) => {
     const handleHidden = async (e) => {
         e.preventDefault()
         if (!props.pict.hidden) {
-            const { data } = await axios.patch(`/users/${userId}/pictures/${pictId}`,
-                {
-                    headers : {
-                        "access_token" : token
-                    },
-                    data: {
-                        hidden : true
-                    }
-                }
-            )
-            console.log(data)
-            history.push(`/users/${userId}`)
+            const { data } = await axios({
+              method : "PATCH",
+              url : `/users/${userId}/pictures/${pictId}`,
+              data : { hidden : true },
+              headers : { access_token : token}
+            })
+            window.location.reload()
+            // console.log(data)
+            // history.push(`/users/${userId}`)
         } else {
             const data = null
             console.log('gk bisa donk omm')
+            window.location.reload()
         }
 
         // console.log("kena hidden nih")
