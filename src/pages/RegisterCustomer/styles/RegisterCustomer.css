@@ -1,0 +1,31 @@
+#RegisterCustomer {
+  height: 100vh;
+  /* background-color: mediumaquamarine; */
+}
+
+.register-form {
+  padding-left: 64px;
+  padding-right: 64px;
+}
+
+.illust-responsive {
+  padding: 32
+}
+
+@media screen and (max-width: 768px) {
+  .register-form {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .illust-responsive {
+    display: none
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .login-form {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+

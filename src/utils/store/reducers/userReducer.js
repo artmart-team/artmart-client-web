@@ -3,7 +3,7 @@ const initState = {
   otherUser: null,
   access_token: '',
   isLoading: false,
-  errors: [],
+  errors: null,
   rating: null
 };
 
@@ -36,9 +36,11 @@ const userReducer = (state = initState, action) => {
     case 'AUTHENTICATED':
       return { ...state, access_token: localStorage.getItem('accessToken') };
     case "DONE_EDIT_PROFILE":
-      return { ...state, otherUser : action.payload, isLoading: false }
+      return { ...state, otherUser: action.payload, isLoading: false }
     case 'LOADING':
       return { ...state, isLoading: true };
+    case 'ERROR':
+      return { ...state, errors: action.payload, isLoading: false }
     default:
       return state;
   };

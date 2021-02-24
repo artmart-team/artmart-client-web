@@ -61,23 +61,24 @@ const NavBar = () => {
           </Link>
 
           {/** SEARCH BAR */}
-          <form className="hide-674">
-            <div className="input-group" style={{ marginLeft: 16 }}>
-              <button
-                style={{ color: '#1c1e21', height: 40, border: 'none', borderRadius: '56px 0 0 56px ', backgroundColor: '#F0F2F5' }}
-                className="btn btn-outline-secondary" type="button" id="submit-search-button"
-              >
-                <BiSearch />
-              </button>
-              <input
-                style={{ color: '#1c1e21', border: 'none', backgroundColor: '#F0F2F5', borderRadius: '0 56px 56px 0' }}
-                type="text"
-                className="form-control"
-                placeholder="Search"
-              />
-            </div>
-          </form>
-
+          <div style={pathname !== path.home ? { display: 'none' } : { display: 'block' }}>
+            <form className="hide-674" >
+              <div className="input-group" style={{ marginLeft: 16 }}>
+                <button
+                  style={{ color: '#1c1e21', height: 40, border: 'none', borderRadius: '56px 0 0 56px ', backgroundColor: '#F0F2F5' }}
+                  className="btn btn-outline-secondary" type="button" id="submit-search-button"
+                >
+                  <BiSearch />
+                </button>
+                <input
+                  style={{ color: '#1c1e21', border: 'none', backgroundColor: '#F0F2F5', borderRadius: '0 56px 56px 0' }}
+                  type="text"
+                  className="form-control"
+                  placeholder="Search"
+                />
+              </div>
+            </form>
+          </div>
         </div>
         {/** BAGIAN KIRI END */}
 

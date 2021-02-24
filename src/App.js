@@ -7,6 +7,7 @@ import {
   ArtistEditProfile,
   ArtistPortfolio,
   ArtistOption,
+  Branding,
   Home,
   Login,
   OrderDescribe,
@@ -122,6 +123,7 @@ const App = _ => {
           {/* FOR REGISTER CUSTOMER */}
         </SecuredRoute>
         <Route exact path={path.home}>
+          <Branding />
           <Home />
         </Route>
         <Route path="*" >
