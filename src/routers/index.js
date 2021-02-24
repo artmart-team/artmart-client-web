@@ -9,7 +9,7 @@ const path = {
   artistPortfolio: '/stall/:stallId',
   orderDescribe: '/order/describe/:artistId',
   orderCheckout: '/order/checkout/:artistId',
-  orderProcess: '/order/process/:orderId',
+  orderProcess: '/user/:userId/artist/:artistId/order/:orderId/process',
   orderFinish: '/order/finish/:orderId',
   artistPage: '/artist/:artistId',
   artistEditProfile: '/artist/:artistId/edit',
