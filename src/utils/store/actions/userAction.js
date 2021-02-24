@@ -127,7 +127,7 @@ export const getUserByID = id => {
 export const getOtherUserId = (role, id) => {
   return async next => {
     try {
-      next({ type: 'RESET_OTHER_USER' });
+      // next({ type: 'RESET_OTHER_USER' });
 
       const { data } =
         role === 'artist' ? (await axios({
@@ -148,7 +148,7 @@ export const getOtherUserId = (role, id) => {
 export const getTotalRatingArtist = artistId => {
   return async next => {
     try {
-      next({ type: 'RESET_RATING' });
+      // next({ type: 'RESET_RATING' });
       next({ type: 'LOADING' });
 
       const { data } = await axios({
