@@ -8,10 +8,18 @@ const UserOrderList = _ => {
   const dispatch = useDispatch()
   const { orders } = useSelector(state => state.userOrders)
   const [filteredOrders, setFilteredOrders] = useState([])
+  const [currentFilter, setCurrentFilter] = useState('all')
 
   useEffect(() => {
     dispatch(fetchOrdersUsers())
   }, [])
+
+  useEffect(() => {
+    if (currentFilter === 'all') {
+      setFilteredOrders(orders)
+    }
+  }, [orders])
+
 
   function handleFilterChange (e) {
     let value = e.target.value
@@ -29,7 +37,7 @@ const UserOrderList = _ => {
         break;
       case "paid":
         filtered = orders.filter(order => {
-          return !order.accepted
+          return !order.accepted && order.paid
         })
         setFilteredOrders(filtered)
         break;
@@ -58,8 +66,8 @@ const UserOrderList = _ => {
       <h3>Here is your order list!</h3>
       <p>Let's get some coffee while we're waiting!</p>
       <label>Filter</label>
-      <select onChange={(e) => handleFilterChange(e)}>
-      <option value="all">All</option>
+      <select onChange={(e) => handleFilterChange(e)} defaultValue="all">
+        <option value="all">All</option>
         <option value="unpaid">Unpaid</option>
         <option value="paid">Paid</option>
         <option value="pending">Pending</option>
