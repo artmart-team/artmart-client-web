@@ -27,8 +27,7 @@ const DetailDescribeProduct = _ => {
         toast: true,
         position: 'top',
         showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
+        timer: 3000
       });
 
       return Toast.fire({
@@ -38,8 +37,17 @@ const DetailDescribeProduct = _ => {
     }
 
     dispatch(postOrder(orderTitle, orderDescription, price, (price + extraPrice), artistId, selectedOptions, localStorage.getItem('selectedPicId')))
+    Swal.fire({
+      title: 'Now Loading!',
+      html: 'We are processing your order.',
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading()
+      }
+    })
     setTimeout(function () {
       setOrderId(localStorage.getItem('orderId'))
+      Swal.close()
     }, 3000);
   };
 
@@ -95,14 +103,14 @@ const DetailDescribeProduct = _ => {
         <form action="">
           <div className="mb-3">
             <label htmlFor="name" className="form-label">Commission Title</label>
-            <input type="text" className="form-control" id="name" aria-describedby="titleHelp" value={orderTitle} onChange={(e) => updateTitle(e)} />
+            <input type="text" className="form-control" id="name" aria-describedby="titleHelp" style={{ borderRadius: 12 }} value={orderTitle} onChange={(e) => updateTitle(e)} />
             <div id="titleHelp" className="form-text">Keep it simple but powerful.</div>
           </div>
           <div className="form-floating">
-            <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea" style={{ borderRadius: 8, height: 100 }} value={orderDescription} onChange={(e) => updateDescription(e)}></textarea>
+            <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea" style={{ borderRadius: 12, height: 100 }} value={orderDescription} onChange={(e) => updateDescription(e)}></textarea>
             <label htmlFor="floatingTextarea" style={{ color: 'gray' }}>Describe</label>
           </div>
-          <button className="btn btn-primary w-100 mt-3" style={{ borderRadius: 8 }} onClick={e => handleOrderClick(e)}>Send</button>
+          <button className="btn btn-primary w-100 mt-3" style={{ borderRadius: 12 }} onClick={e => handleOrderClick(e)}>Send</button>
         </form>
       </div>
     </div>

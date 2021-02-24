@@ -1,4 +1,5 @@
-import axios from '../../API/axios.js'
+import axios from '../../API/axios.js';
+import Swal from 'sweetalert2';
 
 // export const updateOrderDetails = (title, description) => {
 //   return async (dispatch) => {
@@ -116,13 +117,24 @@ export const postOrder = (title, description, price, totalPrice, artistId, optio
         payload: latestOrder.id
       })
 
-
     } catch (err) {
-      console.log(err, 'error postOrder Action')
+      console.log(err.response.data, 'error postOrder Action')
       dispatch({
         type: 'UPDATE_ORDER_DETAILS_ERROR',
-        payload: err
+        payload: err.response.data
       })
+
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000,
+      });
+
+      return Toast.fire({
+        icon: 'error',
+        title: err.response.data.messages
+      });
     }
   }
 }
@@ -153,7 +165,7 @@ export const fetchOrderByArtistId = _ => {
 
       }
     } catch (err) {
-      console.log(err, 'error fetchOrderByArtistId Action')
+      console.log(err.response, 'error fetchOrderByArtistId Action')
       dispatch({
         type: 'FETCH_ORDER_BY_ARTIST_DONE',
         payload: err

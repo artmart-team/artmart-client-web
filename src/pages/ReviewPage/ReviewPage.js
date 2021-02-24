@@ -20,13 +20,13 @@ const ReviewPage = _ => {
   // console.log(reviews)
 
   return (
-    <div id="ReviewPage" style={{ borderRadius: 8, padding: 32, marginLeft: 64, marginRight: 64 }}>
+    <div id="ReviewPage" style={{ borderRadius: 16, padding: 32, marginLeft: 32, marginRight: 32 }}>
       <h3>Review.</h3>
       <p>What do Users said about this artist?</p>
       {/* <p>{JSON.stringify(reviews)}</p> */}
 
-      <div style={{ height: 'auto', backgroundColor: '#dddddd', borderRadius: 8, padding: 32, marginTop: 16 }}>
-        {reviews?.reviews?.map((review, idx) => <ReviewPageCard key={review.id} review={review} rating={reviews.ratings[idx]}/>)}
+      <div className="shadow" style={{ height: 'auto', backgroundColor: '#fff', borderRadius: 16, padding: 32}}>
+        {reviews?.reviews?.map((review, idx) => <ReviewPageCard key={review.id} review={review} rating={reviews.ratings[idx]} />)}
       </div>
     </div>
   );
