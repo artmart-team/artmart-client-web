@@ -35,6 +35,8 @@ const userReducer = (state = initState, action) => {
       return { ...state, otherUser: null };
     case 'AUTHENTICATED':
       return { ...state, access_token: localStorage.getItem('accessToken') };
+    case "DONE_EDIT_PROFILE":
+      return { ...state, otherUser : action.payload, isLoading: false }
     case 'LOADING':
       return { ...state, isLoading: true };
     default:

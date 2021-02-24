@@ -162,3 +162,27 @@ export const getTotalRatingArtist = artistId => {
     }
   }
 }
+
+export const editUserProfile = (userId, payload) => {
+  return async next => {
+    try {
+      next({ type: 'LOADING'})
+
+      console.log("masuk edit user dispatch")
+
+      const { data } = await axios({
+        method : "PUT",
+        url : `users/${userId}`,
+        data: payload,
+        headers : { access_token : localStorage.getItem("access_token")}
+      })
+
+      console.log(data)
+
+      next({ type : "DONE_EDIT_USER", payload : data})
+
+    } catch(err) {
+      console.log(err.response)
+    }
+  }
+}
