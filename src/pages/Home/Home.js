@@ -9,11 +9,14 @@ import Pagination from '../../components/layout/Pagination.js';
 
 const Home = _ => {
   const dispatch = useDispatch()
-  const { pictures, loading } = useSelector(state => state.pictures)
+  const { pictures, loading, searching } = useSelector(state => state.pictures)
+
+  console.log(pictures)
 
   useEffect(() => {
-    console.log('fetch running')
+    // console.log('fetch running')
     dispatch(fetchPictures())
+    // dispatch(searching)
   }, [])
 
   return (
@@ -23,7 +26,18 @@ const Home = _ => {
 
       <div className="container-fluid" style={{ paddingLeft: 32, paddingRight: 32, paddingBottom: 24 }}>
         <div className="row" >
-          {loading ? new Array(8).fill().map((_, i) => <HomeCardskeleton key={i} />) : pictures.map(picture => <HomeCard picture={picture} key={picture.id} />)}
+          { loading ? new Array(8).fill().map((_, i) => <HomeCardskeleton key={i} />) :
+            pictures.filter((pict) => {
+              if(searching === "") return pict
+              else if (pict.name.toLowerCase().includes(searching.toLowerCase())) return pict
+            }).map((pict) => {
+              return (
+                <HomeCard picture={pict} key={pict.id} />
+              )
+            })
+          }
+          
+          {/* {loading ? new Array(8).fill().map((_, i) => <HomeCardskeleton key={i} />) : pictures.map(picture => <HomeCard picture={picture} key={picture.id} />)} */}
         </div>
         <Pagination />
       </div>

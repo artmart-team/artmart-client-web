@@ -11,7 +11,8 @@ const initState = {
   showPictureName: '',
   showPictureDesc: '',
   showPictureRating: '',
-  showPictureArtistId: ''
+  showPictureArtistId: '',
+  searching : ""
 };
 
 const picturesReducer = (state = initState, action) => {
@@ -87,6 +88,12 @@ const picturesReducer = (state = initState, action) => {
       return {
         ...state,
         errors: action.payload,
+      }
+
+    case "SEARCH_CHARACTER" :
+      return { 
+        ...state,
+        searching : action.payload
       }
     default:
       return state;
