@@ -1,5 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
+import path from '../../routers/index.js';
 import illustration from '../../assets/images/img_brandingIllust.svg';
 import ScrollAnim from '../../components/helpers/ScrollAnim.js';
 
@@ -13,7 +15,9 @@ const Branding = _ => {
           <div className="col-12 col-md-6" style={{ padding: 32 }}>
             <h1>Selling and buying an Art never been this easier!</h1>
             <p>We understand some artists are struggling where to sell their art, also some art appreciator are struggling to where to find a good art to buy. Here <b>mARTerialize</b> is ready to give you a solution.</p>
-            <button className="btn btn-outline-primary mt-3" style={{ borderRadius: 16 }}>Ready to get started?</button>
+            <Link to={path.registerCustomer}>
+              <button className="btn btn-outline-primary mt-3" style={{ borderRadius: 16 }}>Ready to get started?</button>
+            </Link>
           </div>
           <div className="col-12 col-md-6 d-flex justify-content-center">
             <div className="scroll-anim">
