@@ -49,7 +49,7 @@ const DetailProduct = _ => {
           })
             .then(orderPaid => {
               console.log(orderPaid)
-              history.push('/order/process/:orderId')
+              history.push(`/user/${localStorage.getItem('id')}/artist/${artistId}/order/${orderId}/process`)
               localStorage.setItem('orderId', '')
             })
             .catch(err => {

@@ -7,18 +7,48 @@ import TimerWidget from './components/TimerWidget.js';
 
 const OrderProcess = _ => {
   const { orderId } = useParams()
+  const { artistId } = useParams()
+  const { userId } = useParams()
   const [deadline, setDeadline] = useState(0)
+  const [role, setRole] = useState(localStorage.getItem('role'))
+  const [messages, setMessages] = useState([])
+
+  // useEffect(async () => {
+  //   let userId = localStorage.getItem('id')
+  //   const { data } = await axios.get(`/users/${userId}/orders/${orderId}`, {
+  //     headers: {
+  //       "access_token": localStorage.getItem('access_token')
+  //     }
+  //   })
+  //   console.log(data)
+  //   setDeadline(data.deadline)
+  // }, [])
 
   useEffect(async () => {
-    let userId = localStorage.getItem('id')
-    const { data } = await axios.get(`/users/${userId}/orders/${orderId}`, {
-      headers: {
-        "access_token": localStorage.getItem('access_token')
+    try {
+      if (role === 'artist') {
+        const { data } = await axios.get(`https://marterialize.herokuapp.com/artist/${artistId}/user/${userId}/chat`, {
+          headers: {
+            "access_token": localStorage.getItem('access_token')
+          }
+        })
+        setMessages(data)
+        // console.log(data, 'role artist data')
+      } else {
+        const { data } = await axios.get(`https://marterialize.herokuapp.com/user/${userId}/artist/${artistId}/chat`, {
+          headers: {
+            "access_token": localStorage.getItem('access_token')
+          }
+        })
+        setMessages(data)
+        // console.log(data, 'role user data')
       }
-    })
-    console.log(data)
-    setDeadline(data.deadline)
+    } catch (err) {
+      console.log(err.response, 'error fetch chat data')
+    }
+
   }, [])
+
 
   if (deadline) {
     return (
@@ -27,17 +57,20 @@ const OrderProcess = _ => {
   
         <TimerWidget rawTime={5000} />
   
-        <ChatCardContainer />
+        <ChatCardContainer messages={messages}/>
       </div>
     );
   } else {
     return (
     <div id="OrderProcess" style={{ borderRadius: 8, padding: 32, marginLeft: 64, marginRight: 64 }}>
-      <h3>Thank you for ordering.</h3>
-      <p>Your order is being processed, please wait for artist's response.</p>
-
-
-      <ChatCardContainer />
+      {
+        role === 'artist' ? <h3>What kind of request do they want?</h3> :  <h3>Thank you for ordering.</h3>
+      }
+     
+      {
+        role === 'artist' ? <p>Chat the commissioner</p> :  <p>Your order is being processed, please wait for artist's response.</p>
+      }
+      <ChatCardContainer messages={messages}/>
     </div>
     )
   }

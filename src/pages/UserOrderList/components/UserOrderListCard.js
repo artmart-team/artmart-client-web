@@ -80,6 +80,10 @@ const UserOrderListCard = ({ order }) => {
     }
   }
 
+  function handleChat () {
+    history.push(`/user/${order.UserId}/artist/${order.ArtistId}/order/${order.id}/process`)
+  }
+
   return (
     <div id="UserOrderListCard" className="col-12">
       <div className="card" style={{ width: '100%', borderRadius: 8, marginTop: 8, marginBottom: 8 }}>
@@ -133,7 +137,7 @@ const UserOrderListCard = ({ order }) => {
               <div className="col">
                 {
                   !order.paid ? <button className="btn btn-primary w-100" onClick={(e) => handlePay(e)}>Pay</button> :
-                    !order.accepted ? <p></p> :
+                    !order.accepted ?<button className="btn btn-primary w-100" onClick={(e) => handleChat(e)}>Chat</button> :
                       !order.done ? <p></p> :
                         <p className="btn btn-main w-100">Go to Review Page to Download</p>
                 }

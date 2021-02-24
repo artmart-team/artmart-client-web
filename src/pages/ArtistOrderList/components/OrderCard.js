@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux'
+import { useHistory, useParams } from 'react-router-dom'
 
 import image from '../../../assets/images/placeholder/pla_Card.png';
 import Option from './Option'
@@ -10,6 +11,8 @@ import '../styles/OrderCard.css';
 
 const OrderCard = ({ order }) => {
   const dispatch = useDispatch()
+  const history = useHistory()
+  const { artistId, userId } = useParams()
   const [options, setOptions] = useState(order.options ? JSON.parse(order.options) : [])
 
   function handleDecline () {
@@ -20,6 +23,10 @@ const OrderCard = ({ order }) => {
   function handleAccept () {
     dispatch( acceptOrder(order.id))
     dispatch(fetchOrderByArtistId())
+  }
+
+  function handleChat () {
+    history.push(`/user/${order.UserId}/artist/${order.ArtistId}/order/${order.id}/process`)
   }
 
   return (
@@ -59,6 +66,11 @@ const OrderCard = ({ order }) => {
               </div>
               <div className="col">
                 <button className="btn btn-danger w-100" onClick={() => handleDecline()}>Decline</button>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                <button className="btn btn-success w-100 mt-4" onClick={() => handleChat()}>Chat</button>
               </div>
             </div>
           </div>
