@@ -3,7 +3,7 @@ import React from 'react'
 const Pagination = _ => {
   return (
     <div id="Pagination">
-      <nav className="d-flex justify-content-center" style={{ marginTop: 8 }} aria-label="Page navigation example">
+      <nav className="d-flex justify-content-center" style={{ marginTop: 24 }} aria-label="Page navigation example">
         <ul className="pagination">
           <li className="page-item">
             <a className="page-link" href="#" aria-label="Previous">

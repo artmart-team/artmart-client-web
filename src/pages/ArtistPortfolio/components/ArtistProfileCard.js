@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getOtherUserId, getTotalRatingArtist } from '../../../utils/store/actions/userAction.js';
 
-import imageDP from '../../../assets/images/placeholder/pla_DP.jpg';
 
 const ArtistProfileCard = _ => {
   const { otherUser, rating, isLoading, errors } = useSelector(state => state.user);
@@ -24,13 +23,13 @@ const ArtistProfileCard = _ => {
   console.log(rating)
 
   return (
-    <div id="ArtistProfileCard" style={{ height: 'auto', border: 'thin solid rgba(0, 0, 0, 0.5)', borderRadius: 8, marginTop: 32, padding: 32 }}>
+    <div id="ArtistProfileCard" className="shadow" style={{ height: 'auto', border: 'none', backgroundColor: '#fff', borderRadius: 16, marginTop: 32, padding: 32 }}>
       <div className="row">
         <div className="col-lg-2" style={{ marginRight: 4 }}>
           <img
             src={otherUser?.profilePicture}
             className="rounded-circle"
-            style={{ width: 60, height: 60, objectFit: 'cover' }}
+            style={{ width: 60, height: 60, objectFit: 'cover', marginBottom: 16 }}
           />
         </div>
         <div className="col-lg-9">
@@ -70,10 +69,10 @@ const ArtistProfileCard = _ => {
           </div>
         </div>
         <div className="d-flex justify-content-between">
-          <Link to ={`/artist/${otherUser?.id}/review`} className="w-100">
-          <button className="btn btn-outline-success w-100 mt-3" style={{ borderRadius: 8, marginRight: 8 }}>See Reviews</button>
+          <Link to={`/artist/${otherUser?.id}/review`} className="w-100" style={{ marginRight: 16 }}>
+            <button className="btn btn-outline-success w-100 mt-3" style={{ borderRadius: 8 }}>Review</button>
           </Link>
-          <Link to={`/artist/${otherUser?.id}`} className="w-100">
+          <Link to={`/artist/${otherUser?.id}`} className="w-100" style={{ marginLeft: 16 }}>
             <button className="btn btn-outline-primary w-100 mt-3" style={{ borderRadius: 8 }}>Profile</button>
           </Link>
         </div>
