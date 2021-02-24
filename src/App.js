@@ -20,7 +20,8 @@ import {
   SubmitCommission,
   OrderActive,
   ReviewPage,
-  ArtistOrderList
+  ArtistOrderList,
+  UserEdit
 } from './pages/index.js';
 
 import { Switch, Route, Redirect, useLocation } from 'react-router-dom';
@@ -86,7 +87,7 @@ const App = _ => {
           <ArtistPage />
         </Route>
         <Route exact path={path.userEditProfile}>
-          <h1>USER EDIT</h1>
+          <UserEdit />
         </Route>
         <Route exact path={path.userPage}>
           <UserPage />

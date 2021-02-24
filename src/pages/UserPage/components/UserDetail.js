@@ -32,7 +32,9 @@ const UserDetail = _ => {
       <h3 style={{ marginBottom: 0, marginTop: 24, textAlign: 'center' }}>{otherUser?.username}</h3>
       <p style={{ textAlign: 'center' }}>{otherUser?.email}</p>
       {/* <button className="btn btn-outline-success w-100" style={{ marginTop: 16, borderRadius: 8 }}>Contact Me!</button> */}
-      <button className="btn btn-outline-success w-100" style={Number(otherUser?.id) === Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 8 } : { display: 'none' }}>Edit Profile</button>
+      <Link to={path.userEditProfile}>
+        <button className="btn btn-outline-success w-100" style={Number(otherUser?.id) === Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 8 } : { display: 'none' }}>Edit Profile</button>
+      </Link>
       <Link to={path.userOrder}>
         <button className="btn btn-outline-primary w-100" style={Number(otherUser?.id) === Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 8 } : { display: 'none' }}>My Order</button>
       </Link>
