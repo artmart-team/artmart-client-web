@@ -14,7 +14,7 @@ const UserEditProfileForm = (props) => {
   const history = useHistory()
 
   let userId = localStorage.getItem('id')
-  const [ image, setImage] = useState(null)
+  const [ process, setProcess] = useState(false)
   const [ username, setUsername ] = useState(props.user.username)
   const [ email, setEmail ] = useState(props.user.email)
   const [ firstName, setFirst ] = useState(props.user.firstName)
@@ -37,37 +37,21 @@ const UserEditProfileForm = (props) => {
       setErrorLast(true)
     } else if (!email){
       setErrorEmail(true)
+    } else if (process){
+      console.log(process)
     } else {
+      dispatch(editUserProfile(userId, {
+        username : username,
+        email : email,
+        firstName : firstName,
+        lastName : lastName,
+        profilePicture : profile
+      }))
 
-      const uploadTask = storage.ref(`image/${image.name}`).put(image);
-      uploadTask.on(
-      "state_changed",
-      snapshot => {
-        },
-      error => {
-        console.log(error);
-      },
-      () => {
-        storage
-          .ref("image")
-          .child(image.name)
-          .getDownloadURL()
-          .then(url => {
-            // console.log(url)
-            setProfile(url); 
-          })
-        }
-      );
+      history.goBack(`user/${userId}`)
     }
-  };
+  }
 
-  // dispatch(editUserProfile(userId, {
-  //   username : username,
-  //   email : email,
-  //   firstName : firstName,
-  //   lastName : lastName,
-  //   profilePicture : profile
-  // }))
 
 
   // handle if change and error
@@ -105,12 +89,35 @@ const UserEditProfileForm = (props) => {
 
   const editProfile = (e) => {
     if (e.target.files[0]) {
-      setImage(e.target.files[0]);
+      setProcess(true)
+      const image = e.target.files[0]
+
+      const uploadTask = storage.ref(`image/${image.name}`).put(image);
+      uploadTask.on(
+      "state_changed",
+      snapshot => {
+        },
+      error => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref("image")
+          .child(image.name)
+          .getDownloadURL()
+          .then(url => {
+            console.log(url)
+            setProcess(false)
+            setProfile(url); 
+          })
+        }
+      );
     }
   }
 
   // console.log(firstName)
-  console.log(profile)
+  // console.log(profile)
+  // console.log(localStorage.getItem('access_token'))
 
   return (
     <div id="UserEditProfileForm">
@@ -144,7 +151,7 @@ const UserEditProfileForm = (props) => {
           <label htmlFor="link" className="form-label">Upload your image file</label>
           <input className="form-control" type="file" id="link" onChange={editProfile}/>
         </div>
-
+        { process && <p>waiting for upload your profile picture</p>}
         <button type="submit" className="btn btn-primary">Submit</button>
         {/* <Link to={`user/${userId}`}> */}
           <button className="btn btn-danger">Cancel</button>
