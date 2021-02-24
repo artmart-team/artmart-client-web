@@ -80,7 +80,7 @@ const SubmitCommissionForm = _ => {
         <div className="mb-3">
           <label>Choose a Category</label>
           <div className="mt-2">
-            <select onChange={(e) => handleChangeCategory(e)}>
+            <select class="form-select" style={{borderRadius: 12}} onChange={(e) => handleChangeCategory(e)}>
               {
                 categories?.map(category => <CategoryOption category={category} key={category.id}></CategoryOption>)
               }
@@ -92,15 +92,15 @@ const SubmitCommissionForm = _ => {
           <label htmlFor="link" className="form-label">Upload your image file</label>
           <p style={error ? { display: 'block' } : { display: 'none' }}>Please input your image first!</p>
           {/* <div className="d-flex"> */}
-          <input className="form-control" type="file" id="link" style={{ marginRight: 16, borderRadius: 8 }} onChange={handleUpload} required />
+          <input className="form-control" type="file" id="link" style={{ marginRight: 16, borderRadius: 12 }} onChange={handleUpload} required />
           {/* <button className="btn btn-primary" style={{ borderRadius: 8 }} onClick={e => handleUpload(e)}>Upload</button> */}
           {/* </div> */}
         </div>
         <div>
-          <img src={url ? url : "http://via.placeholder.com/300"} height="300" width="300" style={{ borderRadius: 8, objectFit: 'cover' }} className="mb-3"></img>
+          <img src={url ? url : "http://via.placeholder.com/300"} height="300" width="300" style={{ borderRadius: 16, objectFit: 'cover' }} className="mb-3"></img>
         </div>
 
-        <button type="submit" className="btn btn-primary mb-5" disabled={submitOK}>Submit</button>
+        <button type="submit" className="btn btn-primary mb-5" style={{borderRadius: 12}} disabled={submitOK}>Submit</button>
 
       </form>
     </div>

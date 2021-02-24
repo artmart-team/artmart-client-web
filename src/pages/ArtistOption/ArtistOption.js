@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { fetchSelfOption } from '../../utils/store/actions/optionsAction.js';
+import LoadingAnim from '../../components/helpers/LoadingAnim.js';
 
 import AddOption from './components/AddOption.js';
 import DataOption from './components/DataOption.js';
@@ -16,9 +17,7 @@ const ArtistOption = _ => {
     dispatch(fetchSelfOption(artistId));
   }, []);
 
-  if (loading) return <h1>Now Loading</h1>;
-
-  // console.log(selfOptions)
+  if (loading) return <LoadingAnim />;
 
   return (
     <div id="ArtistEditProfile" style={{ marginLeft: 64, marginRight: 64, marginTop: 32 }}>
