@@ -40,6 +40,8 @@ const userReducer = (state = initState, action) => {
       return { ...state, otherUser : action.payload, isLoading: false}
     case "GET_PICTURES_USER": 
       return { ...state, pictures : action.payload, isLoading : false}
+    case "PUT_PROFILE_SUBMIT":
+      return { ...state, otherUser : action.payload, isLoading : false}
     case 'LOADING':
       return { ...state, isLoading: true };
     case 'ERROR':

@@ -255,3 +255,25 @@ export const pictureByUser =(userId) => {
     }
   }
 }
+
+
+export const editProfileArtistSubmit = (artistId, payload) => {
+  return async next => {
+    try {
+      console.log('masuk action ---------')
+      next({ type : "LOADING" })
+
+      const { data } = await axios({
+        method : "PUT",
+        url : `/artists/${artistId}`,
+        data: payload,
+        headers : { access_token : localStorage.getItem("access_token")}
+      })
+
+      next({ type: 'PUT_PROFILE_SUBMIT', payload: data });
+    } catch (err) {
+      console.log("🚀 ~ file: editProfileArtistAction.js ~ line 18 ~ editProfileArtistSubmit ~ err", err)
+      console.log(err);
+    };
+  };
+};

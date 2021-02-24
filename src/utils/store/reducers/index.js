@@ -20,3 +20,5 @@ const reducers = combineReducers({
 });
 
 export default reducers;
+
+// state => state.user
