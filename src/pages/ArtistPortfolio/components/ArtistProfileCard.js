@@ -19,9 +19,6 @@ const ArtistProfileCard = _ => {
 
   if (isLoading) return '';
 
-  console.log(otherUser)
-  console.log(rating)
-
   return (
     <div id="ArtistProfileCard" className="shadow" style={{ height: 'auto', border: 'none', backgroundColor: '#fff', borderRadius: 16, marginTop: 32, padding: 32 }}>
       <div className="row">

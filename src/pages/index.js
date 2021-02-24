@@ -2,6 +2,7 @@
 export { default as ArtistPage } from './ArtistPage/ArtistPage.js';
 export { default as ArtistEditProfile } from './ArtistEditProfile/ArtistEditProfile.js';
 export { default as ArtistOption } from './ArtistOption/ArtistOption.js';
+export { default as Branding } from './Branding/Branding.js';
 export { default as Home } from './Home/Home.js';
 export { default as Login } from './Login/Login.js';
 export { default as RegisterArtist } from './RegisterArtist/RegisterArtist.js';

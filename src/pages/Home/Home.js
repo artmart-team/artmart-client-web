@@ -18,6 +18,9 @@ const Home = _ => {
 
   return (
     <div id="HomeCard" style={{ paddingTop: 24 }}>
+      <h1 style={!localStorage.getItem('access_token') ? { paddingLeft: 32, paddingRight: 32 } : { display: 'none' }}>Picked just for you!</h1>
+      <hr style={{ marginLeft: 32, marginRight: 32 }} />
+
       <div className="container-fluid" style={{ paddingLeft: 32, paddingRight: 32, paddingBottom: 24 }}>
         <div className="row" >
           {loading ? new Array(8).fill().map((_, i) => <HomeCardskeleton key={i} />) : pictures.map(picture => <HomeCard picture={picture} key={picture.id} />)}

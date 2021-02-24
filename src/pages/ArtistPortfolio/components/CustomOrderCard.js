@@ -34,8 +34,8 @@ const CustomOrderCard = (props) => {
   return (
     <div id="CustomOrderCard" style={{ height: '444px', border: 'none', borderRadius: 16, marginTop: 32, padding: 32 }}>
       <div className="d-flex justify-content-between">
-        <h5 style={{ marginBottom: 0 }}>{showPictureName}</h5>
-        <h5 style={{ marginBottom: 0 }}>Rp. {showPicturePrice}</h5>
+        <h5 style={{ marginBottom: 0 }}>{showPictureName.toLocaleString("id-ID")}</h5>
+        <h5 style={{ marginBottom: 0 }}>Rp. {showPicturePrice.toLocaleString("id-ID")}</h5>
       </div>
       <hr />
       <h5 style={{ marginBottom: 16 }}>Available choice</h5>
@@ -49,7 +49,7 @@ const CustomOrderCard = (props) => {
         <hr />
         <div className="d-flex justify-content-between mb-3">
           <label className="form-check-label" style={{ fontWeight: 600 }} htmlFor="showPass">Total</label>
-          <label className="form-check-label" style={{ fontWeight: 600 }} htmlFor="showPass">Rp. {showPicturePrice + totalExtraPrice}</label>
+          <label className="form-check-label" style={{ fontWeight: 600 }} htmlFor="showPass">Rp. {(showPicturePrice + totalExtraPrice).toLocaleString("id-ID")}</label>
         </div>
         <button type="button" className="btn btn-primary w-100" style={localStorage.getItem('role') === 'customer' ? { borderRadius: 12 } : { display: 'none' }} onClick={() => handleOrderNow()}>Order in This Style Now</button>
       </form>
