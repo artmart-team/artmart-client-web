@@ -145,6 +145,7 @@ const UserOrderListCard = ({ order }) => {
                   !order.paid ? <button className="btn btn-danger w-100" onClick={() => handleCancel()}>Cancel</button> :
                     !order.accepted ? <p>Please wait for artist's response</p> :
                       !order.done ? <p>The artist is making your commission</p> :
+                        order.ReviewId ? <button className="btn btn-success w-100" onClick={() => handleReview()}>Edit Review</button> :
                         <button className="btn btn-success w-100" onClick={() => handleReview()}>Review</button>
                 }
 

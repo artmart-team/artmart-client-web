@@ -71,7 +71,7 @@ const ArtistProfileCard = _ => {
         </div>
         <div className="d-flex justify-content-between">
           <Link to ={`/artist/${otherUser?.id}/review`} className="w-100">
-          <button className="btn btn-outline-success w-100 mt-3" style={{ borderRadius: 8, marginRight: 8 }}>Review</button>
+          <button className="btn btn-outline-success w-100 mt-3" style={{ borderRadius: 8, marginRight: 8 }}>See Reviews</button>
           </Link>
           <Link to={`/artist/${otherUser?.id}`} className="w-100">
             <button className="btn btn-outline-primary w-100 mt-3" style={{ borderRadius: 8 }}>Profile</button>

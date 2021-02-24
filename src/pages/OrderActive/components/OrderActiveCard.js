@@ -27,7 +27,7 @@ const OrderActiveCard = ({ order }) => {
             <h5>{ order.title }</h5>
             <p className="description">{ order.description }</p>
 
-              { !order.option ?    <div className="mb-2 mt-2 text-muted" style={{ paddingLeft: 0 }}>
+              { !order.options ?    <div className="mb-2 mt-2 text-muted" style={{ paddingLeft: 0 }}>
                 <div className="d-flex justify-content-between">
                   <p style={{ marginBottom: 0 }}>No Extra Options</p>
                   </div>
