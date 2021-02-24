@@ -23,7 +23,6 @@ const CustomOrderCard = (props) => {
     localStorage.setItem('selectedPicName', showPictureName)
     localStorage.setItem('selectedPicDesc', showPictureDesc)
     localStorage.setItem('selectedPicRating', showPictureRating)
-
     localStorage.setItem('selectedPicPrice', showPicturePrice)
     localStorage.setItem('totalExtraPrice', totalExtraPrice)
 
