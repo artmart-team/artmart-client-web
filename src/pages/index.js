@@ -18,3 +18,4 @@ export { default as UserOrderList } from './UserOrderList/UserOrderList.js';
 export { default as OrderActive } from './OrderActive/OrderActive.js';
 export { default as ReviewPage } from './ReviewPage/ReviewPage.js';
 export { default as SubmitCommission } from './SubmitCommission/SubmitCommission.js';
+export { default as UserEdit } from '../pages/UserEditProfile/UserEdit.js'

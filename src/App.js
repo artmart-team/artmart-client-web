@@ -21,7 +21,8 @@ import {
   SubmitCommission,
   OrderActive,
   ReviewPage,
-  ArtistOrderList
+  ArtistOrderList,
+  UserEdit
 } from './pages/index.js';
 import path from './routers/index.js';
 import NavBar from './components/layout/NavBar.js';
@@ -84,7 +85,7 @@ const App = _ => {
           <ArtistPage />
         </Route>
         <Route exact path={path.userEditProfile}>
-          <h1>USER EDIT</h1>
+          <UserEdit />
         </Route>
         <Route exact path={path.userPage}>
           <UserPage />

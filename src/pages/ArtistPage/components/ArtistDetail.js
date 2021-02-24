@@ -43,7 +43,9 @@ const ArtistDetail = _ => {
         <p style={{ margin: 0 }} className="align-self-center">4.5</p>
       </div> */}
       <button className="btn btn-outline-success w-100" style={Number(otherUser?.id) !== Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 8 } : { display: 'none' }}>Contact Me!</button>
-      <button className="btn btn-outline-success w-100" style={Number(otherUser?.id) === Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 8 } : { display: 'none' }}>Edit Profile</button>
+      <Link to={`/artist/${artistId}/edit`}>
+        <button className="btn btn-outline-success w-100" style={Number(otherUser?.id) === Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 8 } : { display: 'none' }}>Edit Profile</button>
+      </Link>
       <Link to={`/artist/${artistId}/option`} style={{textDecoration: 'none'}}>
         <button className="btn btn-outline-primary w-100" style={Number(otherUser?.id) === Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 8 } : { display: 'none' }}>Edit Custom Options</button>
       </Link>
