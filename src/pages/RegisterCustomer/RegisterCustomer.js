@@ -17,7 +17,6 @@ const RegisterCustomer = _ => {
 
   useEffect(_ => {
     if (user) {
-      console.log('REGISTER SUCCESS');
       dispatch(reset());
       return history.push(path.loginCustomer);
     };
