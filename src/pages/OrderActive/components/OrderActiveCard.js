@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 
 import image from '../../../assets/images/placeholder/pla_Card.png';
 
@@ -9,11 +9,16 @@ import '../styles/OrderActiveCard.css';
 
 const OrderActiveCard = ({ order }) => {
   const dispatch = useDispatch()
+  const { artistId, userId } = useParams()
   const history = useHistory()
   const [options, setOptions] = useState(order.options ? JSON.parse(order.options) : [])
 
   function handleMarkAsDone () {
     history.push(`/order/submit/${order.id}`)
+  }
+
+  function handleChat () {
+    history.push(`/user/${order.UserId}/artist/${order.ArtistId}/order/${order.id}/process`)
   }
 
   return (
@@ -48,6 +53,11 @@ const OrderActiveCard = ({ order }) => {
             </div>
 
             <button style={{ borderRadius: 12 }} className="btn btn-success w-100" onClick={() => handleMarkAsDone()}>Mark as Done</button>
+            <div className="row">
+              <div className="col align-self-center mt-4">
+                <button style={{borderRadius: 12}} className="btn btn-outline-primary w-100 mt-1" onClick={() => handleChat()}>Chat</button>
+              </div>
+            </div>
           </div>
         </div>
 
