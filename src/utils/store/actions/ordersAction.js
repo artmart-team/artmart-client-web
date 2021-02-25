@@ -193,7 +193,7 @@ export const declineOrder = (orderId) => {
         })
 
         dispatch({
-          type: 'DECLINE_ORDER_DONE',
+          type: 'DECLINE_ORDER_DONE', orderId,
         })
 
       }

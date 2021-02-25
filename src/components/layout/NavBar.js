@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation, useHistory } from 'react-router-dom';
-import { BiSearch } from 'react-icons/bi';
+import { BiSearch, BiChevronRight, BiCheck } from 'react-icons/bi';
 import { FiPackage } from 'react-icons/fi';
 import { GrAdd } from 'react-icons/gr';
 import { IoPlay } from 'react-icons/io5';
@@ -21,9 +21,18 @@ const NavBar = () => {
   const history = useHistory();
   const { pathname } = useLocation();
 
+  const headRoute = pathname.split('/')[1];
+  const childRoute = pathname.split('/')[2];
+
+  const process = [pathname?.split('/')[1], pathname?.split('/')[3], pathname?.split('/')[5]];
+  const processVar = ['user', 'artist', 'order'];
+  const processCheck = (process[0] === processVar[0]) && (process[1] === processVar[1]) && (process[2] === processVar[2]);
+
+  console.log(processCheck)
+
   const { user, isLoading, errors } = useSelector(state => state.user);
 
-  const [ search, setSearch ] = useState("")
+  const [search, setSearch] = useState("")
 
   const handleLogout = _ => {
     dispatch(logout());
@@ -51,8 +60,7 @@ const NavBar = () => {
   }
 
   const searchStart = e => {
-    e.preventDefault()
-    
+    e.preventDefault();
   }
 
   // console.log(search)
@@ -73,7 +81,7 @@ const NavBar = () => {
         <div className="navbar-brand d-flex">
 
           {/** LOGO BRAND */}
-          <Link to={path.home} onClick={() => handleResetReduxAndStorage()}>
+          <Link to={path.home} onClick={() => handleResetReduxAndStorage()} className="align-self-center">
             <img src={logo} alt="logo" height="40" />
           </Link>
 
@@ -99,8 +107,82 @@ const NavBar = () => {
               </div>
             </form>
           </div>
+
+
+          {/** BREADCRUMB */}
+          <div className={headRoute === 'order' || processCheck ? 'hide-breadcrumb' : 'hiderz'} >
+
+            {/** DESCRIBE */}
+            <div className="d-flex align-self-center justify-content-center" style={{ marginLeft: 16, marginRight: 8 }}>
+              <div className="d-flex align-self-center justify-content-center" style={{ backgroundColor: '#0d6efd', height: 32, width: 32, borderRadius: 50 }}>
+
+                <p style={{ textAlign: 'center', marginBottom: 4, alignSelf: 'center', color: '#fff' }}><BiCheck /></p>
+              </div>
+            </div>
+            <div className="d-flex align-self-center" style={{ marginRight: 8 }}>
+              <p style={{ marginBottom: 0, color: '#0d6efd' }}>Describe</p>
+            </div>
+            <div className="align-self-center" style={{ marginRight: 8 }}>
+              <BiChevronRight />
+            </div>
+
+            {/** CHECKOUT */}
+            <div className="d-flex align-self-center justify-content-center" style={{ marginRight: 8 }}>
+              <div className="d-flex align-self-center justify-content-center" style={childRoute === 'checkout' || childRoute === 'finish' || processCheck ? { backgroundColor: '#0d6efd', height: 32, width: 32, borderRadius: 50 } : { backgroundColor: '#6c757d', height: 32, width: 32, borderRadius: 50 }}>
+
+                {childRoute === 'checkout' || childRoute === 'finish' || processCheck ?
+                  <p style={{ textAlign: 'center', marginBottom: 4, alignSelf: 'center', color: '#fff' }}><BiCheck /></p> :
+                  <p style={{ textAlign: 'center', marginBottom: 0, alignSelf: 'center', color: '#fff' }}>2</p>}
+              </div>
+            </div>
+            <div className="d-flex align-self-center" style={{ marginRight: 8 }}>
+
+              <p style={childRoute === 'checkout' || childRoute === 'finish' || processCheck ?
+                { marginBottom: 0, color: '#0d6efd' } :
+                { marginBottom: 0, color: '#6c757d' }}>Checkout</p>
+            </div>
+            <div className="align-self-center" style={{ marginRight: 8 }}>
+              <BiChevronRight />
+            </div>
+
+            {/** PROCESS */}
+            <div className="d-flex align-self-center justify-content-center" style={{ marginRight: 8 }}>
+              <div className="d-flex align-self-center justify-content-center" style={childRoute === 'finish' || processCheck ? { backgroundColor: '#0d6efd', height: 32, width: 32, borderRadius: 50 } : { backgroundColor: '#6c757d', height: 32, width: 32, borderRadius: 50 }}>
+
+                {childRoute === 'finish' || processCheck ?
+                  <p style={{ textAlign: 'center', marginBottom: 4, alignSelf: 'center', color: '#fff' }}><BiCheck /></p> :
+                  <p style={{ textAlign: 'center', marginBottom: 0, alignSelf: 'center', color: '#fff' }}>3</p>}
+              </div>
+            </div>
+            <div className="d-flex align-self-center" style={{ marginRight: 8 }}>
+              <p style={childRoute === 'finish' || processCheck ?
+                { marginBottom: 0, color: '#0d6efd' } :
+                { marginBottom: 0, color: '#6c757d' }}>Process</p>
+            </div>
+            <div className="align-self-center" style={{ marginRight: 8 }}>
+              <BiChevronRight />
+            </div>
+
+            {/** FINISH */}
+            <div className="d-flex align-self-center justify-content-center" style={{ marginRight: 8 }}>
+              <div className="d-flex align-self-center justify-content-center" style={childRoute === 'finish' ? { backgroundColor: '#0d6efd', height: 32, width: 32, borderRadius: 50 } : { backgroundColor: '#6c757d', height: 32, width: 32, borderRadius: 50 }}>
+
+                {childRoute === 'finish' ?
+                  <p style={{ textAlign: 'center', marginBottom: 4, alignSelf: 'center', color: '#fff' }}><BiCheck /></p> :
+                  <p style={{ textAlign: 'center', marginBottom: 0, alignSelf: 'center', color: '#fff' }}>4</p>}
+              </div>
+            </div>
+            <div className="d-flex align-self-center" >
+              <p style={childRoute === 'finish' ?
+                { marginBottom: 0, color: '#0d6efd' } :
+                { marginBottom: 0, color: '#6c757d' }}>Finish</p>
+            </div>
+          </div>
+
         </div>
         {/** BAGIAN KIRI END */}
+
+
 
         {/** BAGIAN BUTTON LOGIN KANAN */}
         <div className="d-flex">

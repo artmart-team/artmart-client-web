@@ -47,3 +47,17 @@
 .btn-custom:focus {
   background-color: #e2e4e5;
 }
+
+.hide-breadcrumb {
+  display: flex;
+}
+
+.hiderz {
+  display: none
+}
+
+@media screen and (max-width: 811px){
+  .hide-breadcrumb {
+    display: none;
+  }
+}

@@ -17,7 +17,6 @@ const OrderCard = ({ order }) => {
 
   function handleDecline () {
     dispatch(declineOrder(order.id))
-    dispatch(fetchOrderByArtistId())
   }
 
   function handleAccept () {
@@ -31,10 +30,10 @@ const OrderCard = ({ order }) => {
 
   return (
     <div id="OrderCard" className="col-12">
-      <div className="card shadow" style={{ borderRadius: 16, marginTop: 8, marginBottom: 8, border: 'none' }}>
+      <div className="card shadow" style={{ height: 'auto', borderRadius: 16, marginTop: 8, marginBottom: 8, border: 'none' }}>
         <div className="row">
-          <div className="col-6" style={{ padding: 32 }}>
-            <img src={order.refLink ? order.refLink : image} className="card-img-top" style={{ borderTopRightRadius: 0, height: '100%', objectFit: 'cover', borderRadius: 16 }} />
+          <div className="col-6" style={{ borderRadius: 16, padding: 32, height: '460px' }}>
+            <img src={order.refLink ? order.refLink : image} className="card-img-top" style={{ borderTopRightRadius: 0, height: '100%', objectFit: 'cover', objectPosition: '50% 35%', borderRadius: 16 }} />
           </div>
           <div className="col-6" style={{ padding: 32 }}>
             <h5>{order.title}</h5>
