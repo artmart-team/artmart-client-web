@@ -116,7 +116,7 @@ const UserOrderListCard = ({ order }) => {
 
             <div className="d-flex" style={{ marginBottom: 32, marginTop: 28 }}>
               <div style={{ marginRight: 4, flex: 1 }}>
-                <Link to={`/artist/3`}>
+                <Link to={`/artist/${order?.Artist?.id}`}>
                   <img
                     src={order?.Artist?.profilePicture}
                     className="rounded-circle"

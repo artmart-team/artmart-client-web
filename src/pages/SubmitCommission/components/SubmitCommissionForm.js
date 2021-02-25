@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { firebaseConf } from '../../../utils/firebase/config.js';
+import { storage } from '../../../utils/firebase/config.js';
 import axios from '../../../utils/API/axios'
 
 import { submitCommission, resetSubmit } from '../../../utils/store/actions/ordersAction.js';
@@ -18,6 +18,8 @@ const SubmitCommissionForm = _ => {
   const [submitOK, setSubmitOK] = useState(true);
   const [categories, setCategories] = useState([])
   const [selectedCategory, setSelectedCategory] = useState(1)
+  const [progress, setProgress] = useState(0);
+  const [process, setProcess] = useState(false);
 
   const { commission, loading, errors } = useSelector(state => state.orders);
 
@@ -40,23 +42,52 @@ const SubmitCommissionForm = _ => {
   };
 
   const handleUpload = e => {
-    const file = e.target.files[0];
-    firebaseConf
-      .storage()
-      .ref('submitCommission/')
-      .child(file.name)
-      .put(file)
-      .then(() =>
-        firebaseConf
-          .storage()
-          .ref('submitCommission/')
-          .child(file.name)
-          .getDownloadURL())
-      .then(url => {
-        setUrl(url)
-        setSubmitOK(false);
-      })
-      .catch(err => console.log(err));
+    if (e.target.files[0]) {
+      setProcess(true)
+      const image = e.target.files[0]
+
+      const uploadTask = storage.ref(`submitCommission/${image.name}`).put(image);
+      uploadTask.on(
+        "state_changed",
+        snapshot => {
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          setProgress(progress);
+        },
+        error => {
+          console.log(error);
+        },
+        () => {
+          storage
+            .ref("submitCommission")
+            .child(image.name)
+            .getDownloadURL()
+            .then(url => {
+              console.log(url)
+              setProcess(false)
+              setUrl(url);
+            })
+        }
+      );
+    }
+    // const file = e.target.files[0];
+    // firebaseConf
+    //   .storage()
+    //   .ref('submitCommission/')
+    //   .child(file.name)
+    //   .put(file)
+    //   .then(() =>
+    //     firebaseConf
+    //       .storage()
+    //       .ref('submitCommission/')
+    //       .child(file.name)
+    //       .getDownloadURL())
+    //   .then(url => {
+    //     setUrl(url)
+    //     setSubmitOK(false);
+    //   })
+    //   .catch(err => console.log(err));
   };
 
   useEffect(() => {
@@ -80,14 +111,14 @@ const SubmitCommissionForm = _ => {
         <div className="mb-3">
           <label>Choose a Category</label>
           <div className="mt-2">
-            <select class="form-select" style={{borderRadius: 12}} onChange={(e) => handleChangeCategory(e)}>
+            <select class="form-select" style={{ borderRadius: 12 }} onChange={(e) => handleChangeCategory(e)}>
               {
                 categories?.map(category => <CategoryOption category={category} key={category.id}></CategoryOption>)
               }
             </select>
           </div>
         </div>
-        
+
         <div className="mb-3">
           <label htmlFor="link" className="form-label">Upload your image file</label>
           <p style={error ? { display: 'block' } : { display: 'none' }}>Please input your image first!</p>
@@ -100,7 +131,11 @@ const SubmitCommissionForm = _ => {
           <img src={url ? url : "http://via.placeholder.com/300"} height="300" width="300" style={{ borderRadius: 16, objectFit: 'cover' }} className="mb-3"></img>
         </div>
 
-        <button type="submit" className="btn btn-primary mb-5" style={{borderRadius: 12}} disabled={submitOK}>Submit</button>
+        <div className="progress mb-3"  >
+          <div className="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow={5} aria-valuemin="0" aria-valuemax="100" style={{ width: `${progress}%` }}></div>
+        </div>
+
+        <button type="submit" className="btn btn-primary mb-5" style={{ borderRadius: 12 }} disabled={progress < 100 ? true : false}>Submit</button>
 
       </form>
     </div>

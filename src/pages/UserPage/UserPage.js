@@ -34,11 +34,14 @@ const UserPage = _ => {
           <div className="col-md-3 col-sm-6 col-12">
             <UserDetail />
           </div>
-          <div className="col-md-9 col-sm-6  col-12">
-            <h4 style={{marginTop: 32}}>My Commission</h4>
+          <div className="col-md-9 col-sm-6 col-12">
+            <h4 style={{ marginTop: 32 }}>My Commission</h4>
             <hr />
-            {orders?.map(order => <OrderList key={order.id} order={order} />)}
-            {picturesUser?.map(pict => <PictureUserCard key={pict.id} pict={pict} />)}
+            <div className="row">
+              {/* {orders?.map(order => <OrderList key={order.id} order={order} />)} */}
+              {picturesUser?.map(pict => <PictureUserCard key={pict.id} pict={pict} />)}
+            </div>
+
           </div>
         </div>
         <div className="row">
