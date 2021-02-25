@@ -144,9 +144,9 @@ const UserOrderListCard = ({ order }) => {
 
               </div>
               {/** Kalo belom selesai ada cancelation */}
-              <div className="col">
+              <div className="col d-flex justify-content-center">
                 {
-                  !order.paid ? <button style={{ borderRadius: 16 }} className="btn btn-danger w-100" onClick={() => handleCancel()}>Cancel</button> :
+                  !order.paid ? <button style={{ borderRadius: 16 }} className="btn" onClick={() => handleCancel()}><p className="text-decoration-underline text-danger">Cancel</p></button> :
                     !order.accepted ? <p className="btn align-self-center">Please wait for artist's response</p> :
                       !order.done ? <p className="btn align-self-center text-center w-100">Work in Progress</p> :
                         order.ReviewId ? <button style={{ borderRadius: 16 }} className="btn btn-success w-100" onClick={() => handleReview()}>Edit Review</button> :

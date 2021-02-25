@@ -64,13 +64,13 @@ const OrderCard = ({ order }) => {
               <div className="col">
                 <button style={{borderRadius: 12}} className="btn btn-primary w-100" onClick={() => handleAccept()}>Accept</button>
               </div>
-              <div className="col">
-                <button style={{borderRadius: 12}} className="btn btn-danger w-100" onClick={() => handleDecline()}>Decline</button>
+              <div className="col d-flex justify-content-center">
+                <button style={{borderRadius: 12}} className="btn" onClick={() => handleDecline()}><p className="text-decoration-underline text-danger">Decline</p></button>
               </div>
             </div>
             <div className="row">
               <div className="col">
-                <button style={{borderRadius: 12}} className="btn btn-success w-100 mt-4" onClick={() => handleChat()}>Chat</button>
+                <button style={{borderRadius: 12}} className="btn btn-outline-success w-100 mt-4" onClick={() => handleChat()}>Chat</button>
               </div>
             </div>
           </div>
