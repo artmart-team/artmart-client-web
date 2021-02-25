@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2';
+
 const initState = {
   commission: {},
   loading: false,
@@ -66,6 +68,18 @@ const ordersReducer = (state = initState, action) => {
         loading: true
       }
     case 'ACCEPT_ORDER_DONE':
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000,
+      })
+
+      Toast.fire({
+        icon: 'success',
+        title: 'Order Accepted!'
+      })
+
       return {
         ...state,
         loading: false
@@ -77,6 +91,18 @@ const ordersReducer = (state = initState, action) => {
         loading: false
       }
     case 'SUBMIT_COMMISSION':
+      const Toast1 = Swal.mixin({
+        toast: true,
+        position: 'top',
+        showConfirmButton: false,
+        timer: 3000,
+      })
+
+      Toast1.fire({
+        icon: 'success',
+        title: 'Order has been submitted!'
+      })
+
       return {
         ...state,
         commission: action.payload,

@@ -32,7 +32,7 @@ const ArtistProfileCard = _ => {
         <div className="col-lg-9">
           <h4 className="card-title" style={{ width: 'auto', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{otherUser?.username}</h4>
           <div className="d-flex">
-            {rating === null ?
+            {rating === null || isNaN(rating) ?
               (<>
                 <BsStar style={{ marginRight: 8, marginBottom: 2 }} className="align-self-center" />
 
@@ -61,7 +61,7 @@ const ArtistProfileCard = _ => {
                   <BsStarHalf style={rating >= 4.5 && rating < 5 ? { marginRight: 8, marginBottom: 2 } : { display: ' none' }} className="align-self-center" />
                   <BsStar style={rating < 4.5 ? { marginRight: 8, marginBottom: 2 } : { display: ' none' }} className="align-self-center" />
 
-                  <p style={{ margin: 0 }} className="align-self-center">{rating}</p>
+                  <p style={{ margin: 0 }} className="align-self-center">{Number(rating).toFixed(1)}</p>
                 </>)}
           </div>
         </div>
