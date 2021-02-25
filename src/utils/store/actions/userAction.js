@@ -44,7 +44,7 @@ export const loginArtist = payload => {
         data: payload
       });
 
-      return next({ type: 'LOGIN', payload: data.access_token, role: 'artist', id: data.id });
+      return next({ type: 'LOGIN', payload: data.access_token, role: 'artist', id: data.id, profilePicture: data.profilePicture, username:data.username });
     } catch (err) {
       next({ type: 'ERROR', payload: err.response.data.messages });
     };
@@ -93,8 +93,9 @@ export const loginCustomer = payload => {
         url: '/users/login',
         data: payload
       });
+      console.log(data, 'masuk login')
 
-      return next({ type: 'LOGIN', payload: data.access_token, role: 'customer', id: data.id });
+      return next({ type: 'LOGIN', payload: data.access_token, role: 'customer', id: data.id, profilePicture: data.profilePicture, username:data.username });
     } catch (err) {
       next({ type: 'ERROR', payload: err.response.data.messages });
     };

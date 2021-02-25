@@ -20,11 +20,15 @@ const userReducer = (state = initState, action) => {
       localStorage.setItem('role', action.role)
       localStorage.setItem('id', action.id)
       localStorage.setItem('access_token', action.payload);
+      localStorage.setItem('profilePicture', action.profilePicture)
+      localStorage.setItem('username', action.username)
       return { ...state, access_token: action.payload, isLoading: false };
     case 'LOGOUT':
       localStorage.removeItem('access_token');
       localStorage.removeItem('id');
       localStorage.removeItem('role');
+      localStorage.removeItem('profilePicture')
+      localStorage.removeItem('username')
       return { ...state, access_token: '', user: null };
     case 'GET_USER_ID':
       return { ...state, user: action.payload, isLoading: false };
