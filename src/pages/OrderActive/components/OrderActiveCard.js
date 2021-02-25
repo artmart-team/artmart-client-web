@@ -23,10 +23,10 @@ const OrderActiveCard = ({ order }) => {
 
   return (
     <div id="OrderActiveCard" className="col-12">
-      <div className="card shadow" style={{ width: '100%', borderRadius: 16, border: 'none', marginTop: 8, marginBottom: 8 }}>
+      <div className="card shadow" style={{ height: 'auto', borderRadius: 16, border: 'none', marginTop: 8, marginBottom: 8 }}>
         <div className="row">
-          <div className="col-6" style={{ padding: 32 }}>
-            <img src={order.refLink} className="card-img-top" style={{ borderTopRightRadius: 0, height: '100%', objectFit: 'cover', borderRadius: 16 }} />
+          <div className="col-6" style={{ borderRadius: 16, padding: 32, height: '460px' }}>
+            <img src={order.refLink} className="card-img-top" style={{ borderTopRightRadius: 0, height: '100%', objectFit: 'cover', objectPosition: '50% 35%', borderRadius: 16 }} />
           </div>
           <div className="col-6" style={{ padding: 32 }}>
             <h5>{order.title}</h5>
@@ -55,7 +55,7 @@ const OrderActiveCard = ({ order }) => {
             <button style={{ borderRadius: 12 }} className="btn btn-success w-100" onClick={() => handleMarkAsDone()}>Mark as Done</button>
             <div className="row">
               <div className="col align-self-center mt-4">
-                <button style={{borderRadius: 12}} className="btn btn-outline-primary w-100 mt-1" onClick={() => handleChat()}>Chat</button>
+                <button style={{ borderRadius: 12 }} className="btn btn-outline-primary w-100 mt-1" onClick={() => handleChat()}>Chat</button>
               </div>
             </div>
           </div>

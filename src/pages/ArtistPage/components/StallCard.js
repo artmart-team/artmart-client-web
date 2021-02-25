@@ -18,7 +18,7 @@ const StallCard = ({ props }) => {
   };
 
   return (
-    <div id="StallCard" className="col-6 col-sm-6 col-md-4 col-lg-4 col-xxl-2" >
+    <div id="StallCard" className="col-6 col-sm-6 col-md-4 col-lg-4 col-xxl-4" >
       <div className="custom-card" style={{ borderRadius: 16 }}>
         <div className="" style={{ backdropFilter: 'blur(8px)', backgroundColor: '#353535D9', width: 'auto', position: 'absolute', bottom: 72, right: 20, borderRadius: 8 }}>
           <p style={{ margin: 4, fontWeight: 600, color: '#ecf0f1' }}>Rp. {props?.price?.toLocaleString('id-ID')}</p>
