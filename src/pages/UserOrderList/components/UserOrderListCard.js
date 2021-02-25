@@ -138,7 +138,7 @@ const UserOrderListCard = ({ order }) => {
                 {
                   !order.paid ? <button style={{ borderRadius: 16 }} className="btn btn-primary w-100" onClick={(e) => handlePay(e)}>Pay</button> :
                     !order.accepted ? <button style={{ borderRadius: 16 }} className="btn btn-primary w-100" onClick={(e) => handleChat(e)}>Chat</button> :
-                      !order.done ? <p></p> :
+                      !order.done ? <button style={{ borderRadius: 16 }} className="btn btn-primary w-100" onClick={(e) => handleChat(e)}>Chat</button> :
                         <p className="btn align-self-center">Go to Review Page to Download</p>
                 }
 
@@ -148,7 +148,7 @@ const UserOrderListCard = ({ order }) => {
                 {
                   !order.paid ? <button style={{ borderRadius: 16 }} className="btn btn-danger w-100" onClick={() => handleCancel()}>Cancel</button> :
                     !order.accepted ? <p className="btn align-self-center">Please wait for artist's response</p> :
-                      !order.done ? <p className="btn align-self-center">The artist is making your commission</p> :
+                      !order.done ? <p className="btn align-self-center text-center w-100">Work in Progress</p> :
                         order.ReviewId ? <button style={{ borderRadius: 16 }} className="btn btn-success w-100" onClick={() => handleReview()}>Edit Review</button> :
                           <button style={{ borderRadius: 16 }} className="btn btn-success w-100" onClick={() => handleReview()}>Review</button>
                 }

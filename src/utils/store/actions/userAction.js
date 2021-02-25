@@ -46,7 +46,7 @@ export const loginArtist = payload => {
 
       return next({ type: 'LOGIN', payload: data.access_token, role: 'artist', id: data.id });
     } catch (err) {
-      console.log(err);
+      next({ type: 'ERROR', payload: err.response.data.messages });
     };
   };
 };

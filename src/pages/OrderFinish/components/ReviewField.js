@@ -45,7 +45,7 @@ const ReviewField = ({ order }) => {
   if (order) {
     return (
       <div id="ReviewField" style={{ height: 'auto', borderRadius: 8, marginTop: 32, marginBottom: 32, }}>
-        <div style={{ height: 'auto', backgroundColor: '#dddddd', borderRadius: 8, padding: 32, marginTop: 16 }}>
+        <div className="shadow" style={{ height: 'auto', backgroundColor: '#fff', borderRadius: 16, padding: 32, marginTop: 16 }}>
   
           <h5 style={{ marginBottom: 16 }}>Are you happy with this service? Give a review!</h5>
   
@@ -62,10 +62,10 @@ const ReviewField = ({ order }) => {
             </div>
   
             <div className="form-floating">
-              <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea" style={{ borderRadius: 8, height: 100 }} value={review} onChange={(e) => handleReviewValue(e)}></textarea>
+              <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea" style={{ borderRadius: 12, height: 100 }} value={review} onChange={(e) => handleReviewValue(e)}></textarea>
               <label htmlFor="floatingTextarea">Comments</label>
             </div>
-            <button className="btn btn-primary w-100 mt-3" style={{ borderRadius: 8 }} onClick={(e) =>  handleSendRatingAndReview(e) }>Send</button>
+            <button className="btn btn-primary w-100 mt-3" style={{ borderRadius: 12 }} onClick={(e) =>  handleSendRatingAndReview(e) }>Send</button>
           </form>
         </div>
       </div >
