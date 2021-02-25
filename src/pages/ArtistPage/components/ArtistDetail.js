@@ -41,7 +41,7 @@ const ArtistDetail = _ => {
         <BsStarHalf style={{ marginRight: 8, marginBottom: 2 }} className="align-self-center" />
         <p style={{ margin: 0 }} className="align-self-center">4.5</p>
       </div> */}
-      <button className="btn btn-outline-success w-100" style={Number(otherUser?.id) !== Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 12 } : { display: 'none' }}>Contact Me!</button>
+      {/* <button className="btn btn-outline-success w-100" style={Number(otherUser?.id) !== Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 12 } : { display: 'none' }}>Contact Me!</button> */}
       <Link to={`/artist/${artistId}/edit`}>
         <button className="btn btn-outline-success w-100" style={Number(otherUser?.id) === Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 12 } : { display: 'none' }}>Edit Profile</button>
       </Link>

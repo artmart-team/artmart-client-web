@@ -40,10 +40,10 @@ const UserDetail = _ => {
       {/* <button className="btn btn-outline-success w-100" style={{ marginTop: 16, borderRadius: 8 }}>Contact Me!</button> */}
       {/* <Link to={path.userEditProfile}> */}
       <Link to={`/user/${userId}/edit`}>
-        <button className="btn btn-outline-success w-100" style={Number(otherUser?.id) === Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 8 } : { display: 'none' }}>Edit Profile</button>
+        <button className="btn btn-outline-success w-100" style={Number(otherUser?.id) === Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 12 } : { display: 'none' }}>Edit Profile</button>
       </Link>
       <Link to={path.userOrder}>
-        <button className="btn btn-outline-primary w-100" style={Number(otherUser?.id) === Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 8 } : { display: 'none' }}>My Order</button>
+        <button className="btn btn-outline-primary w-100" style={Number(otherUser?.id) === Number(localStorage.getItem('id')) ? { marginTop: 16, borderRadius: 12 } : { display: 'none' }}>My Order</button>
       </Link>
     </div>
   );
