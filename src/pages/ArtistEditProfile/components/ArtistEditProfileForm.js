@@ -116,7 +116,7 @@ const ArtistEditProfileForm = props => {
         <div className="mb-3">
           <label htmlFor="username" className="form-label">Username</label>
           {errorUname && <p style={{ color : "red" }}>username required</p> }
-          <input name="username" type="text" className="form-control" id="username" value={username} onChange={editUsername}/>
+          <input name="username" type="text" className="form-control" id="username" value={username} onChange={editUsername} readOnly/>
         </div>
 
         <div className="mb-3">
