@@ -18,7 +18,6 @@ import '../../Home/styles/HomeCard.css';
 const PictureUserCard = (props) => {
   //   let { stallId } = useParams()
   const dispatch = useDispatch()
-  console.log(props)
 
   const history = useHistory()
 

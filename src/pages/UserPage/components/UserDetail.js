@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import path from '../../../routers/index.js';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
 import { getOtherUserId } from '../../../utils/store/actions/userAction.js';
 
@@ -13,7 +14,7 @@ const UserDetail = _ => {
   const { pathname } = useLocation();
   const history = useHistory();
 
-  const [ userId , setUserId ] = useState(localStorage.getItem('id'))
+  const [userId, setUserId] = useState(localStorage.getItem('id'))
 
   // console.log("page user Detail")
 
@@ -26,14 +27,19 @@ const UserDetail = _ => {
     dispatch(getOtherUserId(role, id))
   }, [dispatch])
 
-  
+
   return (
     <div id="UserDetail" style={{ marginTop: 32, paddingTop: 8, paddingBottom: 32 }} className="d-flex flex-column">
       <div style={{ width: '100%', height: '100%', textAlign: 'center' }} className="align-self-center">
-        <img
-          src={otherUser?.profilePicture}
-          className="circle"
-        />
+        {isLoading ?
+          <SkeletonTheme color="#dedede" highlightColor="#eee">
+            <Skeleton circle={true} width={100} height={100} />
+          </SkeletonTheme> 
+          :
+          <img
+            src={otherUser?.profilePicture}
+            className="circle"
+          />}
       </div>
       <h3 style={{ marginBottom: 0, marginTop: 24, textAlign: 'center' }}>{otherUser?.username}</h3>
       <p style={{ textAlign: 'center' }}>{otherUser?.email}</p>

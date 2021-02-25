@@ -46,7 +46,7 @@ const RegisterCustomer = _ => {
           <div className="col-12 col-md-6">
             <div className="register-form">
               <h4 style={{ fontSize: '2.6em', fontWeight: 400, letterSpacing: 1, marginBottom: 8 }}>Welcome,<br />New Customer!</h4>
-              <p className="text-muted" >Not a customer? <Link to={path.registerArtist} style={{ textDecoration: 'none', fontWeight: 500 }}>register as artist!</Link></p>
+              <p className="text-muted" >Not a customer? <Link to={path.registerArtist} onClick={() => dispatch(resetError())} style={{ textDecoration: 'none', fontWeight: 500 }}>register as artist!</Link></p>
 
               {errors ? <div className="alert alert-danger alert-dismissible fade show" role="alert" style={{ borderRadius: 16 }}>
                 {errors[0]}

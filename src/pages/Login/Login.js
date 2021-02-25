@@ -50,8 +50,8 @@ const Login = _ => {
           <div className="col-12 col-md-6">
             <div className="login-form">
               <h4 style={{ fontSize: '2.6em', fontWeight: 400, letterSpacing: 1, marginBottom: 8 }}>Welcome back,<br />{pathname === path.loginCustomer ? 'Customer!' : 'Artist!'}</h4>
-              <p className="text-muted" style={pathname === path.loginCustomer ? { display: 'block' } : { display: 'none' }}>Not a customer? <Link to={path.loginArtist} style={{ textDecoration: 'none', fontWeight: 500 }}>Login as Artist!</Link></p>
-              <p className="text-muted" style={pathname === path.loginArtist ? { display: 'block' } : { display: 'none' }}>Not an Artist? <Link to={path.loginCustomer} style={{ textDecoration: 'none', fontWeight: 500 }}>Login as Customer!</Link></p>
+              <p className="text-muted" style={pathname === path.loginCustomer ? { display: 'block' } : { display: 'none' }}>Not a customer? <Link to={path.loginArtist} onClick={() => dispatch(resetError())} style={{ textDecoration: 'none', fontWeight: 500 }}>Login as Artist!</Link></p>
+              <p className="text-muted" style={pathname === path.loginArtist ? { display: 'block' } : { display: 'none' }}>Not an Artist? <Link to={path.loginCustomer} onClick={() => dispatch(resetError())} style={{ textDecoration: 'none', fontWeight: 500 }}>Login as Customer!</Link></p>
 
               {errors ? <div className="alert alert-danger alert-dismissible fade show" role="alert" style={{ borderRadius: 16 }}>
                 {errors}

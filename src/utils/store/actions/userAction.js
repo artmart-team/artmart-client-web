@@ -177,6 +177,7 @@ export const getOtherUserId = (role, id) => {
   return async next => {
     try {
       // next({ type: 'RESET_OTHER_USER' });
+      next({ type: 'LOADING' });
 
       const { data } =
         role === 'artist' ? (await axios({
