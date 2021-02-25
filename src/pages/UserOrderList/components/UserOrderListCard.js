@@ -86,11 +86,11 @@ const UserOrderListCard = ({ order }) => {
     history.push(`/user/${order.UserId}/artist/${order.ArtistId}/order/${order.id}/process`)
   }
 
-  useEffect (() => {
+  useEffect (() => {  
     let year = ''
     let month = ''
     let day = ''
-
+    console.log(order.deadline, date)
     if (order.length > 0) {
       for (let i = 0; i < order.deadline.length; i ++) {
         if (i <= 3) {
@@ -101,14 +101,14 @@ const UserOrderListCard = ({ order }) => {
           day += order.deadline[i]
         }
       }
-    }
-    day = Number(day) + 1
-    month = Number(month) - 1
+      day = Number(day) + 1
+      month = Number(month) - 1
 
-    let deadline = new Date(year, month, day)
-    // console.log(date, deadline)
-    let dayDeadline = (Math.abs(deadline - date) / 36e5 / 24).toFixed(0)
-    setDeadline(dayDeadline)
+      let deadline = new Date(year, month, day)
+      console.log(date, deadline)
+      let dayDeadline = (Math.abs(deadline - date) / 36e5 / 24).toFixed(0)
+      setDeadline(dayDeadline)
+    }
 
   }, [order])
 
