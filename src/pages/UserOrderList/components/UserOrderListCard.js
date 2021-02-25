@@ -88,7 +88,7 @@ const UserOrderListCard = ({ order }) => {
     <div id="UserOrderListCard" className="col-12">
       <div className="card shadow" style={{ width: '100%', border: 'none', borderRadius: 16, marginTop: 8, marginBottom: 8, height: 'auto' }}>
         <div className="row">
-          <div className="col-6" style={{ padding: 0, borderRadius: 16, padding: 32, height: '460px' }}>
+          <div className="col-6" style={{ borderRadius: 16, padding: 32, height: '460px' }}>
             <img src={order.refLink} className="card-img-top" style={{ height: '100%', objectFit: 'cover', objectPosition: '50% 25%', borderRadius: 16 }} />
           </div>
           <div className="col-6" style={{ padding: 32 }}>

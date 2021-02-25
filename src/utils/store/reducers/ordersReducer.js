@@ -46,8 +46,12 @@ const ordersReducer = (state = initState, action) => {
         loading: true
       }
     case 'DECLINE_ORDER_DONE':
+
+      // console.log(state.artistOrders, 'ORD<<<');
+      // console.log(action.orderId, '<<PRDER')
       return {
         ...state,
+        artistOrders: state.artistOrders.filter(e => e.id !== action.orderId),
         loading: false
       }
     case 'DECLINE_ORDER_ERROR':
