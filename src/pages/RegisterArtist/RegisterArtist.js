@@ -31,7 +31,7 @@ const RegisterArtist = _ => {
       lastName: e.target?.lastName.value,
       password: e.target?.password.value,
       bankAccount: Number(e.target?.bankAccount.value),
-      completeDuration: Number(e.target?.bankAccount.value),
+      completeDuration: Number(e.target?.completeDuration.value),
       defaultPrice: 1
     };
 
