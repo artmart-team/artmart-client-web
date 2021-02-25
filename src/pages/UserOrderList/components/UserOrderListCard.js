@@ -100,6 +100,8 @@ const UserOrderListCard = ({ order }) => {
         day += order.deadline[i]
       }
     }
+    day = Number(day) + 1
+    month = Number(month) - 1
 
     let deadline = new Date(year, month, day)
     // console.log(date, deadline)
