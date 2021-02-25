@@ -108,7 +108,7 @@ const UserOrderListCard = ({ order }) => {
             <div className="mb-4 mt-2 text-muted" style={{ paddingLeft: 0 }}>
               <div className="d-flex justify-content-between">
                 <p style={{ fontWeight: 600, marginBottom: 0 }}>Total</p>
-                <p style={{ fontWeight: 600, marginBottom: 0 }}>Rp. {(price + extraPrice + ((price + extraPrice) * 5 / 100)).toLocaleString('id-ID')}</p>
+                <p style={{ fontWeight: 600, marginBottom: 0 }}>Rp. { order.totalPrice ? order.totalPrice :  (price + extraPrice + ((price + extraPrice) * 5 / 100)).toLocaleString('id-ID')}</p>
               </div>
             </div>
 
