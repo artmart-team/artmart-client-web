@@ -16,6 +16,42 @@ const ChatCardContainer = ({ messages }) => {
   const [role, setRole] = useState(localStorage.getItem('role'))
   const [inputMsg, setInputMsg] = useState('')
   const [newMessages, setNewMessages] = useState([])
+  const [counter, setCounter] = useState(0)
+  const [anchorMessage, setAnchorMessage] = useState([])
+
+  useEffect(async () => {
+    console.log('ini counter >>' , counter)
+    if (counter == 1 && messages.length < 1) {
+      console.log(counter)
+
+      try {
+        if (role === 'artist') {
+          const { data } = await axios.get(`https://marterialize.herokuapp.com/artist/${artistId}/user/${userId}/chat`, {
+            headers: {
+              "access_token": localStorage.getItem('access_token')
+            }
+          })
+          let copyMsg = data
+          // let mappedMsg = copyMsg.map(message => [message.messages, message.from])
+          setAnchorMessage(data)
+          // console.log(data, 'role artist data')
+        } else {
+          const { data } = await axios.get(`https://marterialize.herokuapp.com/user/${userId}/artist/${artistId}/chat`, {
+            headers: {
+              "access_token": localStorage.getItem('access_token')
+            }
+          })
+          let copyMsg = data
+          // let mappedMsg = copyMsg.map(message => [message.messages, message.from])
+          setAnchorMessage(data)
+          // console.log(data, 'role user data')
+        }
+      } catch (err) {
+        console.log(err.response, 'error fetch chat data')
+      }
+  
+    }
+  }, [counter])
 
   useEffect(() => {
     if (messages.length > 0) {
@@ -55,6 +91,9 @@ const ChatCardContainer = ({ messages }) => {
     e.preventDefault()
     let room = localStorage.getItem('room')
     socket.emit('message', room, inputMsg, role, userId, artistId)
+    
+    let newCounter = counter + 1
+    setCounter(newCounter)
     setInputMsg('')
   }
 
@@ -68,7 +107,7 @@ const ChatCardContainer = ({ messages }) => {
         <div className="shadow" style={{ height: 'auto', backgroundColor: '#fff', borderRadius: 16, padding: 32, marginTop: 16 }}>
 
           {
-            newMessages.map((message, idx) => <ChatCard message={message} key={idx} artist={messages[0]?.Artist} user={messages[0]?.User}></ChatCard>)
+            newMessages.map((message, idx) => <ChatCard message={message} key={idx} artist={messages[0]?.Artist} user={messages[0]?.User} messages={messages} counter={counter} anchorMessage={anchorMessage}></ChatCard>)
           }
   
           <form action="">
