@@ -16,12 +16,13 @@ const ListBuy = _ => {
   
   const { title, description } = useSelector(state => state.orders) 
 
+
   function handleOrderClick () {
     if (title && description) {
       dispatch( postOrder(title, description, price, (price + extraPrice ), artistId, selectedOptions, localStorage.getItem('selectedPicId')))
       setTimeout(function () {
          setOrderId(localStorage.getItem('orderId'))
-        }, 3000);
+        }, 5000);
     } else {
       console.log('title and description required')
     }
