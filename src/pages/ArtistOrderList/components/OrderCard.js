@@ -21,7 +21,9 @@ const OrderCard = ({ order }) => {
 
   function handleAccept () {
     dispatch(acceptOrder(order.id))
-    dispatch(fetchOrderByArtistId())
+    setTimeout(() => {
+      dispatch(fetchOrderByArtistId())
+    }, 2000)
   }
 
   function handleChat () {
