@@ -66,8 +66,8 @@ const UserOrderList = _ => {
       <h3>Here is your order list!</h3>
       <p>Let's get some coffee while we're waiting!</p>
       <div className="d-flex justify-content-between">
-        <label className="form-label align-self-center" style={{marginBottom: 0, marginRight: 16}}>Filter:</label>
-        <select className="form-select" style={{borderRadius: 12}} onChange={(e) => handleFilterChange(e)} defaultValue="all">
+        <label className="form-label align-self-center" style={{ marginBottom: 0, marginRight: 16 }}>Filter:</label>
+        <select className="form-select" style={{ borderRadius: 12 }} onChange={(e) => handleFilterChange(e)} defaultValue="all">
           <option value="all">All</option>
           <option value="unpaid">Unpaid</option>
           <option value="paid">Paid</option>
@@ -77,11 +77,14 @@ const UserOrderList = _ => {
         </select>
       </div>
 
-      <div className="container-fluid" style={{padding: 0, marginTop: 16}}>
+      <div className="container-fluid" style={{ padding: 0, marginTop: 16 }}>
         <div className="row">
-          {
+          {!filteredOrders || filteredOrders?.length === 0 ?
+            <h1>not found</h1> :
             filteredOrders.map(order => <UserOrderListCard order={order} key={order.id}></UserOrderListCard>)
           }
+
+
         </div>
       </div>
     </div>
