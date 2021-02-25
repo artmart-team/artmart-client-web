@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import axios from '../../utils/API/axios'
 
 import ChatCardContainer from './components/ChatCardContainer.js';
-import TimerWidget from './components/TimerWidget.js';
+// import TimerWidget from './components/TimerWidget.js';
 
 const OrderProcess = _ => {
   const { orderId } = useParams()
@@ -55,7 +55,7 @@ const OrderProcess = _ => {
       <div id="OrderProcess" style={{ borderRadius: 16, paddingTop: 32, marginLeft: 32, marginRight: 32 }}>
         <h3>Thank you for ordering.</h3>
   
-        <TimerWidget rawTime={5000} />
+        {/* <TimerWidget rawTime={5000} /> */}
   
         <ChatCardContainer messages={messages}/>
       </div>

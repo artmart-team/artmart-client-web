@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchOrdersUsers } from '../../utils/store/actions/orderUserAction.js';
 
 import UserOrderListCard from './components/UserOrderListCard.js';
+import LoadingAnim from '../../components/helpers/LoadingAnim.js';
 
 const UserOrderList = _ => {
   const dispatch = useDispatch()
@@ -80,7 +81,7 @@ const UserOrderList = _ => {
       <div className="container-fluid" style={{ padding: 0, marginTop: 16 }}>
         <div className="row">
           {!filteredOrders || filteredOrders?.length === 0 ?
-            <h1>not found</h1> :
+            <p></p> :
             filteredOrders.map(order => <UserOrderListCard order={order} key={order.id}></UserOrderListCard>)
           }
 

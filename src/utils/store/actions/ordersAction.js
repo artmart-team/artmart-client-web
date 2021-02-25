@@ -205,7 +205,7 @@ export const declineOrder = (orderId) => {
 
             const Toast = Swal.mixin({
               toast: true,
-              position: 'top-end',
+              position: 'top',
               showConfirmButton: false,
               timer: 3000,
             })
@@ -249,6 +249,18 @@ export const acceptOrder = (orderId) => {
           }
         })
 
+        // const Toast = Swal.mixin({
+        //   toast: true,
+        //   position: 'top',
+        //   showConfirmButton: false,
+        //   timer: 3000,
+        // })
+
+        // Toast.fire({
+        //   icon: 'success',
+        //   title: 'Order accepted!'
+        // })
+
         dispatch({
           type: 'ACCEPT_ORDER_DONE',
         })
@@ -275,6 +287,18 @@ export const submitCommission = (payload, orderId) => {
           "access_token": access_token
         }
       })
+
+      // const Toast = Swal.mixin({
+      //   toast: true,
+      //   position: 'top',
+      //   showConfirmButton: false,
+      //   timer: 3000,
+      // })
+
+      // Toast.fire({
+      //   icon: 'success',
+      //   title: 'Order has been submitted!'
+      // })
 
       return dispatch({ type: 'SUBMIT_COMMISSION', payload: data });
     } catch (err) {
