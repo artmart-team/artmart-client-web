@@ -54,7 +54,7 @@ const UserOrderListCard = ({ order }) => {
           })
             .then(orderPaid => {
               console.log(orderPaid)
-              history.push('/order/process/:orderId')
+              history.push(`/user/${order.UserId}/artist/${order.ArtistId}/order/${order.id}/process`)
               localStorage.setItem('orderId', '')
             })
             .catch(err => {
@@ -86,29 +86,29 @@ const UserOrderListCard = ({ order }) => {
 
   return (
     <div id="UserOrderListCard" className="col-12">
-      <div className="card" style={{ width: '100%', borderRadius: 8, marginTop: 8, marginBottom: 8 }}>
+      <div className="card shadow" style={{ width: '100%', border: 'none', borderRadius: 16, marginTop: 8, marginBottom: 8, height: 'auto' }}>
         <div className="row">
-          <div className="col-6" style={{ padding: 0 }}>
-            <img src={order.refLink} className="card-img-top" style={{ borderTopRightRadius: 0, height: '100%', objectFit: 'cover', borderTopLeftRadius: 8, borderBottomLeftRadius: 8 }} />
+          <div className="col-6" style={{ padding: 0, borderRadius: 16, padding: 32, height: '460px' }}>
+            <img src={order.refLink} className="card-img-top" style={{ height: '100%', objectFit: 'cover', objectPosition: '50% 25%', borderRadius: 16 }} />
           </div>
           <div className="col-6" style={{ padding: 32 }}>
             <div className="d-flex justify-content-between" style={{ marginBottom: 12 }}>
               <h5 className="align-self-center" style={{ margin: 0 }}>{order.title}</h5>
-              {!order.paid ? <span class="badge rounded-pill bg-danger align-self-center"><p style={{ margin: 0 }}>Unpaid</p></span> :
-                !order.accepted ? <span class="badge rounded-pill bg-success align-self-center"><p style={{ margin: 0 }}>Paid</p></span> :
-                  !order.done ? <span class="badge rounded-pill bg-secondary align-self-center"><p style={{ margin: 0 }}>Pending</p></span> :
-                    <span class="badge rounded-pill bg-success align-self-center"><p style={{ margin: 0 }}>Done</p></span>
+              {!order.paid ? <span className="badge rounded-pill bg-danger align-self-center"><p style={{ margin: 0 }}>Unpaid</p></span> :
+                !order.accepted ? <span className="badge rounded-pill bg-success align-self-center"><p style={{ margin: 0 }}>Paid</p></span> :
+                  !order.done ? <span className="badge rounded-pill bg-secondary align-self-center"><p style={{ margin: 0 }}>Pending</p></span> :
+                    <span className="badge rounded-pill bg-success align-self-center"><p style={{ margin: 0 }}>Done</p></span>
               }
 
-              {/* <span class="badge rounded-pill bg-secondary align-self-center"><p style={{margin: 0}}>Pending</p></span> */}
-              {/* <span class="badge rounded-pill bg-success align-self-center"><p style={{ margin: 0 }}>Paid</p></span> */}
+              {/* <span className="badge rounded-pill bg-secondary align-self-center"><p style={{margin: 0}}>Pending</p></span> */}
+              {/* <span className="badge rounded-pill bg-success align-self-center"><p style={{ margin: 0 }}>Paid</p></span> */}
             </div>
             <p className="description">{order.description}</p>
 
             <div className="mb-4 mt-2 text-muted" style={{ paddingLeft: 0 }}>
               <div className="d-flex justify-content-between">
                 <p style={{ fontWeight: 600, marginBottom: 0 }}>Total</p>
-                <p style={{ fontWeight: 600, marginBottom: 0 }}>Rp. {(price + extraPrice + ((price + extraPrice) * 5 / 100))}</p>
+                <p style={{ fontWeight: 600, marginBottom: 0 }}>Rp. {(price + extraPrice + ((price + extraPrice) * 5 / 100)).toLocaleString('id-ID')}</p>
               </div>
             </div>
 
@@ -116,17 +116,17 @@ const UserOrderListCard = ({ order }) => {
 
             <div className="d-flex" style={{ marginBottom: 32, marginTop: 28 }}>
               <div style={{ marginRight: 4, flex: 1 }}>
-                <Link to={`/artist/3`}>
+                <Link to={`/artist/${order?.Artist?.id}`}>
                   <img
-                    src={order.Artist.profilePic}
+                    src={order?.Artist?.profilePicture}
                     className="rounded-circle"
                     style={{ width: 56, height: 56, objectFit: 'cover' }}
                   />
                 </Link>
               </div>
-              <div style={{ flex: 6, minWidth: 0 }}>
-                <Link to={`/stall/3`} style={{ textDecoration: 'none' }}>
-                  <h5 className="card-title" style={{ width: 'auto', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{order.Artist.username}</h5>
+              <div style={{ flex: 6, minWidth: 0, display: 'flex' }}>
+                <Link to={`/artist/${order?.Artist?.id}`} style={{ textDecoration: 'none' }} className="align-self-center">
+                  <h5 className="card-title " style={{ width: 'auto', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{order.Artist.username}</h5>
                 </Link>
               </div>
 
@@ -136,21 +136,21 @@ const UserOrderListCard = ({ order }) => {
             <div className="row">
               <div className="col">
                 {
-                  !order.paid ? <button className="btn btn-primary w-100" onClick={(e) => handlePay(e)}>Pay</button> :
-                    !order.accepted ?<button className="btn btn-primary w-100" onClick={(e) => handleChat(e)}>Chat</button> :
+                  !order.paid ? <button style={{ borderRadius: 16 }} className="btn btn-primary w-100" onClick={(e) => handlePay(e)}>Pay</button> :
+                    !order.accepted ? <button style={{ borderRadius: 16 }} className="btn btn-primary w-100" onClick={(e) => handleChat(e)}>Chat</button> :
                       !order.done ? <p></p> :
-                        <p className="btn btn-main w-100">Go to Review Page to Download</p>
+                        <p className="btn align-self-center">Go to Review Page to Download</p>
                 }
 
               </div>
               {/** Kalo belom selesai ada cancelation */}
               <div className="col">
                 {
-                  !order.paid ? <button className="btn btn-danger w-100" onClick={() => handleCancel()}>Cancel</button> :
-                    !order.accepted ? <p>Please wait for artist's response</p> :
-                      !order.done ? <p>The artist is making your commission</p> :
-                        order.ReviewId ? <button className="btn btn-success w-100" onClick={() => handleReview()}>Edit Review</button> :
-                        <button className="btn btn-success w-100" onClick={() => handleReview()}>Review</button>
+                  !order.paid ? <button style={{ borderRadius: 16 }} className="btn btn-danger w-100" onClick={() => handleCancel()}>Cancel</button> :
+                    !order.accepted ? <p className="btn align-self-center">Please wait for artist's response</p> :
+                      !order.done ? <p className="btn align-self-center">The artist is making your commission</p> :
+                        order.ReviewId ? <button style={{ borderRadius: 16 }} className="btn btn-success w-100" onClick={() => handleReview()}>Edit Review</button> :
+                          <button style={{ borderRadius: 16 }} className="btn btn-success w-100" onClick={() => handleReview()}>Review</button>
                 }
 
               </div>
