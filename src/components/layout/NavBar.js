@@ -28,8 +28,6 @@ const NavBar = () => {
   const processVar = ['user', 'artist', 'order'];
   const processCheck = (process[0] === processVar[0]) && (process[1] === processVar[1]) && (process[2] === processVar[2]);
 
-  console.log(processCheck)
-
   const { user, isLoading, errors } = useSelector(state => state.user);
 
   const [search, setSearch] = useState("")
@@ -269,14 +267,14 @@ const NavBar = () => {
                     <p className="dropdown-item text " style={{ marginBottom: 0 }} >My Profile</p>
                   </li>
                 </Link>
-                <Link to={path.stallForm} style={{ textDecoration: 'none' }}>
+                <Link to={path.stallForm} style={localStorage.getItem('role') === 'artist' ? { textDecoration: 'none' } : { display: 'none' }}>
                   <li className="dropdown-item">
-                    <p className="dropdown-item text" style={localStorage.getItem('role') === 'artist' ? { marginBottom: 0 } : { display: 'none' }} >Post an Art</p>
+                    <p className="dropdown-item text" style={{ marginBottom: 0 }} >Post an Art</p>
                   </li>
                 </Link>
-                <Link to={`/artist/${user?.id}/orders/active`} style={{ textDecoration: 'none' }}>
+                <Link to={`/artist/${user?.id}/orders/active`} style={localStorage.getItem('role') === 'artist' ? { textDecoration: 'none' } : { display: 'none' }}>
                   <li className="dropdown-item">
-                    <p className="dropdown-item text" style={localStorage.getItem('role') === 'artist' ? { marginBottom: 0 } : { display: 'none' }} >Active Orders</p>
+                    <p className="dropdown-item text" style={{ marginBottom: 0 }} >Active Orders</p>
                   </li>
                 </Link>
               </div>
