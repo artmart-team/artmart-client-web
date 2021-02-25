@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 
@@ -12,6 +12,8 @@ const OrderActiveCard = ({ order }) => {
   const { artistId, userId } = useParams()
   const history = useHistory()
   const [options, setOptions] = useState(order.options ? JSON.parse(order.options) : [])
+  const [date, setDate] = useState(new Date())
+  const [deadline, setDeadline] = useState('')
 
   function handleMarkAsDone () {
     history.push(`/order/submit/${order.id}`)
@@ -20,6 +22,29 @@ const OrderActiveCard = ({ order }) => {
   function handleChat () {
     history.push(`/user/${order.UserId}/artist/${order.ArtistId}/order/${order.id}/process`)
   }
+
+  useEffect (() => {
+    let year = ''
+    let month = ''
+    let day = ''
+
+    for (let i = 0; i < order.deadline.length; i ++) {
+      if (i <= 3) {
+        year += order.deadline[i]
+      } else if (i >= 5 && i <= 6) {
+        month += order.deadline[i]
+      } else if (i >= 8 && i <= 9) {
+        day += order.deadline[i]
+      }
+    }
+
+    let deadline = new Date(year, month, day)
+    // console.log(date, deadline)
+    let dayDeadline = (Math.abs(deadline - date) / 36e5 / 24).toFixed(0)
+    setDeadline(dayDeadline)
+
+  }, [order])
+
 
   return (
     <div id="OrderActiveCard" className="col-12">
@@ -31,6 +56,7 @@ const OrderActiveCard = ({ order }) => {
           <div className="col-6" style={{ padding: 32 }}>
             <h5>{order.title}</h5>
             <p className="description">{order.description}</p>
+            <small className="text-warning">{ deadline } days left</small>
 
             {!order.options ? <div className="mb-2 mt-2 text-muted" style={{ paddingLeft: 0 }}>
               <div className="d-flex justify-content-between">

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -12,8 +12,10 @@ const UserOrderListCard = ({ order }) => {
   const dispatch = useDispatch()
   const [price, setPrice] = useState(Number(localStorage.getItem('selectedPicPrice')))
   const [extraPrice, setExtraPrice] = useState(Number(localStorage.getItem('totalExtraPrice')))
+  const [date, setDate] = useState(new Date())
+  const [deadline, setDeadline] = useState('')
 
-  console.log(order)
+  // console.log(order)
 
   function handleCancel () {
     dispatch(cancelOrderUser(order.id))
@@ -84,6 +86,28 @@ const UserOrderListCard = ({ order }) => {
     history.push(`/user/${order.UserId}/artist/${order.ArtistId}/order/${order.id}/process`)
   }
 
+  useEffect (() => {
+    let year = ''
+    let month = ''
+    let day = ''
+
+    for (let i = 0; i < order.deadline.length; i ++) {
+      if (i <= 3) {
+        year += order.deadline[i]
+      } else if (i >= 5 && i <= 6) {
+        month += order.deadline[i]
+      } else if (i >= 8 && i <= 9) {
+        day += order.deadline[i]
+      }
+    }
+
+    let deadline = new Date(year, month, day)
+    // console.log(date, deadline)
+    let dayDeadline = (Math.abs(deadline - date) / 36e5 / 24).toFixed(0)
+    setDeadline(dayDeadline)
+
+  }, [order])
+
   return (
     <div id="UserOrderListCard" className="col-12">
       <div className="card shadow" style={{ width: '100%', border: 'none', borderRadius: 16, marginTop: 8, marginBottom: 8, height: 'auto' }}>
@@ -104,6 +128,7 @@ const UserOrderListCard = ({ order }) => {
               {/* <span className="badge rounded-pill bg-success align-self-center"><p style={{ margin: 0 }}>Paid</p></span> */}
             </div>
             <p className="description">{order.description}</p>
+            <p className="text-warning">{ deadline } days left</p>
 
             <div className="mb-4 mt-2 text-muted" style={{ paddingLeft: 0 }}>
               <div className="d-flex justify-content-between">
