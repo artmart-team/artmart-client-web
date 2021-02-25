@@ -70,7 +70,7 @@ const PictureUserCard = (props) => {
   }
 
   return (
-    <div id="OrderCard" className="col-6 col-sm-6 col-md-4 col-lg-4 col-xxl-2" >
+    <div id="OrderCard" className="col-6 col-sm-6 col-md-4 col-lg-4 col-xxl-4" >
       <div className="custom-card" style={{ borderRadius: 16 }}>
         {!hiddenPict ?
           <div className="" style={{ backdropFilter: 'blur(8px)', width: 'auto', backgroundColor: '#0046ded9', position: 'absolute', bottom: 112, right: 20, borderRadius: 8 }}>
