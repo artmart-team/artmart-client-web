@@ -178,25 +178,49 @@ export const declineOrder = (orderId) => {
   return async (dispatch) => {
     try {
       let role = localStorage.getItem('role')
-      if (role === 'artist') {
-        dispatch({
-          type: 'DECLINE_ORDER_START',
-        })
 
-        let artistId = localStorage.getItem('id')
-        let access_token = localStorage.getItem('access_token')
+      await Swal.fire({
+        title: 'Are you sure want to decline?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, decline it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          if (role === 'artist') {
+            dispatch({
+              type: 'DECLINE_ORDER_START',
+            })
 
-        const data = await axios.delete(`/artists/${artistId}/orders/${orderId}`, {
-          headers: {
-            "access_token": access_token
+            let artistId = localStorage.getItem('id')
+            let access_token = localStorage.getItem('access_token')
+
+            axios.delete(`/artists/${artistId}/orders/${orderId}`, {
+              headers: {
+                "access_token": access_token
+              }
+            })
+
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 3000,
+            })
+
+            Toast.fire({
+              icon: 'success',
+              title: 'Order has been declined!'
+            })
+
+            dispatch({
+              type: 'DECLINE_ORDER_DONE', orderId,
+            })
           }
-        })
-
-        dispatch({
-          type: 'DECLINE_ORDER_DONE', orderId,
-        })
-
-      }
+        }
+      })
     } catch (err) {
       console.log(err, 'error declineOrder Action')
       dispatch({

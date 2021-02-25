@@ -68,8 +68,8 @@ const OrderCard = ({ order }) => {
               </div>
             </div>
             <div className="row">
-              <div className="col">
-                <button style={{borderRadius: 12}} className="btn btn-outline-success w-100 mt-4" onClick={() => handleChat()}>Chat</button>
+              <div className="col align-self-center">
+                <button style={{borderRadius: 12}} className="btn btn-outline-success w-100 mt-1" onClick={() => handleChat()}>Chat</button>
               </div>
             </div>
           </div>
