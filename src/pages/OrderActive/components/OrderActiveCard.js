@@ -37,9 +37,11 @@ const OrderActiveCard = ({ order }) => {
         day += order.deadline[i]
       }
     }
+    day = Number(day) + 1
+    month = Number(month) - 1
 
     let deadline = new Date(year, month, day)
-    // console.log(date, deadline)
+    console.log(date, deadline)
     let dayDeadline = (Math.abs(deadline - date) / 36e5 / 24).toFixed(0)
     setDeadline(dayDeadline)
 
