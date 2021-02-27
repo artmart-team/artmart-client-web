@@ -23,28 +23,33 @@ const OrderActiveCard = ({ order }) => {
     history.push(`/user/${order.UserId}/artist/${order.ArtistId}/order/${order.id}/process`)
   }
 
-  useEffect (() => {
+  useEffect (() => {  
     let year = ''
     let month = ''
     let day = ''
+  
+    if (JSON.stringify(order) !== '{}') {
+      if (order.deadline) {
+        for (let i = 0; i < order.deadline.length; i ++) {
+          if (i <= 3) {
+            year += order.deadline[i]
+          } else if (i >= 5 && i <= 6) {
+            month += order.deadline[i]
+          } else if (i >= 8 && i <= 9) {
+            day += order.deadline[i]
+          }
+        }
+        day = Number(day) + 1
+        month = Number(month) - 1
+    
+        let deadline = new Date(year, month, day)
+        let dayDeadline = (Math.abs(deadline - date) / 36e5 / 24).toFixed(0)
+    
+        setDeadline(dayDeadline)
 
-    for (let i = 0; i < order.deadline.length; i ++) {
-      if (i <= 3) {
-        year += order.deadline[i]
-      } else if (i >= 5 && i <= 6) {
-        month += order.deadline[i]
-      } else if (i >= 8 && i <= 9) {
-        day += order.deadline[i]
       }
     }
-    day = Number(day) + 1
-    month = Number(month) - 1
-
-    let deadline = new Date(year, month, day)
-    console.log(date, deadline)
-    let dayDeadline = (Math.abs(deadline - date) / 36e5 / 24).toFixed(0)
-    setDeadline(dayDeadline)
-
+  
   }, [order])
 
 
@@ -58,7 +63,7 @@ const OrderActiveCard = ({ order }) => {
           <div className="col-6" style={{ padding: 32 }}>
             <h5>{order.title}</h5>
             <p className="description">{order.description}</p>
-            <small className="text-warning">{ deadline } days left</small>
+            <small className="text-warning">{ (deadline && !order.done) ? `${deadline} days left` : '' }</small>
 
             {!order.options ? <div className="mb-2 mt-2 text-muted" style={{ paddingLeft: 0 }}>
               <div className="d-flex justify-content-between">
@@ -67,6 +72,7 @@ const OrderActiveCard = ({ order }) => {
             </div>
               : ''
             }
+
 
             {
               options.map((option, idx) => <Option option={option} key={idx}></Option>)

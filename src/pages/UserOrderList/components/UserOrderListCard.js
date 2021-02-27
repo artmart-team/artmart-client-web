@@ -86,10 +86,29 @@ const UserOrderListCard = ({ order }) => {
     history.push(`/user/${order.UserId}/artist/${order.ArtistId}/order/${order.id}/process`)
   }
 
-  useEffect (() => {
+  useEffect (() => {  
     let year = ''
     let month = ''
     let day = ''
+  
+    if (JSON.stringify(order) !== '{}') {
+      if (order.deadline) {
+        for (let i = 0; i < order.deadline.length; i ++) {
+          if (i <= 3) {
+            year += order.deadline[i]
+          } else if (i >= 5 && i <= 6) {
+            month += order.deadline[i]
+          } else if (i >= 8 && i <= 9) {
+            day += order.deadline[i]
+          }
+        }
+        day = Number(day) + 1
+        month = Number(month) - 1
+    
+        let deadline = new Date(year, month, day)
+        let dayDeadline = (Math.abs(deadline - date) / 36e5 / 24).toFixed(0)
+    
+        setDeadline(dayDeadline)
 
     for (let i = 0; i < order?.deadline?.length; i ++) {
       if (i <= 3) {
@@ -100,14 +119,7 @@ const UserOrderListCard = ({ order }) => {
         day += order.deadline[i]
       }
     }
-    day = Number(day) + 1
-    month = Number(month) - 1
-
-    let deadline = new Date(year, month, day)
-    // console.log(date, deadline)
-    let dayDeadline = (Math.abs(deadline - date) / 36e5 / 24).toFixed(0)
-    setDeadline(dayDeadline)
-
+  
   }, [order])
 
   return (
@@ -130,7 +142,7 @@ const UserOrderListCard = ({ order }) => {
               {/* <span className="badge rounded-pill bg-success align-self-center"><p style={{ margin: 0 }}>Paid</p></span> */}
             </div>
             <p className="description">{order.description}</p>
-            <p className="text-warning">{ deadline } days left</p>
+            <p className="text-warning">{ (deadline && !order.done) ? `${deadline} days left` : '' }</p>
 
             <div className="mb-4 mt-2 text-muted" style={{ paddingLeft: 0 }}>
               <div className="d-flex justify-content-between">
@@ -140,6 +152,7 @@ const UserOrderListCard = ({ order }) => {
             </div>
 
             <hr />
+
 
             <div className="d-flex" style={{ marginBottom: 32, marginTop: 28 }}>
               <div style={{ marginRight: 4, flex: 1 }}>
