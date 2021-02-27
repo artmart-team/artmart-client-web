@@ -74,7 +74,7 @@ const Footer = () => {
                 <h6 className="mt-55 mt-2 text-muted bold-text"><b>EMAIL</b></h6><small> <span><i className="fa fa-envelope" aria-hidden="true"></i></span> mARTerialize@gmail.com</small>
               </div>
               <div className="col-xl-2 col-md-4 col-sm-4 col-auto order-2 align-self-end mt-3 ">
-                <h6 className="text-muted bold-text"><b>GITHUB</b></h6><small><span><i className="fa fa-envelope" aria-hidden="true"></i></span><a href="https://github.com/artmart" target="_blank">github.com/artmart</a></small>
+                <h6 className="text-muted bold-text"><b>GITHUB</b></h6><small><span><i className="fa fa-envelope" aria-hidden="true"></i></span><a href="https://github.com/artmart-team" target="_blank">github.com/artmart-team</a></small>
               </div>
             </div>
           </div>
