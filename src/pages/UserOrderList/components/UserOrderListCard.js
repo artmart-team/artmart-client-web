@@ -110,6 +110,13 @@ const UserOrderListCard = ({ order }) => {
     
         setDeadline(dayDeadline)
 
+    for (let i = 0; i < order?.deadline?.length; i ++) {
+      if (i <= 3) {
+        year += order.deadline[i]
+      } else if (i >= 5 && i <= 6) {
+        month += order.deadline[i]
+      } else if (i >= 8 && i <= 9) {
+        day += order.deadline[i]
       }
     }
   
