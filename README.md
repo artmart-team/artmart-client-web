@@ -14,6 +14,15 @@ First of all, you want to fork it, clone it, be my guest. After that, don't forg
 
 Because this is React App, after you run it, be sure to checkout at https://localhost:3000/
 
+### Tech Stacks
+We are using:
+- React
+- Redux
+- React Router DOM
+- Axios
+- Socket.io
+- Bootstrap
+
 ## Contributors
 
 For contribute the development of this web app, I would like to big thanks to:
